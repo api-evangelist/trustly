@@ -1,0 +1,576 @@
+generated: '2026-09-18'
+method: derived
+source: openapi/trustly-north-america-openapi.yml
+docs: https://amer.developers.trustly.com/integrate/core-concepts/transactions-and-transaction-ids
+summary:
+  schemas_in_spec: 159
+  entities_bound_to_operations: 36
+  relationships: 88
+core_objects:
+- name: Transaction
+  id_field: transactionId (Trustly-issued numeric string, also the objectId on events)
+  merchant_key: merchantReference (unique per merchant and environment; the idempotency key)
+  lifecycle: Established -> Authorized -> Processed -> Completed / Canceled / Denied / Failed / Expired / Reversed (see lifecycle statuses on
+    the status-codes page)
+- name: EstablishData
+  role: the request/response object for POST /establish and the Lightbox; carries merchantId, accessId, paymentType, transactionType, amount/currency,
+    customer, account, beneficiary, recurrence, verification, notificationUrl, returnUrl/cancelUrl and requestSignature
+- name: Customer
+  id_field: customerId (Trustly) and externalId (merchant)
+  role: consumer profile shared across transactions; VIP tier and trust score fields
+- name: Split token
+  role: half of the encrypted bank credential blob returned on the Authorize event; stored by the merchant and sent back on capture/deposit; the
+    other half stays with Trustly
+- name: Event
+  id_field: eventId
+  role: webhook notification; objectId points at the transaction, parentObjectId at the parent authorization
+- name: PaymentProvider
+  id_field: paymentProviderId / fiCode
+  role: a bank (financial institution) selectable in the Lightbox; GET /paymentProviders
+entities:
+- name: Account_Data_get-transaction-account-summary_Response_200
+  tag: accountData
+  fields: 3
+  operations:
+  - accountData_get-transaction-account-summary
+- name: Account_Data_get-transactions-account-balance_Response_200
+  tag: accountData
+  fields: 1
+  operations:
+  - accountData_get-transactions-account-balance
+- name: FIUser
+  tag: accountData
+  fields: 9
+  operations:
+  - accountData_get-user
+- name: Account_Data_list-selected-accounts_Response_200
+  tag: accountData
+  fields: 1
+  operations:
+  - accountData_list-selected-accounts
+- name: FeedbackPostRequestBodyContentApplicationJsonSchemaAccount
+  tag: accounts
+  fields: 3
+  operations:
+  - accounts_post-account-feedback
+- name: Accounts_post-account-feedback_Response_200
+  tag: accounts
+  fields: 1
+  operations:
+  - accounts_post-account-feedback
+- name: Feedback
+  tag: accounts
+  fields: 8
+  operations:
+  - accounts_post-account-feedback
+- name: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  tag: accounts
+  fields: 14
+  operations:
+  - accounts_post-accounts-tokenize?-verifyAccount
+- name: AccountsTokenizePostRequestBodyContentApplicationJsonSchemaAccount
+  tag: accounts
+  fields: 4
+  operations:
+  - accounts_post-accounts-tokenize?-verifyAccount
+- name: AccountsVerifyPostRequestBodyContentApplicationJsonSchemaAccount
+  tag: accounts
+  fields: 4
+  operations:
+  - accounts_get-accounts-verify
+- name: FinancialInstitutionAccount
+  tag: accounts
+  fields: 14
+  operations:
+  - accounts_get-accounts-verify
+- name: Countries_get-countries_Response_200
+  tag: countries
+  fields: 1
+  operations:
+  - countries_get-countries
+- name: Customers_post-customers_Response_200
+  tag: customers
+  fields: 1
+  operations:
+  - customers_post-customers
+- name: Customer
+  tag: customers
+  fields: 21
+  operations:
+  - customers_post-customers
+  - customers_post-customers-customerId
+  - transactions_post-establish
+- name: Customers_get-customers_Response_200
+  tag: customers
+  fields: 1
+  operations:
+  - customers_get-customers
+- name: Customers_get-customers-customerId_Response_200
+  tag: customers
+  fields: 1
+  operations:
+  - customers_get-customers-customerId
+- name: Customers_post-customers-customerId_Response_200
+  tag: customers
+  fields: 1
+  operations:
+  - customers_post-customers-customerId
+- name: Transaction
+  tag: disputeManagement
+  fields: 29
+  operations:
+  - disputeManagement_post-dispute-recovery
+  - identity_post-transaction-feedback
+  - transactions_get-transaction
+  - transactions_post-transactions-cancel
+  - transactions_post-transactions-deposit
+  - transactions_post-transactions-refund
+  - transactions_post-transactions-transactionId-capture
+  - transactions_post-transactions-transactionId-capture-preauth
+  - transactions_post-transactions-transactionId-reclaim
+- name: User
+  tag: identity
+  fields: 12
+  operations:
+  - identity_get-trustly-id-user-data
+- name: UserVerificationDetail
+  tag: identity
+  fields: 1
+  operations:
+  - identity_get-trustly-id-user-details
+- name: CustomerLookupResponse
+  tag: networkCheckApi
+  fields: 2
+  operations:
+  - networkCheckApi_get-customer-lookup
+- name: Payment_Providers_get-paymentProviders_Response_200
+  tag: paymentProviders
+  fields: 3
+  operations:
+  - paymentProviders_get-paymentProviders
+- name: Payments_list-payments_Response_200
+  tag: payments
+  fields: 3
+  operations:
+  - payments_list-payments
+- name: Payment
+  tag: payments
+  fields: 34
+  operations:
+  - payments_get-payments
+- name: TransactionsTransactionIdCapturePostRequestBodyContentApplicationXWwwFormUrlencodedSchemaMetadataRemittanceWithdrawalMethod
+  tag: transactions
+  fields: 0
+  operations:
+  - transactions_post-transactions-transactionId-capture
+- name: EstablishPostRequestBodyContentApplicationJsonSchemaMetadata
+  tag: transactions
+  fields: 5
+  operations:
+  - transactions_post-establish
+- name: EstablishData
+  tag: transactions
+  fields: 20
+  operations:
+  - transactions_post-establish
+- name: EstablishPostRequestBodyContentApplicationJsonSchemaAccount
+  tag: transactions
+  fields: 3
+  operations:
+  - transactions_post-establish
+- name: EstablishPostRequestBodyContentApplicationJsonSchemaCurrency
+  tag: transactions
+  fields: 0
+  operations:
+  - transactions_post-establish
+- name: EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiaryAccount
+  tag: transactions
+  fields: 3
+  operations:
+  - transactions_post-establish
+- name: EstablishPostRequestBodyContentApplicationJsonSchemaPaymentType
+  tag: transactions
+  fields: 0
+  operations:
+  - transactions_post-establish
+- name: EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiary
+  tag: transactions
+  fields: 8
+  operations:
+  - transactions_post-establish
+- name: Transactions_list-transactions_Response_200
+  tag: transactions
+  fields: 1
+  operations:
+  - transactions_list-transactions
+- name: TransactionsTransactionIdCapturePreAuthPostRequestBodyContentApplicationXWwwFormUrlencodedSchemaMetadataRemittanceWithdrawalMethod
+  tag: transactions
+  fields: 0
+  operations:
+  - transactions_post-transactions-transactionId-capture-preauth
+- name: Transactions_post-transactions-refresh_Response_200
+  tag: transactions
+  fields: 1
+  operations:
+  - transactions_post-transactions-refresh
+- name: Verify_Customer_get-verify-customer_Response_200
+  tag: verifyCustomer
+  fields: 1
+  operations:
+  - verifyCustomer_get-verify-customer
+relationships:
+- from: Account_Data_get-transaction-account-summary_Response_200
+  to: Customer
+  kind: belongs_to
+  via: customerId
+- from: Account_Data_get-transaction-account-summary_Response_200
+  to: TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItems
+  kind: has_many
+  via: summary
+- from: Account_Data_get-transactions-account-balance_Response_200
+  to: TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalance
+  kind: has_one
+  via: accountBalance
+- from: FIUser
+  to: PaymentProvider-2
+  kind: has_one
+  via: paymentProvider
+- from: FIUser
+  to: Address-3
+  kind: has_many
+  via: address
+- from: FIUser
+  to: SegmentedName
+  kind: has_one
+  via: segmentedName
+- from: Account_Data_list-selected-accounts_Response_200
+  to: Account-2
+  kind: has_many
+  via: accounts
+- from: Feedback
+  to: External
+  kind: belongs_to
+  via: externalId
+- from: Feedback
+  to: FeedbackStatus
+  kind: has_one
+  via: status
+- from: Feedback
+  to: FeedbackCurrency
+  kind: has_one
+  via: currency
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: AccountsTokenizePostResponsesContentApplicationJsonSchemaType
+  kind: has_one
+  via: type
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: AccountsTokenizePostResponsesContentApplicationJsonSchemaProfile
+  kind: has_one
+  via: profile
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: FinancialInstitutionAccountVerification
+  kind: has_one
+  via: verification
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: Account
+  kind: belongs_to
+  via: accountId
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: Provider
+  kind: belongs_to
+  via: providerId
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: PaymentProvider
+  kind: has_one
+  via: paymentProvider
+- from: Accounts_post-accounts-tokenize_-verifyAccount_Response_200
+  to: AccountsTokenizePostResponsesContentApplicationJsonSchemaCountry
+  kind: has_one
+  via: country
+- from: FinancialInstitutionAccount
+  to: FinancialInstitutionAccountType
+  kind: has_one
+  via: type
+- from: FinancialInstitutionAccount
+  to: FinancialInstitutionAccountProfile
+  kind: has_one
+  via: profile
+- from: FinancialInstitutionAccount
+  to: FinancialInstitutionAccountVerification
+  kind: has_one
+  via: verification
+- from: FinancialInstitutionAccount
+  to: Account
+  kind: belongs_to
+  via: accountId
+- from: FinancialInstitutionAccount
+  to: Provider
+  kind: belongs_to
+  via: providerId
+- from: FinancialInstitutionAccount
+  to: PaymentProvider
+  kind: has_one
+  via: paymentProvider
+- from: FinancialInstitutionAccount
+  to: FinancialInstitutionAccountCountry
+  kind: has_one
+  via: country
+- from: Countries_get-countries_Response_200
+  to: Country
+  kind: has_many
+  via: countries
+- from: Customers_post-customers_Response_200
+  to: Customer
+  kind: has_one
+  via: customer
+- from: Customer
+  to: Tax
+  kind: belongs_to
+  via: taxId
+- from: Customer
+  to: Address
+  kind: has_one
+  via: address
+- from: Customer
+  to: Customer
+  kind: belongs_to
+  via: customerId
+- from: Customer
+  to: External
+  kind: belongs_to
+  via: externalId
+- from: Customer
+  to: Merchant
+  kind: belongs_to
+  via: merchantId
+- from: Customer
+  to: Person
+  kind: belongs_to
+  via: personId
+- from: Customer
+  to: CustomerCustomData
+  kind: has_one
+  via: customData
+- from: Customer
+  to: DriverLicense
+  kind: has_one
+  via: driverLicense
+- from: Customer
+  to: National
+  kind: belongs_to
+  via: nationalId
+- from: Customers_get-customers_Response_200
+  to: Customer
+  kind: has_many
+  via: customers
+- from: Customers_get-customers-customerId_Response_200
+  to: Customer
+  kind: has_one
+  via: customer
+- from: Customers_post-customers-customerId_Response_200
+  to: Customer
+  kind: has_one
+  via: customer
+- from: Transaction
+  to: Transaction
+  kind: belongs_to
+  via: transactionId
+- from: Transaction
+  to: TransactionTransactionType
+  kind: has_one
+  via: transactionType
+- from: Transaction
+  to: Payment
+  kind: has_one
+  via: payment
+- from: Transaction
+  to: TransactionCurrency
+  kind: has_one
+  via: currency
+- from: Transaction
+  to: PaymentProviderTransaction
+  kind: has_one
+  via: paymentProviderTransaction
+- from: Transaction
+  to: TransactionStatus
+  kind: has_one
+  via: status
+- from: Transaction
+  to: PpTrx
+  kind: belongs_to
+  via: ppTrxId
+- from: Transaction
+  to: OriginalTransaction
+  kind: belongs_to
+  via: originalTransactionId
+- from: User
+  to: Address-2
+  kind: has_many
+  via: address
+- from: User
+  to: Tax
+  kind: belongs_to
+  via: taxId
+- from: User
+  to: DriverLicense-2
+  kind: has_one
+  via: driverLicense
+- from: User
+  to: SegmentedName
+  kind: has_one
+  via: segmentedName
+- from: UserVerificationDetail
+  to: UserVerificationDetailDetail
+  kind: has_one
+  via: detail
+- from: CustomerLookupResponse
+  to: CustomerLookupResponseErrorsListItems
+  kind: has_many
+  via: errorsList
+- from: Payment_Providers_get-paymentProviders_Response_200
+  to: PaymentProvider
+  kind: has_many
+  via: paymentProviders
+- from: Payments_list-payments_Response_200
+  to: Payment
+  kind: has_many
+  via: payments
+- from: Payment
+  to: Payment
+  kind: belongs_to
+  via: paymentId
+- from: Payment
+  to: PaymentPaymentType
+  kind: has_one
+  via: paymentType
+- from: Payment
+  to: PaymentMerchant
+  kind: has_one
+  via: merchant
+- from: Payment
+  to: Merchant
+  kind: belongs_to
+  via: merchantId
+- from: Payment
+  to: Verification
+  kind: has_one
+  via: verification
+- from: Payment
+  to: Account
+  kind: has_one
+  via: account
+- from: Payment
+  to: PaymentCurrency
+  kind: has_one
+  via: currency
+- from: Payment
+  to: PaymentProvider
+  kind: has_one
+  via: paymentProvider
+- from: Payment
+  to: PaymentAuth
+  kind: has_one
+  via: auth
+- from: Payment
+  to: Customer
+  kind: has_one
+  via: customer
+- from: Payment
+  to: Address
+  kind: has_one
+  via: address
+- from: Payment
+  to: Recurrence
+  kind: has_one
+  via: recurrence
+- from: Payment
+  to: PaymentSystem
+  kind: has_one
+  via: system
+- from: Payment
+  to: PaymentCountry
+  kind: has_one
+  via: country
+- from: Payment
+  to: PaymentProviderSubtype
+  kind: has_one
+  via: paymentProviderSubtype
+- from: EstablishPostRequestBodyContentApplicationJsonSchemaMetadata
+  to: EstablishPostRequestBodyContentApplicationJsonSchemaMetadataFinishButtonLabelType
+  kind: has_one
+  via: finishButtonLabelType
+- from: EstablishPostRequestBodyContentApplicationJsonSchemaMetadata
+  to: EstablishPostRequestBodyContentApplicationJsonSchemaMetadataIntegrationContext
+  kind: has_one
+  via: integrationContext
+- from: EstablishPostRequestBodyContentApplicationJsonSchemaMetadata
+  to: EstablishPostRequestBodyContentApplicationJsonSchemaMetadataClc
+  kind: has_one
+  via: clc
+- from: EstablishData
+  to: Merchant
+  kind: belongs_to
+  via: merchantId
+- from: EstablishData
+  to: Access
+  kind: belongs_to
+  via: accessId
+- from: EstablishData
+  to: Transaction
+  kind: belongs_to
+  via: transactionId
+- from: EstablishData
+  to: EstablishDataCurrency
+  kind: has_one
+  via: currency
+- from: EstablishData
+  to: EstablishDataKycType
+  kind: has_one
+  via: kycType
+- from: EstablishData
+  to: Verification
+  kind: has_one
+  via: verification
+- from: EstablishData
+  to: Customer
+  kind: has_one
+  via: customer
+- from: EstablishData
+  to: Account
+  kind: has_one
+  via: account
+- from: EstablishData
+  to: Attribute
+  kind: has_one
+  via: metadata
+- from: EstablishData
+  to: TrustlyABRequest
+  kind: has_one
+  via: trustlyABRequest
+- from: EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiaryAccount
+  to: PaymentProvider
+  kind: has_one
+  via: paymentProvider
+- from: EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiary
+  to: Tax
+  kind: belongs_to
+  via: taxId
+- from: EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiary
+  to: Address
+  kind: has_one
+  via: address
+- from: Transactions_list-transactions_Response_200
+  to: Transaction
+  kind: has_many
+  via: transactions
+- from: Transactions_post-transactions-refresh_Response_200
+  to: TransactionsTransactionIdRefreshPostResponsesContentApplicationJsonSchemaRefresh
+  kind: has_one
+  via: refresh
+- from: Verify_Customer_get-verify-customer_Response_200
+  to: VerifyCustomerMatch
+  kind: has_many
+  via: matches
+render: null
+note: Derived mechanically from $ref links and *Id fields in the provider OpenAPI; core_objects were read from the docs. No subway/ render exists
+  yet.

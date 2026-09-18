@@ -1,0 +1,19 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/api-fundamentals
+sources_checked:
+- https://amer.developers.trustly.com/llms.txt
+- https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+- https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+- https://docs.trustly.com/api/api-protocol
+- openapi/trustly-north-america-openapi.yml
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+note: >-
+  No rate limits, quotas, throttling behaviour or 429 handling are documented on either docs host, and the OpenAPI declares
+  no 429 response or RateLimit-* headers. The only published throughput-shaped rules are on the webhook side (acknowledge
+  within 3 seconds; retries every 5 minutes for 12 hours) and the recurring-payments cut-off (cancel before 8:30 PM GMT).
+  Velocity limits exist but are risk controls, not API rate limits: extended reason codes 11XXX–14XXX report consumer and
+  merchant amount/count velocity-limit declines (see errors/trustly-decline-codes.yml).

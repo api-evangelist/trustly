@@ -1,0 +1,47 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/core-concepts/key-concepts
+sources:
+- https://amer.developers.trustly.com/sdks/javascript
+- https://amer.developers.trustly.com/integrate/core-concepts/integrate-client-sdk
+- https://amer.developers.trustly.com/sdks/mobile-web
+- https://docs.trustly.com/api/trustly-url-presentation
+- https://docs.trustly.com/api/presenting-trustly-checkout
+families:
+- name: Trustly Lightbox
+  surface: Trustly North America
+  kind: hosted modal UI
+  description: the secure hosted interface where bank selection, bank login (including bank OAuth / App-to-App), account selection and payment or data-sharing authorization (with the NACHA agreement) happen
+  loader: https://trustly.one/start/scripts/trustly.js?accessId=YOUR_ACCESS_ID (sandbox.trustly.one in sandbox)
+  api: Trustly.establish(establishData, TrustlyOptions), Trustly.addPanelListener(handler)
+  callbacks: onReturn / onCancel plus returnUrl / cancelUrl redirects
+- name: Select Bank Widget
+  surface: Trustly North America
+  kind: embedded JavaScript component
+  description: renders the bank-selection list inline in the merchant page (preferred integration); bank ordering is server-sorted by device type and geography
+  loader: same trustly.js library
+  api: Trustly.selectBankWidget(establishData, TrustlyOptions); Trustly.renderButton(elementId, options) for Express Checkout and Sign-in buttons
+- name: Native mobile SDKs
+  surface: Trustly North America
+  kind: in-app browser wrappers for the Lightbox with App Links / Universal Links deep-link return
+  members:
+  - {platform: Android, package: 'net.trustly:trustly-android-sdk', docs: https://amer.developers.trustly.com/sdks/android}
+  - {platform: iOS, package: TrustlySDK (CocoaPods / SPM), docs: https://amer.developers.trustly.com/sdks/i-os}
+  - {platform: React Native, package: '@trustlyinc/trustly-react-native', docs: https://amer.developers.trustly.com/sdks/react-native}
+  - {platform: other frameworks / mobile web, docs: https://amer.developers.trustly.com/sdks/mobile-web}
+- name: Trustly Checkout (Europe)
+  surface: Trustly Europe
+  kind: hosted checkout URL returned by Deposit / Withdraw / SelectAccount, presented as an iframe, a redirect or the native SDK
+  docs: https://docs.trustly.com/api/trustly-url-presentation
+  members:
+  - {platform: iOS SDK, docs: https://docs.trustly.com/api/ios-sdk}
+  - {platform: Android SDK, docs: https://docs.trustly.com/api/android-sdk}
+  - {platform: cross-platform frameworks, docs: https://docs.trustly.com/api/cross-platform-frameworks}
+- name: Trustly Express / Checkout Core (Europe)
+  surface: Trustly Europe
+  kind: returning-user checkout experience (Azura)
+  docs: https://docs.trustly.com/api/trustly-express-overview
+- name: E-commerce plugins (Europe)
+  surface: Trustly Europe
+  kind: third-party maintained platform plugins (Customweb) for Magento, Shopify, Shopware, WooCommerce, PrestaShop, OpenCart and ~30 more
+  docs: https://docs.trustly.com/api/plugins

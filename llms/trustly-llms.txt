@@ -1,0 +1,89 @@
+# Trustly Dev Docs
+
+> Trustly North America developer documentation. Access API references, SDKs, and integration guides for US and Canadian bank payments.
+
+# Welcome to Trustly Docs
+
+Everything you need to build, test, and maintain your Trustly integration.
+
+## Build and manage
+
+[![](https://fdr-prod-docs-files-public.s3.us-east-1.amazonaws.com/trustly.docs.buildwithfern.com/8ce75f111572e7bfce0df0307afadf1b51c4af0a7452eeebe722047bfdaf8584/docs/assets/icons/money.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20260918%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260918T193209Z&X-Amz-Expires=604800&X-Amz-Signature=6afe598dee5b6f3809db2438c3513c0c90d1efbdbc039cf695621b36472831f8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)Accept payments](/integrate/accept-payments)
+
+Integrate the SDK, authorize transactions, and accept payments with Trustly Pay.
+
+[![](https://fdr-prod-docs-files-public.s3.us-east-1.amazonaws.com/trustly.docs.buildwithfern.com/bbb259472c81dc21cb39638b70905f57fcd0f06006ad784f1903dfe4df64a99c/docs/assets/icons/arrow-right.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20260918%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260918T193209Z&X-Amz-Expires=604800&X-Amz-Signature=8c5c64117023fb26c69180fa8d28d13685db36bf236b4923eab5a5c9848d37cb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)Send money](/integrate/send-money)
+
+Send payouts using online banking or account details, and transfer funds internationally.
+
+[![](https://fdr-prod-docs-files-public.s3.us-east-1.amazonaws.com/trustly.docs.buildwithfern.com/86634fb4e981a8c1a91bf60b16c36b82882a95d4f2ce5ccf2795bd153ef3ff8b/docs/assets/icons/grid.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20260918%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260918T193209Z&X-Amz-Expires=604800&X-Amz-Signature=ee40107dabb4ca7a5766f78552782a34f21be40839103a75f52cab5f19ff01cb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)Retrieve data](/integrate/retrieve-data)
+
+Verify identities, tokenize accounts, check ownership, and access financial insights.
+
+[![](https://fdr-prod-docs-files-public.s3.us-east-1.amazonaws.com/trustly.docs.buildwithfern.com/e24ded336839b08f4cea8c897c7f65188cc6097ce868a7bca6b4944d738a05be/docs/assets/icons/bank.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20260918%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260918T193209Z&X-Amz-Expires=604800&X-Amz-Signature=92032d156618da2f55d3c3ffe7d3675ffcf28274b8457d33d1938a7bd393aa46&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)Manage integrations](/integrate/manage-your-integration)
+
+Handle webhooks, refresh authorizations, override risk declines, and manage VIP tiers.
+
+## Explore the API reference
+
+Review a comprehensive list of all Trustly API endpoints and data objects. Explore the core concepts, and begin coding.
+
+[View API reference](/api-reference)
+
+## SDKs
+
+Use our Web SDK, native mobile SDKs, or in-app browser integrations to handle bank authorizations.
+
+[<path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM243.8 381.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-7.1 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.4 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z" fill="#EAB308" />Web (JS)](/sdks/javascript)
+
+[<path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z" fill="#3DDC84" />Android](/sdks/android)
+
+[<path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" fill="currentColor" />iOS](/sdks/i-os)
+
+[<path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z" fill="#61DAFB" />React Native](/sdks/react-native)
+
+[<path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-8.5-8.5l-1.5 1.5 1.5 1.5 1.4-1.4-1.4-1.6zm7 0l-1.4 1.4 1.4 1.6 1.5-1.5-1.5-1.5zm-3.2-.2l-1.8 4.7h1.4l1.8-4.7h-1.4z" fill="#0284C7" />Other frameworks](/sdks/mobile-web)
+
+## Explore by topic
+
+### Accept payments
+
+* [Instant payments Seamless online bank payments](/integrate/accept-payments/instant-payments)
+* [Recurring payments Subscription and long-term authorizations](/integrate/accept-payments/recurring-payments)
+* [Scan and pay QR code-based payments](/integrate/accept-payments/scan-and-pay)
+
+### Send money
+
+* [Online Send funds using online banking](/integrate/send-money/send-payouts-using-online-banking)
+* [With an account Send funds using account information](/integrate/send-money/send-payouts-using-account-information)
+* [International transfers Cross-border payments](/integrate/send-money/international-transfers)
+
+### Retrieve data
+
+* [Trustly ID Fast, automated identity checks](/integrate/retrieve-data/trustly-id)
+* [Account verification Verify using online banking or micro-deposits](/integrate/retrieve-data/verify-accounts-using-online-banking)
+* [Insights data Access actionable financial insights](/integrate/retrieve-data/insights-data)
+
+### Build and manage
+
+* [API fundamentals Authentication, idempotency, testing](/integrate/api-fundamentals)
+* [Core concepts Webhooks, tokens, and data objects](/integrate/core-concepts)
+* [Manage integration Merchant portal, reporting, and reconciliation](/integrate/manage-your-integration)
+
+> Trustly North America developer documentation. Access API references, SDKs, and integration guides for US and Canadian bank payments.
+
+## Instructions for AI Agents
+
+- For clean Markdown of any page, append `.md` to the page URL
+- For section-specific indexes, append `/llms.txt` to any section URL
+- For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://amer.developers.trustly.com/_mcp/server
+
+## Products
+
+- [North America](https://amer.developers.trustly.com/llms.txt)
+  - [Explore solutions](https://amer.developers.trustly.com/integrate/get-started/explore-solutions.md)
+  - [Choose an integration](https://amer.developers.trustly.com/integrate/get-started/choose-an-integration.md)
+  - [Mark library](https://amer.developers.trustly.com/integrate/get-started/branding-guidelines/mark-library.md)
+  - [Get support](https://amer.developers.trustly.com/help.md)
+  - [Key concepts](https://amer.developers.trustly.com/integrate/core-concepts/key-concepts.md)
+- [Europe](https://docs.trustly.com/llms.txt)

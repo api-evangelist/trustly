@@ -1,0 +1,508 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+envelope:
+  field: paymentProviderTransaction.status on the transaction and on event notifications, with paymentProviderTransaction.reasonCode, .reasonCodeMessage and .extendedReason.code
+    for the SW05x family; errorCode and statusMessage on Deny/Failed events
+  sandbox_trigger: Demo Bank password `extendedreasoncode_<code>` (for example extendedreasoncode_10000) forces that extended reason on the next capture
+masking: the Consumer Messaging column is the text Trustly expects merchants to show the payer; the extended reason codes (velocity limits, ML risk scores, blocklists,
+  sanctions) are merchant-facing only and are not surfaced to the consumer beyond the generic Security Alert wording
+decline_codes:
+- code: SW010
+  consumer_decline_code: N/A
+  meaning: Established
+  consumer_messaging: N/A
+  action: N/A
+- code: SW013
+  consumer_decline_code: User Cancelled
+  meaning: Canceled.
+  consumer_messaging: This transaction was cancelled partway by you, your browser or your device.
+  action: Prompt user to try again (do not close the browser or app during the transaction).
+- code: SW020
+  consumer_decline_code: N/A
+  meaning: Authorization received
+  consumer_messaging: N/A
+  action: N/A
+- code: SW021
+  consumer_decline_code: Insufficient Funds
+  meaning: Authorization denied (for example, insufficient funds).
+  consumer_messaging: Transaction unsuccessful. We are unable to complete your transaction due to insufficient funds in your account.
+  action: See **Payment Decline Codes** for details and extended reasons.
+- code: SW051
+  consumer_decline_code: Merchant Error
+  meaning: Merchant error (for example, integration issue, invalid request).
+  consumer_messaging: Transaction unsuccessful. The transaction could not be completed because of a technical error on the merchant's side.
+  action: N/A
+- code: SW052
+  consumer_decline_code: Bank Error
+  meaning: Financial institution error.
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed because of a technical error on the bank''s side.'
+  action: N/A
+- code: SW053
+  consumer_decline_code: Network Error
+  meaning: Internal network error.
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed because of a technical error from the network.'
+  action: N/A
+- code: SW054
+  consumer_decline_code: Security Controls
+  meaning: Suspicious transaction activity.
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was not completed.'
+  action: Please try again later or use a different bank account. See **Payment Decline Codes** for details.
+- code: SW055
+  consumer_decline_code: Security Controls
+  meaning: Negative data.
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked.'
+  action: Please contact Trustly's merchant support team if the user escalates. See **Payment Decline Codes** for details.
+- code: SW056
+  consumer_decline_code: Unsupported Account Type
+  meaning: Invalid account.
+  consumer_messaging: 'Invalid Account: To comply with Federal, state, or local regulations, Trustly does not currently support this type of account.'
+  action: Please prompt the user to use a personal debitable account. See **Payment Decline Codes** for details.
+- code: SW057
+  consumer_decline_code: Expired Split Token
+  meaning: Expired split token.
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed because of a technical error on the bank''s side.'
+  action: Please prompt the user to log in again. See **Payment Decline Codes** for details.
+- code: SW059
+  consumer_decline_code: Security Controls
+  meaning: Instant transaction rejected due to risk.
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was not completed.'
+  action: N/A
+- code: SW060
+  consumer_decline_code: Bank Error
+  meaning: Bank or network processor is down.
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed because of a technical error on the bank''s side.'
+  action: N/A
+extended_reasons:
+- status: SW021
+  reason_code: 12
+  extended_reason_code: '120000'
+  meaning: Insufficient funds
+  consumer_messaging: Transaction unsuccessful. We are unable to complete your transaction due to insufficient funds in your account. Please a) add funds to your
+    account, b) Use another account at the same bank, c) Or, sign in to another bank.
+- status: SW054
+  reason_code: 1
+  reason: Exceeded thresholds
+  extended_reason_code: '10000'
+  meaning: Exceeded thresholds
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 1
+  reason: Exceeded thresholds
+  extended_reason_code: '10001'
+  meaning: Exceeded transaction amount
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 1
+  reason: Exceeded thresholds
+  extended_reason_code: 11XXX
+  meaning: Exceeded XXX hours consumer amount velocity limit (001 to 999)
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 1
+  reason: Exceeded thresholds
+  extended_reason_code: 12XXX
+  meaning: Exceeded XXX hours consumer count velocity limit (001 to 999)
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 1
+  reason: Exceeded thresholds
+  extended_reason_code: 13XXX
+  meaning: Exceeded XXX hours merchant amount velocity limit (001 to 999)
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 1
+  reason: Exceeded thresholds
+  extended_reason_code: 14XXX
+  meaning: Exceeded XXX days merchant count velocity limit (001 to 999)
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 2
+  reason: Data mismatch
+  extended_reason_code: '20000'
+  meaning: Consumer name data mismatch
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 2
+  reason: Data mismatch
+  extended_reason_code: '20001'
+  meaning: Consumer email data mismatch
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 2
+  reason: Data mismatch
+  extended_reason_code: '20002'
+  meaning: Consumer address data mismatch
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 3
+  reason: Suspicious History
+  extended_reason_code: '30000'
+  meaning: Suspicious History
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 3
+  reason: Suspicious History
+  extended_reason_code: '30101'
+  meaning: 'NSF ML risk model: Score higher than threshold'
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 3
+  reason: Suspicious History
+  extended_reason_code: '30201'
+  meaning: 'NSF risk rules: Hard block based on attributes'
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 3
+  reason: Suspicious History
+  extended_reason_code: '30301'
+  meaning: 'Fraud ML risk model: Score higher than threshold'
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 3
+  reason: Suspicious History
+  extended_reason_code: '30401'
+  meaning: 'Fraud risk rules: Hard block based on attributes'
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW054
+  reason_code: 4
+  reason: 3rd Party Suspicious History
+  extended_reason_code: '40000'
+  meaning: 3rd Party Suspicious History
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50000'
+  meaning: Negative Database
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50001'
+  meaning: Consumer blocklisted
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50002'
+  meaning: Consumer's device blocklisted
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50003'
+  meaning: Consumer's bank account blocklisted
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50004'
+  meaning: Consumer's IP blocklisted
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50005'
+  meaning: Consumer's geo location blocklisted
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50006'
+  meaning: 'Uncollected debt: NSF'
+  consumer_messaging: Transaction unsuccessful. We are unable to complete your transaction because one or more of the consumer's previous transaction(s) were not
+    successful and funds are owed to Trustly. Please request the consumer to contact Trustly to pay for previous transactions to continue.
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50007'
+  meaning: 'Uncollected debt: Admin'
+  consumer_messaging: Transaction unsuccessful. We are unable to complete your transaction because one or more of the consumer's previous transaction(s) were not
+    successful as there was an error with bank. Please request the consumer to 1) contact Trustly to pay for previous transactions to continue, 2) login to the bank
+    account again.
+- status: SW055
+  reason_code: 5
+  extended_reason_code: '50008'
+  meaning: 'Uncollected debt: SUF'
+  consumer_messaging: Transaction unsuccessful. We are unable to complete your transaction because one or more of the consumer's previous transaction(s) were not
+    successful and funds are owed to Trustly. Please request the consumer to contact Trustly to pay for previous transactions to continue.
+- status: SW055
+  reason_code: 6
+  extended_reason_code: '60000'
+  meaning: Consumer's on sanctions list
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 7
+  extended_reason_code: '70000'
+  meaning: Consumer's on IP sanctions list
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 8
+  extended_reason_code: '80000'
+  meaning: Consumer blocklisted by 3rd Party
+  consumer_messaging: 'Security Alert: We detected some unusual activity and as a result, this transaction was blocked. To protect consumers and merchants, Trustly
+    employs risk mitigation and fraud prevention tools to spot suspicious activity. Please see Trustly''s FAQs for further information on Trustly''s risk decisioning
+    process.'
+- status: SW055
+  reason_code: 16
+  extended_reason_code: '160000'
+  meaning: Unable to communicate reason
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed and no further data is available.'
+- status: SW056
+  reason_code: 9
+  extended_reason_code: '90000'
+  meaning: Unsupported business bank account
+  consumer_messaging: 'Invalid Account: To comply with Federal, state, or local regulations, Trustly does not currently support this type of account.'
+- status: SW056
+  reason_code: 10
+  extended_reason_code: '100000'
+  meaning: Unsupported non-checking bank account
+  consumer_messaging: 'Invalid Account: To comply with Federal, state, or local regulations, Trustly does not currently support this type of account.'
+- status: SW057
+  reason_code: 11
+  extended_reason_code: '110000'
+  meaning: Expired/Revoked Split Token
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed because of a technical error on the bank''s side.'
+- status: SW057
+  reason_code: 11
+  extended_reason_code: '110001'
+  meaning: New authentication required due to suspicious activity
+  consumer_messaging: 'Transaction unsuccessful: We''re sorry. The transaction could not be completed because of a technical error on the bank''s side.'
+suggested_actions:
+- status: SW054
+  reason_code: 1
+  action: Please try again later or use a different bank account.
+- status: SW054
+  reason_code: 2
+  action: Please ensure the user is using their own financial institution that matches with the merchant info.
+- status: SW054
+  reason_code: 3
+  action: Refer to consumer messaging.
+- status: SW054
+  reason_code: 4
+  action: Refer to consumer messaging.
+- status: SW054
+  reason_code: 15
+  action: Please ensure that the beneficiary country is not listed among the prohibited countries for international money transfers.
+- status: SW055
+  reason_code: 5
+  action: Please contact Trustly's merchant support team if the user escalates.
+- status: SW055
+  reason_code: 6
+  action: Refer to consumer messaging.
+- status: SW055
+  reason_code: 7
+  action: Please ensure the user is coming from a non-sanctioned country.
+- status: SW055
+  reason_code: 8
+  action: Please contact Trustly's merchant support team if the user escalates.
+- status: SW056
+  reason_code: 9
+  action: Please prompt the user to use a personal debitable account.
+- status: SW056
+  reason_code: 10
+  action: Prompt the user to use a personal debitable account.
+- status: SW057
+  reason_code: 11
+  action: Please prompt the user to log in again.
+ach_returns:
+  range: R01 to R84
+  note: standard NACHA ACH return codes; not enumerated on the page
+eft_decline_codes_canada:
+- code: '900'
+  meaning: Account information incorrectly entered
+- code: '901'
+  meaning: Insufficient Funds
+- code: '902'
+  meaning: Account not Found
+- code: '903'
+  meaning: Payment Stopped/Recalled
+- code: '904'
+  meaning: Post/Stale Dated
+- code: '905'
+  meaning: Account Closed
+- code: '907'
+  meaning: No Debit Allowed
+- code: '908'
+  meaning: Funds Not Cleared
+- code: '909'
+  meaning: Currency or Account Mismatch
+- code: '910'
+  meaning: Payor or Payee Deceased
+- code: '911'
+  meaning: Account Frozen
+- code: '912'
+  meaning: Invalid or Incorrect Account No
+- code: '914'
+  meaning: Incorrect Payor or Payee Name
+- code: '915'
+  meaning: No Agreement Existed - Business or Personal Refused
+- code: '916'
+  meaning: Not in accordance with Agreement - Personal
+- code: '917'
+  meaning: Agreement Revoked - Personal
+- code: '918'
+  meaning: No Confirmation or Pre-Notification - Personal
+- code: '919'
+  meaning: Not in accordance with Agreement - Business
+- code: '920'
+  meaning: Agreement Revoked - Business
+- code: '921'
+  meaning: No Pre-Notification - Business
+- code: '922'
+  meaning: Customer Initiated Return - Credit Only
+- code: '990'
+  meaning: Institution in Default
+- code: '996'
+  meaning: Chargeback
+uk_direct_debit_returns:
+- code: ARUCS_0
+  meaning: Invalid details
+- code: ARUCS_2
+  meaning: Beneficiary deceased
+- code: ARUCS_3
+  meaning: Account transferred
+- code: ARUCS_5
+  meaning: No account
+- code: ARUCS_B
+  meaning: Account closed
+- code: ARUCS_C
+  meaning: Requested by remitter
+- code: AWACS_0
+  meaning: Invalid details
+- code: AWACS_3
+  meaning: Account transferred
+- code: ARUDD_0
+  meaning: Refer to payer (basically means out of funds)
+- code: ARUDD_2
+  meaning: Payer deceased
+- code: ARUDD_3
+  meaning: Account transferred
+- code: ARUDD_4
+  meaning: Advance notice disputed
+- code: ARUDD_5
+  meaning: No account (or wrong account type)
+- code: ARUDD_6
+  meaning: No instruction
+- code: ARUDD_7
+  meaning: Amount differs (disputed amount)
+- code: ARUDD_8
+  meaning: Amount not yet due (in case payment is sent before DDI confirmed)
+- code: ARUDD_9
+  meaning: Presentation is overdue
+- code: ARUDD_A
+  meaning: Service User differs (Details dont match DDI)
+- code: ARUDD_B
+  meaning: Account closed
+- code: ADDACS_0
+  meaning: Instruction canceled refer to Payer
+- code: ADDACS_1
+  meaning: Instruction canceled by Payer
+- code: ADDACS_2
+  meaning: Payer Deceased
+- code: ADDACS_3
+  meaning: Account transferred to new bank
+- code: ADDACS_B
+  meaning: Account closed
+- code: ADDACS_C
+  meaning: Account transferred to new branch
+- code: ADDACS_D
+  meaning: Advance notice disputed
+- code: ADDACS_E
+  meaning: Instruction amended
+- code: ADDACS_R
+  meaning: Instruction re-instated
+- code: AUDDIS_1
+  meaning: Instruction Canceled by Payer
+- code: AUDDIS_2
+  meaning: Payer deceased
+- code: AUDDIS_3
+  meaning: Account transferred
+- code: AUDDIS_5
+  meaning: No Account
+- code: AUDDIS_6
+  meaning: No instruction
+- code: AUDDIS_C
+  meaning: DDI amount not zero
+- code: AUDDIS_F
+  meaning: Invalid account type
+- code: AUDDIS_G
+  meaning: PSP will not accept DD on account
+- code: AUDDIS_H
+  meaning: Instruction expired
+- code: AUDDIS_I
+  meaning: Payer Reference not unique
+- code: AUDDIS_K
+  meaning: Instruction cancelled by paying PSP
+- code: AUDDIS_L
+  meaning: Incorrect payers account details
+- code: AUDDIS_M
+  meaning: Trx code/user status incompatible
+- code: AUDDIS_N
+  meaning: Trx not allowed at payers branch
+- code: AUDDIS_O
+  meaning: invalid reference
+- code: AUDDIS_P
+  meaning: Payer's name not present
+- code: AUDDIS_Q
+  meaning: Service users name blank
+- code: DDICA_1
+  meaning: Amount differs
+- code: DDICA_2
+  meaning: No advance notice received by payer
+- code: DDICA_3
+  meaning: DDI canceled by bank
+- code: DDICA_4
+  meaning: Payer has canceled DDI with Service User
+- code: DDICA_5
+  meaning: No instruction held
+- code: DDICA_6
+  meaning: Signature fraudulent
+- code: DDICA_7
+  meaning: Claim raised at Service User Request
+- code: DDICA_8
+  meaning: Service user name disputed, payer does not recognize
+counts:
+  decline_codes: 13
+  extended_reasons: 33
+  eft: 23
+  tdd: 53

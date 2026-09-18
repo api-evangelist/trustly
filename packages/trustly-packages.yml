@@ -1,0 +1,133 @@
+generated: '2026-09-18'
+method: searched
+source: registry metadata (npm, Maven Central, CocoaPods Specs, Packagist, NuGet) cross-checked with https://amer.developers.trustly.com/sdks and https://docs.trustly.com/api/code-library
+note: >-
+  Two SDK families. Trustly North America (TrustlyInc GitHub org) ships the Lightbox/Select-Bank client SDKs: a hosted
+  trustly.js, Android (Maven Central net.trustly), iOS (CocoaPods TrustlySDK + Swift Package Manager) and React Native
+  (npm). Trustly Europe (trustly GitHub org) ships server-side JSON-RPC client libraries for Java, .NET, PHP and
+  Node/TypeScript plus a legacy Android/iOS checkout SDK. Registry versions and dates were read from each registry's
+  metadata endpoint on 2026-09-18.
+packages:
+- language: javascript
+  registry: cdn
+  name: trustly.js
+  surface: Trustly North America
+  url: https://trustly.one/start/scripts/trustly.js
+  install: '<script src="https://trustly.one/start/scripts/trustly.js?accessId=YOUR_ACCESS_ID"></script>'
+  sandbox_url: https://sandbox.trustly.one/start/scripts/trustly.js
+  official: true
+  version: null
+  published: null
+  note: hosted, unpinned script that floats to the current build; keyed by accessId query parameter. No registry endpoint to read a version from.
+  docs: https://amer.developers.trustly.com/sdks/javascript
+- language: kotlin
+  registry: maven
+  name: net.trustly:trustly-android-sdk
+  surface: Trustly North America
+  url: https://central.sonatype.com/artifact/net.trustly/trustly-android-sdk
+  install: implementation 'net.trustly:trustly-android-sdk:4.3.0'
+  repository: https://github.com/TrustlyInc/trustly-android
+  official: true
+  version: 4.3.0
+  published: '2026-06-25'
+  docs: https://amer.developers.trustly.com/sdks/android
+- language: swift
+  registry: cocoapods
+  name: TrustlySDK
+  surface: Trustly North America
+  url: https://cocoapods.org/pods/TrustlySDK
+  install: pod 'TrustlySDK'
+  alt_install: Swift Package Manager — https://github.com/TrustlyInc/trustly-ios.git
+  repository: https://github.com/TrustlyInc/trustly-ios
+  official: true
+  version: 4.3.1
+  published: '2026-07-27'
+  docs: https://amer.developers.trustly.com/sdks/i-os
+- language: typescript
+  registry: npm
+  name: '@trustlyinc/trustly-react-native'
+  surface: Trustly North America
+  url: https://www.npmjs.com/package/@trustlyinc/trustly-react-native
+  install: npm install @trustlyinc/trustly-react-native
+  repository: https://github.com/TrustlyInc/trustly-react-native
+  official: true
+  version: 1.1.2
+  published: '2026-07-02'
+  docs: https://amer.developers.trustly.com/sdks/react-native
+- language: java
+  registry: maven
+  name: com.trustly.api:trustly-java-client
+  surface: Trustly Europe
+  url: https://central.sonatype.com/artifact/com.trustly.api/trustly-java-client
+  install: <dependency><groupId>com.trustly.api</groupId><artifactId>trustly-java-client</artifactId><version>1.1.0</version></dependency>
+  repository: https://github.com/trustly/trustly-client-java
+  official: true
+  version: 1.1.0
+  published: '2024-01-22'
+  note: repo last pushed 2026-08-13; the Maven release lags the repository
+  docs: https://docs.trustly.com/api/code-library
+- language: csharp
+  registry: nuget
+  name: trustly-api-client
+  surface: Trustly Europe
+  url: https://www.nuget.org/packages/trustly-api-client
+  install: dotnet add package trustly-api-client
+  repository: https://github.com/trustly/trustly-client-net
+  official: true
+  version: 0.0.9
+  published: '2024-04-23'
+  note: companion package trustly-api-domain 0.0.9 (same date) carries the request/response types
+  docs: https://docs.trustly.com/api/code-library
+- language: php
+  registry: packagist
+  name: trustly/trustly-client-php
+  surface: Trustly Europe
+  url: https://packagist.org/packages/trustly/trustly-client-php
+  install: composer require trustly/trustly-client-php
+  repository: https://github.com/trustly/trustly-client-php
+  official: true
+  version: 2021.1.0
+  published: '2018-11-06'
+  note: Packagist tag dates to 2018 while the GitHub repository was pushed on 2026-09-02; the docs call it an "example reference implementation" to copy rather than a maintained library
+  docs: https://docs.trustly.com/api/code-library
+- language: typescript
+  registry: npm
+  name: '@trustly-group/client'
+  surface: Trustly Europe
+  url: https://www.npmjs.com/package/@trustly-group/client
+  install: npm install @trustly-group/client
+  repository: https://github.com/trustly/trustly-client-js
+  official: true
+  version: 0.0.4
+  published: '2024-01-23'
+  docs: https://docs.trustly.com/api/code-library
+- language: java
+  registry: maven
+  name: com.trustly:trustly-android-library
+  surface: Trustly Europe
+  url: https://central.sonatype.com/artifact/com.trustly/trustly-android-library
+  install: implementation 'com.trustly:trustly-android-library:4.1.1'
+  repository: https://github.com/trustly/TrustlyAndroidSdk
+  official: true
+  version: 4.1.1
+  published: '2026-01-14'
+  docs: https://docs.trustly.com/api/android-sdk
+- language: swift
+  registry: github
+  name: TrustlyIosSdk
+  surface: Trustly Europe
+  url: https://github.com/trustly/TrustlyIosSdk
+  install: Swift Package Manager — https://github.com/trustly/TrustlyIosSdk
+  repository: https://github.com/trustly/TrustlyIosSdk
+  official: true
+  version: null
+  published: null
+  note: not published to CocoaPods; repository last pushed 2023-11-28
+  docs: https://docs.trustly.com/api/ios-sdk
+third_party:
+- name: trustly-client (npm, danibram)
+  url: https://www.npmjs.com/package/trustly-client
+  version: 3.3.0
+  published: '2026-08-31'
+  official: false
+  note: community Node.js client for the Europe JSON-RPC API

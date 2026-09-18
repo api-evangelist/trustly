@@ -1,0 +1,53 @@
+generated: '2026-09-18'
+method: derived
+source: mcp/trustly-mcp-tools-list.json + openapi/trustly-north-america-openapi.yml
+surfaces:
+  openapi: openapi/trustly-north-america-openapi.yml (31 operations, 10 webhook events; HTTP Basic, live 401 without credentials)
+  mcp: https://amer.developers.trustly.com/_mcp/server (1 tool, anonymous, live)
+  graphql: none
+crosswalk: []
+mcp_only:
+- tool: searchDocs
+  reason: full-text search over the documentation site; backed by the Fern docs index, not by any Trustly API operation
+rest_only:
+- accountData_get-transaction-account-summary
+- accountData_get-transactions-account-balance
+- accountData_get-user
+- accountData_list-selected-accounts
+- accounts_post-account-feedback
+- accounts_post-accounts-tokenize?-verifyAccount
+- accounts_get-accounts-verify
+- countries_get-countries
+- customers_post-customers
+- customers_get-customers
+- customers_get-customers-customerId
+- customers_post-customers-customerId
+- disputeManagement_post-dispute-recovery
+- identity_get-trustly-id-user-data
+- identity_get-trustly-id-user-details
+- identity_post-transaction-feedback
+- networkCheckApi_get-customer-lookup
+- paymentProviders_get-paymentProviders
+- payments_list-payments
+- payments_get-payments
+- transactions_post-transactions-cancel
+- transactions_post-transactions-transactionId-capture
+- transactions_post-transactions-deposit
+- transactions_post-establish
+- transactions_list-transactions
+- transactions_post-transactions-transactionId-capture-preauth
+- transactions_post-transactions-transactionId-reclaim
+- transactions_post-transactions-refresh
+- transactions_post-transactions-refund
+- transactions_get-transaction
+- verifyCustomer_get-verify-customer
+coverage:
+  mcp_tools: 1
+  bound_to_rest: 0
+  mcp_only: 1
+  rest_operations: 31
+  rest_only: 31
+note: >-
+  The MCP server is a docs-search surface with zero overlap with the payments API, so the crosswalk is empty by
+  construction rather than by omission. Recorded so the divergence is visible: an agent connecting to the advertised MCP
+  endpoint gets documentation retrieval, not the ability to move money.

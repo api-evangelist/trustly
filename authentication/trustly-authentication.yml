@@ -1,0 +1,68 @@
+generated: '2026-09-18'
+method: searched
+source: openapi/trustly-north-america-openapi.yml
+docs:
+- https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation/generate-request-signatures
+- https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+- https://docs.trustly.com/api/authentication
+- https://docs.trustly.com/api/security
+summary:
+  types:
+  - http
+  - signature
+  note: >-
+    Two surfaces, two models. North America REST: HTTP Basic (accessId:accessKey) on every call, plus an HMAC-SHA1 (or
+    HMAC-SHA512, beta) requestSignature computed over an ordered parameter list with the accessKey, and an Authorization
+    header on inbound webhooks. Europe JSON-RPC: every request carries a username/password pair for the processing account
+    and an RSA signature (SHA-1 default; RS256/RS384/RS512 with an alg= prefix) over Method + UUID + serialised Data made
+    with the merchant's private key; Trustly signs every response and notification with its own key, whose TEST and LIVE
+    public keys are published on the authentication page. No OAuth scopes exist on either surface — the "OAuth" in the NA
+    docs is the bank-side login flow the end user completes inside the Lightbox, not API authorization.
+schemes:
+- name: HTTPBasic
+  type: http
+  scheme: basic
+  surface: Trustly North America API
+  credentials: accessId (username) and accessKey (password), issued per merchant and per environment (sandbox / production)
+  sources:
+  - openapi/trustly-north-america-openapi.yml
+  docs: https://amer.developers.trustly.com/api-reference/api
+  live_probe:
+    url: https://sandbox.trustly.one/api/v1/countries
+    status: 401
+    body: '{"errors":[{"domain":"com.paywithmybank.merchantgateway.v1.exception.AccessControlException","code":375,"message":"Access not authorized"}]}'
+- name: requestSignature
+  type: signature
+  surface: Trustly North America API
+  algorithm: HMAC-SHA1 (default) or HMAC-SHA512 (beta, prefixed "HmacSHA512:")
+  key: accessKey
+  location: requestSignature property of the request payload / establishData object
+  canonicalisation: concatenate the present parameters in the documented fixed order (accessId, merchantId, description, currency, amount, ... transactionId, onlinePPSubtype), HMAC with accessKey, Base64-encode
+  required_for: production API requests and SDK operations (POST /establish and the Lightbox establishData)
+  docs: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation/generate-request-signatures
+- name: webhookAuthorization
+  type: signature
+  surface: Trustly North America API
+  direction: inbound (Trustly -> merchant)
+  location: Authorization header (Basic <base64>) on event-notification POSTs; validate before trusting the event
+  docs: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation/validate-the-notification-signature
+- name: JSONRPCCredentials
+  type: http
+  scheme: custom
+  surface: Trustly Europe API
+  credentials: Username and Password of the processing account, sent inside every JSON-RPC Data object (test and live accounts have different passwords)
+  docs: https://docs.trustly.com/api/api-protocol
+- name: RSASignature
+  type: signature
+  surface: Trustly Europe API
+  algorithm: RSA over SHA-1 (default) or SHA-256/384/512 with prefix alg=RS256; / alg=RS384; / alg=RS512;
+  key: merchant-generated 2048-bit RSA key pair (openssl genrsa); public.pem is registered with Trustly's integration team
+  canonicalisation: Base64(sign(Method + UUID + serialise(Data))) where serialise concatenates all scalars, hash keys/values and array values sorted ASCIIbetically, null as empty string
+  reciprocal: Trustly signs every response and every notification with its own private key; merchants verify with the published TEST / LIVE public keys
+  transport: TLS 1.2 or later only; certificates rotate at least yearly without notice, so do not pin
+  docs: https://docs.trustly.com/api/authentication
+tools:
+- name: Signature tester
+  url: https://docs.trustly.com/api/signature-tester
+- name: Notification tool
+  url: https://docs.trustly.com/api/notification-tool

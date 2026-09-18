@@ -1,0 +1,15 @@
+generated: '2026-09-18'
+method: generated
+source: openapi/trustly-north-america-openapi.yml + https://amer.developers.trustly.com/integrate
+api: Trustly North America API
+skills:
+- file: skills/trustly-pay-authorize-and-capture.md
+  name: trustly-pay-authorize-and-capture
+  operations: 5
+- file: skills/trustly-payout.md
+  name: trustly-payout
+  operations: 5
+- file: skills/trustly-verify-account-and-identity.md
+  name: trustly-verify-account-and-identity
+  operations: 11
+note: Every operationId is grepped from the provider OpenAPI; no provider-published skills or AGENTS.md were found on either docs host or GitHub org. The Europe JSON-RPC API has no OpenAPI to ground skills in, so none are written for it.

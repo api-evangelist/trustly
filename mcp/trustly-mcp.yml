@@ -1,0 +1,40 @@
+generated: '2026-09-18'
+method: probed
+source: https://amer.developers.trustly.com/_mcp/server
+status: live
+name: Trustly North America docs MCP server
+description: >-
+  Hosted MCP server advertised in the Trustly North America llms.txt ("For AI client integration (Claude Code, Cursor,
+  etc.), connect to the MCP server at https://amer.developers.trustly.com/_mcp/server"). It is the Fern docs-platform
+  server (serverInfo fern-docs-mcp-server 1.0.0) and exposes a single documentation-search tool; it does not call the
+  Trustly payments API.
+deployment:
+  mode: remote
+  endpoint: https://amer.developers.trustly.com/_mcp/server
+  transport: streamable-http (JSON-RPC over POST; responses arrive as text/event-stream)
+  auth: none
+  verified: probed
+  install: null
+  package: null
+protocol:
+  protocolVersion: '2025-06-18'
+  serverInfo: {name: fern-docs-mcp-server, version: '1.0.0'}
+  capabilities: {tools: {listChanged: true}}
+probe:
+  initialize: {status: 200, ok: true}
+  tools_list: {status: 200, tool_count: 1, file: mcp/trustly-mcp-tools-list.json}
+tools:
+- name: searchDocs
+  description: Search the documentation at https://amer.developers.trustly.com. Returns relevant doc passages with source URLs.
+  readOnlyHint: true
+  inputSchema:
+    type: object
+    required: [query]
+    properties:
+      query: {type: string, description: The search query to run against the docs}
+      topK: {type: integer, minimum: 1, maximum: 20, description: How many results to return (default 8, max 20)}
+platform: Fern (buildwithfern.com) hosted docs; the same platform serves the llms.txt, the per-page .md twins and the RFC 9727 api-catalog
+scope_note: >-
+  Documentation-only. No tool establishes, captures, refunds or reads a transaction; an agent that wants the payments
+  surface must call the REST API in openapi/trustly-north-america-openapi.yml directly. Trustly Europe (docs.trustly.com)
+  publishes no MCP server.

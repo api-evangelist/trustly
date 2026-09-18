@@ -1,0 +1,117 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/api-fundamentals
+sources:
+- https://amer.developers.trustly.com/integrate/api-fundamentals/idempotency
+- https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+- https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+- https://amer.developers.trustly.com/integrate/accept-payments/recurring-payments
+- https://docs.trustly.com/api/api-protocol
+- https://docs.trustly.com/api/error-handling
+- openapi/trustly-north-america-openapi.yml
+scope: >-
+  Primarily the Trustly North America REST API (trustly.one/api/v1), the surface with an OpenAPI. Where the Trustly
+  Europe JSON-RPC API (api.trustly.com/1) differs it is called out under a `europe:` key.
+auth:
+  style: HTTP Basic (accessId:accessKey) on every request, plus an HMAC requestSignature inside the payload of /establish and the SDK establishData
+  see: authentication/trustly-authentication.yml
+  europe: username/password inside the JSON-RPC Data object plus an RSA signature over Method + UUID + Data
+idempotency:
+  coverage: partial
+  mechanism: unique merchantReference per merchant and per environment, verified server-side; no Idempotency-Key header
+  scope:
+  - transactions_post-transactions-transactionId-capture
+  - transactions_post-transactions-deposit
+  - transactions_post-establish
+  - transactions_post-transactions-transactionId-capture-preauth
+  applies_to_transaction_types:
+  - Pay
+  - Authorize
+  - Capture
+  - Deposit
+  not_applied:
+  - transactions_post-transactions-refund (documented as exempt)
+  - transactions_post-transactions-transactionId-reclaim (not listed)
+  - pending or canceled bank authorizations (same authorization may be reused)
+  duplicate_response:
+    code: 210
+    message: This is a duplicate request. It has been ignored
+  condition: protection applies once a transaction with that merchantReference reached Authorized, Processed or Completed
+  docs: https://amer.developers.trustly.com/integrate/api-fundamentals/idempotency
+  note: >-
+    Replay protection covers the money-moving writes (establish/authorize, capture, deposit) but not refunds or reclaims,
+    so an agent retrying a refund must guard it itself. Europe: no idempotency mechanism is documented; each Deposit /
+    Withdraw call carries a merchant-side MessageID and EndUserID, but the docs do not state that a repeated MessageID is
+    rejected, so coverage there is none.
+reversibility:
+  grade: documented
+  read_only: false
+  surfaces:
+  - write: transactions_post-transactions-transactionId-capture (Capture / Pay)
+    reversal: transactions_post-transactions-refund
+    window: after the collection has been Processed and Completed; partial and repeated refunds allowed until the full amount is returned; no calendar window is stated
+    docs: https://amer.developers.trustly.com/api-reference/api/transactions/post-transactions-refund
+  - write: transactions_post-transactions-deposit (Payout)
+    reversal: transactions_post-transactions-transactionId-reclaim
+    window: after the deposit has Completed; partial and repeated reclaims (minimum 0.99) allowed until the full amount is reclaimed; no calendar window is stated
+    docs: https://amer.developers.trustly.com/api-reference/api/transactions/post-transactions-transaction-id-reclaim
+  - write: transactions_post-transactions-transactionId-capture (before processing)
+    reversal: transactions_post-transactions-cancel
+    window: only before the payment-processing cut-off time; if Cancel errors, Refund instead
+    docs: https://amer.developers.trustly.com/api-reference/api/transactions/post-transactions-cancel
+  - write: recurring transaction (recurrence on establishData)
+    reversal: transactions_post-transactions-cancel
+    window: same-day cancellation only before 8:30 PM GMT
+    docs: https://amer.developers.trustly.com/integrate/accept-payments/recurring-payments
+  - write: bank authorization (transactions_post-establish)
+    reversal: transactions_post-transactions-cancel (voids the authorization; pending child transactions stay and must be canceled individually)
+    window: any time the user revokes access; not time-bound in the docs
+    docs: https://amer.developers.trustly.com/api-reference/api/transactions/post-transactions-cancel
+  europe: Refund reverses a completed Deposit (docs.trustly.com/api/refund); CancelDirectDebit / CancelDirectDebitMandate reverse pending direct-debit items and mandates. No calendar windows are stated.
+  note: >-
+    Every write has a reversal path; only the recurring-cancel path states a clock ("before 8:30 PM GMT"), and the
+    one-off cancel path states a qualitative one ("before the processing cut-off"). The grade is `documented` rather
+    than `verified` because the refund and reclaim windows are given in lifecycle terms, not in days.
+dry_run_mode:
+  supported: false
+  note: no dry-run flag; rehearsal is the sandbox environment with demo-bank password keyphrases (see sandbox/trustly-sandbox.yml)
+pagination:
+  style: none-documented
+  note: GET /transactions, GET /payments and GET /customers take filter query parameters (see the OpenAPI) but the docs publish no cursor or page parameters
+versioning:
+  scheme: URL path (/api/v1); the OpenAPI carries version 1.0.0 with no per-operation versioning
+  deprecated_base: https://paywithmybank.com and https://sandbox.paywithmybank.com (the pre-rebrand hosts) remain documented as deprecated base URLs
+  europe: JSON-RPC 1.1 at /1 on api.trustly.com
+error_envelope:
+  shape: '{"errors":[{"domain":"<java exception FQCN>","code":<int>,"message":"<text>","occurredAt":<epoch ms>,"location":"<field?>"}]}'
+  observed: HTTP 401 on GET /countries without credentials returned code 375 "Access not authorized" in exactly this shape
+  http_codes: [400, 401, 404, 500, 503]
+  internal_codes: [100, 150, 200, 210, 300, 326, 330, 331, 375, 380, 390, 397]
+  see: errors/trustly-problem-types.yml
+  europe: JSON-RPC 1.1 error object {"version":"1.1","error":{"name":"JSONRPCError","code":<int>,"message":"ERROR_*","error":{"signature","uuid","method","data":{"code","message"}}}}
+rate_limit_signaling:
+  documented: false
+  headers: []
+  note: no rate limits, quotas or 429 behaviour are published on either docs host
+request_id:
+  documented: false
+  note: no request-id / correlation header is documented; transactions and events carry Trustly-issued transactionId / eventId
+webhooks:
+  transport: HTTP POST, application/x-www-form-urlencoded name-value pairs, Authorization header to validate
+  ack: return 200 within 3 seconds
+  retry: every 5 minutes for 12 hours until a 200 is received
+  sandbox_batching: some notifications (for example payout processing) run in 5-minute batches in sandbox
+  see: asyncapi/trustly-north-america-webhooks.yml
+  europe: JSON-RPC notifications (account, pending, credit, debit, cancel, kyc, payoutconfirmation, payoutfailed, payoutdowngraded) POSTed to the merchant's NotificationURL and signed by Trustly; merchant replies with a signed "OK"
+amounts:
+  format: decimal strings with two fractional digits; minimum refund/reclaim 0.99
+  currencies: USD and CAD on the North America surface; Europe supports per-country currencies (see docs.trustly.com/api/handling-currencies)
+time:
+  timezone: Etc/UTC on all event timestamps; createdAt is a Unix timestamp in milliseconds
+cross_links:
+  authentication: authentication/trustly-authentication.yml
+  errors: errors/trustly-problem-types.yml
+  decline_codes: errors/trustly-decline-codes.yml
+  lifecycle: lifecycle/trustly-lifecycle.yml
+  rate_limits: rate-limits/trustly-rate-limits.yml
+  sandbox: sandbox/trustly-sandbox.yml

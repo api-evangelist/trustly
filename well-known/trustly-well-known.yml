@@ -1,0 +1,319 @@
+generated: '2026-09-18'
+method: searched
+source: live probes of /.well-known/* on every host the record knows (registrable domain + www, both API hosts and their sandbox/test hosts, both
+  docs hosts)
+note: 'One real document: RFC 9727 API catalog on the North America docs host (negative control 404). trustly.one and sandbox.trustly.one answer
+  every path with a 302 to www.trustly.net/us (catch-all, recorded as a miss). No security.txt, OIDC/OAuth metadata, apis.json, ai-plugin, ucp/acp,
+  AAuth or A2A agent card on any host.'
+hosts:
+- host: https://www.trustly.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 404
+  path_echo_control: passed
+  hit_count: 0
+- host: https://trustly.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 404
+  path_echo_control: passed
+  hit_count: 0
+- host: https://trustly.one
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/openid-configuration
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/oauth-protected-resource
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/api-catalog
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/ai-plugin.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/ucp.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/acp.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/aauth-resource.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/apis.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /apis.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /apis.yml
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/agent-card.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/agent.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 302
+  path_echo_control: passed
+  hit_count: 0
+- host: https://sandbox.trustly.one
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/openid-configuration
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/oauth-protected-resource
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/api-catalog
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/ai-plugin.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/ucp.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/acp.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/aauth-resource.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/apis.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /apis.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /apis.yml
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/agent-card.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  - path: /.well-known/agent.json
+    status: 302
+    note: redirect (catch-all to https://www.trustly.net/us on trustly.one hosts); not a document
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 302
+  path_echo_control: passed
+  hit_count: 0
+- host: https://api.trustly.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 404
+  path_echo_control: passed
+  hit_count: 0
+- host: https://test.trustly.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 404
+  path_echo_control: passed
+  hit_count: 0
+- host: https://amer.developers.trustly.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 200
+    file: trustly-api-catalog.json
+    content_type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"
+    note: RFC 9727 linkset naming service-desc https://amer.developers.trustly.com/openapi/api.yaml (OpenAPI 3.1, 29 paths) and service-doc /api-reference/api
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 404
+  path_echo_control: passed
+  hit_count: 1
+- host: https://docs.trustly.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  negative_control:
+    path: /.well-known/trustly-negative-control-9f2a7c.json
+    status: 404
+  path_echo_control: passed
+  hit_count: 0

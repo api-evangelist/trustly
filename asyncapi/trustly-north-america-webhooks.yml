@@ -1,0 +1,140 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+derived_from: openapi/trustly-north-america-openapi.yml (webhooks section, 10 events)
+kind: webhook catalog
+asyncapi: null
+note: 'Trustly publishes no AsyncAPI. This catalog is the union of the 10 webhook events declared in the OpenAPI `webhooks` block (each with a request schema)
+  and the 17 eventType values documented in prose. Nothing here is generated: names, descriptions, headers, retry rules and payload fields are the provider''s.'
+delivery:
+  method: POST
+  content_type: application/x-www-form-urlencoded (the OpenAPI webhook block models the same fields as application/json)
+  endpoint: merchant notificationUrl — default configured by Trustly support, or overridden per transaction in establishData.notificationUrl
+  headers:
+    Authorization: Basic <base64> — validate the notification signature before trusting the event
+    Content-Type: application/x-www-form-urlencoded
+  acknowledge: HTTP 200 within 3 seconds
+  retry: every 5 minutes for 12 hours until a 200 is received
+  sandbox: payout-type notifications batched every 300 seconds
+  signature_docs: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation/validate-the-notification-signature
+common_fields:
+- merchantId
+- merchantReference
+- paymentType
+- transactionType
+- eventId
+- eventType
+- objectId
+- objectType
+- message
+- parentObjectId
+- timeZone
+- createdAt
+- status
+- statusMessage
+conditional_fields:
+- splitToken (transactionType 1 + status 2, if enabled)
+- errorCode
+- suggestedRetryAmount (Available Funds Guidance)
+- paymentProviderTransaction.status
+- paymentProviderTransaction.statusMessage
+- paymentProviderTransaction.reasonCode
+- paymentProviderTransaction.reasonCodeMessage
+events_in_openapi:
+- name: Authorize
+  openapi_webhook: eventNotifications_Authorize
+  schema: EventAuthorize
+  description: The `Authorize` event indicates that the user has successfully authorized the transaction with their bank.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/authorize
+- name: Completed
+  openapi_webhook: eventNotifications_Completed
+  schema: EventCompleted
+  description: The `Completed` event indicates that the funds for a transaction have successfully settled.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/completed
+- name: Data Ready
+  openapi_webhook: eventNotifications_DataReady
+  schema: EventDataReady
+  description: The `DataReady` event indicates that all bank-qualified data, such as account details and balance, has been retrieved and is ready for consumption.
+    Wait for this event before calling Account Data endpoints.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/data-ready
+- name: Dispute
+  openapi_webhook: eventNotifications_Dispute
+  schema: null
+  description: The `Dispute` indicates that a transaction received a return that generated a dispute. The returnType property specifies the type of return
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/dispute
+- name: Establish
+  openapi_webhook: eventNotifications_Establish
+  schema: EventEstablish
+  description: The `Establish` event indicates that a new transaction has been created. This occurs when a user activates the Trustly User Interface (UI)
+    or when you create a transaction using the API
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/establish
+- name: Expired
+  openapi_webhook: eventNotifications_Expired
+  schema: EventExpire
+  description: The `Expired` event indicates that a transaction or session timed out before the user completed the flow.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/expired
+- name: Failed
+  openapi_webhook: eventNotifications_Failed
+  schema: EventFailed
+  description: The `Failed` event indicates that the transaction could not be completed because of an error, decline, or cancellation.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/failed
+- name: Refresh
+  openapi_webhook: eventNotifications_Refresh
+  schema: EventRefresh
+  description: The `Refresh` event indicates that the account data for a transaction has been successfully refreshed.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/refresh
+- name: Update
+  openapi_webhook: eventNotifications_Update
+  schema: EventUpdate
+  description: The `Update` event indicates that the status of a transaction has changed. For example, when a transaction moves from `Pending` to `Authorized`
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/update
+- name: Verify Customer
+  openapi_webhook: eventNotifications_VerifyCustomer
+  schema: EventVerifyCustomer
+  description: The `VerifyCustomer` event provides the result of the identity verification check performed against the data from the bank.
+  reference: https://amer.developers.trustly.com/api-reference/api/event-notifications/verify-customer
+event_types_documented:
+- Establish
+- Authorize
+- DataReady
+- Update
+- Process
+- Complete
+- Cancel
+- Cancelled
+- Expire
+- Failed
+- Deny
+- Dispute
+- Reconcile
+- Refund
+- Reverse
+- Refresh
+- CONSENT_REVOKED
+client_side_events:
+  api: Trustly.addPanelListener(command, obj)
+  commands:
+  - open
+  - event
+  - close
+  event_types:
+  - load
+  - bank_selected
+  - back
+  - close
+  - new_location
+  docs: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+europe:
+  transport: JSON-RPC 1.1 notification calls POSTed to the merchant NotificationURL, RSA-signed by Trustly; merchant replies with a signed OK response
+  notifications:
+  - account
+  - pending
+  - credit
+  - debit
+  - cancel
+  - kyc
+  - payoutconfirmation
+  - payoutfailed
+  - payoutdowngraded
+  docs: https://docs.trustly.com/api/notifications-overview
+  tool: https://docs.trustly.com/api/notification-tool

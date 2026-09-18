@@ -64,5 +64,33 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Trustly Group is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/trustly-stock
+Trustly is a Pay by Bank payments company with two developer surfaces. **Trustly Europe** (Trustly Group AB, a licensed
+Swedish payment institution) exposes a JSON-RPC 1.1 API at `api.trustly.com/1` with RSA-signed requests and notifications,
+documented at [docs.trustly.com](https://docs.trustly.com/). **Trustly North America** (Trustly Inc., formerly PayWithMyBank)
+exposes a REST API at `trustly.one/api/v1` documented at [amer.developers.trustly.com](https://amer.developers.trustly.com/)
+with a public OpenAPI 3.1 (31 operations, 10 webhook events), an llms.txt, an RFC 9727 API catalog and a hosted docs-search
+MCP server.
+
+- Website: https://www.trustly.com/
+- North America docs: https://amer.developers.trustly.com/welcome
+- Europe docs: https://docs.trustly.com/
+- Status: https://status.trustly.net/
+
+## What is in this repository
+
+| Artifact | File | Method |
+|---|---|---|
+| OpenAPI (North America) | `openapi/trustly-north-america-openapi.yml` (verbatim in `openapi/_original/`) | searched |
+| Authentication | `authentication/trustly-authentication.yml` | searched |
+| Conventions (idempotency, reversibility) | `conventions/trustly-conventions.yml` | searched |
+| Error catalog / decline codes | `errors/trustly-problem-types.yml`, `errors/trustly-decline-codes.yml` | searched |
+| Webhook catalog | `asyncapi/trustly-north-america-webhooks.yml` | searched |
+| Sandbox | `sandbox/trustly-sandbox.yml` | searched |
+| Lifecycle / deprecations | `lifecycle/trustly-lifecycle.yml` | searched |
+| Packages / SDKs | `packages/trustly-packages.yml` | searched |
+| llms.txt (verbatim) | `llms/trustly-llms.txt` | searched |
+| MCP server + tool crosswalk | `mcp/trustly-mcp.yml`, `mcp/trustly-tool-crosswalk.yml` | probed / derived |
+| Well-known probe + API catalog | `well-known/trustly-well-known.yml`, `well-known/trustly-api-catalog.json` | searched |
+| Conformance / security | `conformance/`, `security/` | searched / probed |
+| Components, plans, rate limits | `components/`, `plans/`, `rate-limits/` | searched |
+| Data model, overlay, skills | `data-model/`, `overlays/`, `skills/` | derived / generated |

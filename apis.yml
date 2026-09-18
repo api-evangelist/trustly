@@ -1,23 +1,251 @@
 aid: trustly
 name: Trustly Group
-description: 'Trustly Group is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: Trustly is a Pay by Bank payments company operating two developer surfaces. Trustly Europe (Trustly Group AB,
+  Stockholm, a licensed Swedish payment institution) exposes a JSON-RPC 1.1 API at api.trustly.com for deposits, withdrawals/payouts,
+  refunds, account tokenisation (SelectAccount/RegisterAccount), recurring direct debit (Autogiro, BACS, SEPA), local methods
+  (Swish, iDEAL, MB Way, Bancontact) and settlement/ledger reporting, with RSA-signed requests and notifications. Trustly
+  North America (Trustly Inc., formerly PayWithMyBank) exposes a REST API at trustly.one/api/v1 for establishing and authorizing
+  bank transactions, capture, deposit, payout, refund, account verification and tokenization, Trustly ID identity data and
+  event-notification webhooks, documented with a public OpenAPI 3.1, an llms.txt and a hosted MCP docs server.
 url: https://raw.githubusercontent.com/api-evangelist/trustly/refs/heads/main/apis.yml
+image: https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
+position: Consuming
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: enriched
+x-tier-reason: enrichment-pipeline
 specificationVersion: '0.20'
 created: '2026-09-18'
 modified: '2026-09-18'
 tags:
 - Company
-apis: []
+- Payments
+- Pay by Bank
+- Open Banking
+- Account-to-Account
+- Payouts
+- Direct Debit
+- Bank Account Verification
+- Identity Verification
+- Fintech
+- Webhooks
+- MCP
+apis:
+- name: Trustly North America API
+  description: REST API (OpenAPI 3.1, 31 operations, 10 documented webhook events) for Trustly Pay by Bank in the United States
+    and Canada. Establish and authorize a transaction through the Trustly Lightbox or Select Bank Widget, then capture, deposit,
+    preauthorize, reclaim, refresh, cancel or refund it; send payouts; tokenize and verify bank accounts; retrieve account
+    balances, users and summaries; pull Trustly ID identity data; manage customers and dispute recovery. HTTP Basic auth with
+    accessId/accessKey plus RSA request signatures; sandbox and production share one contract.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Payments
+  - Pay by Bank
+  - Open Banking
+  - Payouts
+  - Bank Account Verification
+  - Identity Verification
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-north-america-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://amer.developers.trustly.com/openapi.json
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: MCPServer
+    url: https://amer.developers.trustly.com/_mcp/server
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Overlay
+    url: overlays/trustly-north-america-overlay.yaml
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: MCPServer
+    url: mcp/trustly-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  image: https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
+- name: Trustly Europe API
+  description: JSON-RPC 1.1 API for Trustly Pay by Bank in Europe and the UK. Methods cover Deposit, Withdraw/AccountPayout,
+    Refund, SelectAccount, RegisterAccount, VerifyAccount, Charge and recurring direct debit (Autogiro, BACS, SEPA via DirectDebitMandate/DirectDebit/DirectCredit
+    and batch variants), local payment methods (Swish, iDEAL/Wero, MB Way, Bancontact), Verification of Payee, and reporting
+    (AccountLedger, MerchantSettlement, GetWithdrawals, CurrentBalance, ClosingBalance). Every request is signed with the
+    merchant's RSA private key and every response and notification is signed by Trustly; notifications (account, pending,
+    credit, debit, cancel, kyc, payoutconfirmation, payoutfailed) are JSON-RPC calls back to the merchant's NotificationURL.
+  humanURL: https://docs.trustly.com/api
+  baseURL: https://api.trustly.com/1
+  tags:
+  - Payments
+  - Pay by Bank
+  - Open Banking
+  - Payouts
+  - Direct Debit
+  - JSON-RPC
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://docs.trustly.com/
+  - type: APIReference
+    url: https://docs.trustly.com/api
+  - type: GettingStarted
+    url: https://docs.trustly.com/get-started
+  - type: Authentication
+    url: https://docs.trustly.com/api/authentication
+  - type: Sandbox
+    url: https://docs.trustly.com/api/test-environment
+  - type: Webhooks
+    url: https://docs.trustly.com/api/notifications-overview
+  - type: ErrorCodes
+    url: https://docs.trustly.com/api/error-handling
+  - type: SDKs
+    url: https://docs.trustly.com/api/code-library
+  - type: Plugins
+    url: https://docs.trustly.com/api/plugins
+  image: https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/trustly-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/trustly-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/trustly-domain-security.yml
+- type: Authentication
+  url: authentication/trustly-authentication.yml
 - type: Website
-  url: https://www.hiive.com/securities/trustly-stock
+  url: https://www.trustly.com/
+- type: DeveloperPortal
+  url: https://amer.developers.trustly.com/welcome
+- type: Documentation
+  url: https://docs.trustly.com/
+- type: APIReference
+  url: https://amer.developers.trustly.com/api-reference/api
+- type: GettingStarted
+  url: https://amer.developers.trustly.com/integrate/get-started
+- type: Support
+  url: https://www.trustly.com/support
+- type: HelpCenter
+  url: https://amer.developers.trustly.com/help
+- type: Blog
+  url: https://www.trustly.com/blog
+- type: GitHubOrganization
+  url: https://github.com/trustly
+- type: GitHubOrganization
+  name: GitHub (Trustly Inc., North America)
+  url: https://github.com/TrustlyInc
+- type: Login
+  url: https://backoffice.trustly.com/
+- type: Login
+  name: Merchant portal (North America)
+  url: https://paywithmybank.com/merchant-portal/
+- type: SignUp
+  url: https://www.trustly.com/contact-sales
+- type: TermsOfService
+  url: https://www.trustly.com/about-us/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.trustly.com/about-us/privacy-policy
+- type: StatusPage
+  url: https://status.trustly.net/
+- type: Security
+  url: https://www.trustly.com/security/disclosure
+- type: Compliance
+  url: https://www.trustly.com/security
+- type: Careers
+  url: https://www.trustly.com/careers
+- type: LinkedIn
+  url: https://www.linkedin.com/company/trustly/
+- type: X
+  url: https://x.com/Trustly
+- type: YouTube
+  url: https://www.youtube.com/user/TrustlySE
+- type: Packages
+  url: packages/trustly-packages.yml
+- type: SDKs
+  url: packages/trustly-packages.yml
+- type: WellKnown
+  url: well-known/trustly-well-known.yml
+- type: APICatalog
+  url: well-known/trustly-api-catalog.json
+- type: Conformance
+  url: conformance/trustly-conformance.yml
+- type: Compliance
+  url: conformance/trustly-conformance.yml
+- type: Lifecycle
+  url: lifecycle/trustly-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/trustly-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/trustly-rate-limits.yml
+- type: Plans
+  url: plans/trustly-plans-pricing.yml
+- type: Components
+  url: components/trustly-components.yml
+- type: Conventions
+  url: conventions/trustly-conventions.yml
+- type: Idempotency
+  url: conventions/trustly-conventions.yml
+- type: ErrorCatalog
+  url: errors/trustly-problem-types.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/trustly-llms.txt
+- type: MCPServer
+  url: mcp/trustly-mcp.yml
+- type: Webhooks
+  url: asyncapi/trustly-north-america-webhooks.yml
+- type: Sandbox
+  url: sandbox/trustly-sandbox.yml
+- type: DataModel
+  url: data-model/trustly-data-model.yml
+- type: Security
+  name: Responsible disclosure profile
+  url: security/trustly-vulnerability-disclosure.yml
+- type: Overlay
+  url: overlays/trustly-north-america-overlay.yaml
+x-enrichment:
+  date: '2026-09-18'
+  status: enriched
+  artifacts_added: 27
+  pass: local-v3

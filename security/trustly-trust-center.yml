@@ -1,0 +1,33 @@
+generated: '2026-09-18'
+method: searched
+probe: true
+source: https://www.trustly.com/security
+url: https://www.trustly.com/security
+name: Trustly Security & Compliance
+certifications:
+- ISO 27001
+- GDPR
+claims:
+- ISO 27001 certified; servers hosted at ISO 27001-certified facilities
+- third-party penetration testing
+- TLS-only transit encryption with an "A" rating on Qualys SSL Labs
+- GDPR-compliant retention periods for transaction data
+- EU-based hosting on Trustly's own servers and cloud services
+- 24/7 Security Operations Center monitoring EDR/XDR; MFA for staff; Layer 7 WAF and network IDS/IPS
+regulatory_status:
+- entity: Trustly Group AB
+  regime: licensed Swedish payment institution supervised by Finansinspektionen; operates under the Swedish Payment Services Act (2010:751) and PSD2 (Directive (EU) 2015/2366) with EU/EEA passporting
+- entity: Trustly UK Limited
+  regime: Authorised Payment Institution regulated by the UK FCA under the Payment Services Regulations 2017 (FRN 1005703)
+- entity: Ecospend Technologies Limited
+  regime: Authorised Payment Institution regulated by the UK FCA
+documents: access to certificates and accompanying documents is by request form on the page (no self-serve trust portal; trust.trustly.com does not resolve)
+evidence:
+- source: https://www.trustly.com/security
+  status: 200
+  keywords:
+  - iso 27001
+  - gdpr
+  - penetration tests
+  - PSD2
+  - FCA

@@ -1,0 +1,50 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/get-started/choose-an-integration
+sources:
+- https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+- https://amer.developers.trustly.com/integrate/core-concepts/key-concepts
+- https://status.trustly.net/
+- https://docs.trustly.com/api/security
+- openapi/trustly-north-america-openapi.yml
+versioning:
+  north_america: URL-path major version (/api/v1); OpenAPI info.version 1.0.0; no Sunset/Deprecation headers documented
+  europe: JSON-RPC 1.1 at https://api.trustly.com/1 (test https://test.trustly.com/api/1); no versioning policy page
+  policy_url: null
+  note: neither docs host publishes a written versioning or deprecation policy or a dated changelog; deprecations are stated inline on the affected pages
+status_page:
+  url: https://status.trustly.net/
+  alias: https://status.trustly.com/
+  platform: custom single-page app (Vite build; no Statuspage/Instatus API surface — /api/v2/status.json returns 400)
+  linked_from: docs.trustly.com footer ("API Status") and the trustly.com Help menu ("Status Page")
+deprecations:
+- item: Instant Payments workflow (paymentType 'Instant')
+  status: deprecated for new integrations
+  replacement: Trustly Pay (deferred authorize + capture)
+  sunset: not stated
+  docs: https://amer.developers.trustly.com/integrate/get-started/choose-an-integration
+- item: paywithmybank.com / sandbox.paywithmybank.com base URLs
+  status: deprecated
+  replacement: https://trustly.one/api/v1 and https://sandbox.trustly.one/api/v1
+  sunset: not stated
+  docs: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+- item: PayWithMyBank class/identifier references in the iOS and Android SDKs
+  status: deprecated
+  replacement: Trustly
+  docs: https://amer.developers.trustly.com/sdks/android
+- item: TLS 1.0 and TLS 1.1 on the Europe API
+  status: removed
+  replacement: TLS 1.2 or later
+  docs: https://docs.trustly.com/api/security
+- item: docs.trustly.com "old developer portal" (eu.developers.trustly.com/doc)
+  status: superseded
+  replacement: https://docs.trustly.com/
+deprecated_operations:
+  source: openapi/trustly-north-america-openapi.yml
+  count: 0
+  note: no operation in the OpenAPI carries deprecated true
+sla:
+  published: false
+  note: no uptime SLA is published; the Europe security page states the system is "fully redundant" at software and physical levels
+certificates:
+  europe: server certificates rotate at least yearly without notice; certificate pinning is explicitly discouraged

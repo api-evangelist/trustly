@@ -1,0 +1,63 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Trustly North America OpenAPI
+  version: 1.0.0
+  x-generated: '2026-09-18'
+  x-method: generated
+  x-source: openapi/trustly-north-america-openapi.yml
+extends: ./openapi/_original/trustly-north-america-openapi.json
+actions:
+- target: $.info
+  description: Name the API and point at contact, terms and the provider docs (the provider spec is titled "API").
+  update:
+    title: Trustly North America API
+    contact:
+      name: Trustly North America developer experience
+      url: https://amer.developers.trustly.com/help
+      email: amer.developer.experience@trustly.com
+    termsOfService: https://www.trustly.com/about-us/terms-and-conditions
+- target: $.servers
+  description: Add the production host the Environment URLs table documents alongside the sandbox the spec ships.
+  update:
+  - url: https://trustly.one/api/v1
+    description: Production
+  - url: https://sandbox.trustly.one/api/v1
+    description: Sandbox
+- target: $
+  description: Link the API reference.
+  update:
+    externalDocs:
+      description: Trustly North America API reference
+      url: https://amer.developers.trustly.com/api-reference/api
+- target: $.paths['/establish'].post
+  description: Record the payload-level request signature the docs require in production (not modelled as a securityScheme).
+  update:
+    x-request-signature:
+      field: requestSignature
+      algorithm: HMAC-SHA1 (default) or HMAC-SHA512
+      key: accessKey
+      docs: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation/generate-request-signatures
+- target: $.paths['/transactions/{transactionId}/capture'].post
+  description: Idempotency by merchantReference (duplicate -> code 210).
+  update:
+    x-idempotency: {key: merchantReference, duplicate_code: 210, docs: https://amer.developers.trustly.com/integrate/api-fundamentals/idempotency}
+- target: $.paths['/transactions/{transactionId}/deposit'].post
+  description: Idempotency by merchantReference (duplicate -> code 210).
+  update:
+    x-idempotency: {key: merchantReference, duplicate_code: 210, docs: https://amer.developers.trustly.com/integrate/api-fundamentals/idempotency}
+- target: $.paths['/transactions/{transactionId}/refund'].post
+  description: Refund is explicitly exempt from merchantReference idempotency; mark the reversal relationship.
+  update:
+    x-idempotency: {key: null, note: duplicate merchantReference validation does not apply to Refund}
+    x-reverses: transactions_post-transactions-transactionId-capture
+- target: $.paths['/transactions/{transactionId}/reclaim'].post
+  update:
+    x-reverses: transactions_post-transactions-deposit
+- target: $.paths['/transactions/{transactionId}/cancel'].post
+  update:
+    x-reverses: transactions_post-establish
+    x-window: before the payment-processing cut-off; recurring transactions before 8:30 PM GMT the same day
+- target: $.components.securitySchemes.HTTPBasic
+  description: Give the empty-description scheme its meaning.
+  update:
+    description: accessId as the username and accessKey as the password, issued per merchant and per environment.

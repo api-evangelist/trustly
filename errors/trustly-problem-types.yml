@@ -1,0 +1,89 @@
+generated: '2026-09-18'
+method: searched
+source: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+derived_from: openapi/trustly-north-america-openapi.yml
+format: custom
+envelope:
+  shape: '{"errors":[{"domain":"<exception class>","code":<int>,"message":"<text>","location":"<field>","occurredAt":<epoch ms>}]}'
+  schema: '#/components/schemas/BaseException (code, message, location, domain, occurredAt) — some 400 responses collapse to {"message"}'
+  observed_live: 'GET https://sandbox.trustly.one/api/v1/countries without credentials -> 401 {"errors":[{"domain":"com.paywithmybank.merchantgateway.v1.exception.AccessControlException","code":375,"message":"Access not authorized","occurredAt":...}]}'
+  note: not application/problem+json; codes are numeric Trustly-internal codes, not RFC 9457 type URIs
+http_statuses:
+- status: 400
+  title: Bad Request
+  detail: often a missing required parameter
+  declared_on: 13 operations in the OpenAPI
+- status: 401
+  title: Unauthorized
+  detail: invalid accessId or accessKey
+  declared_on: 3 operations in the OpenAPI (plus observed live on every unauthenticated call)
+- status: 404
+  title: Not Found
+  detail: endpoint not supported or defined by Trustly
+- status: 500
+  title: Server error
+  detail: internal Trustly error
+  declared_on: 2 operations in the OpenAPI
+- status: 503
+  title: Service Unavailable
+  detail: temporary overloading or maintenance
+problems:
+- code: 100
+  title: Internal error
+  detail: an internal database exception occurred while processing the request
+  remediation: retry later; contact support if persistent
+- code: 150
+  title: Remote error
+  detail: a remote system (for example the consumer's bank interface) is down
+  remediation: retry later
+- code: 200
+  title: Invalid parameter
+  detail: one of the request parameters is invalid (for example an invalid amount format)
+  remediation: fix the request
+- code: 210
+  title: Duplicate request
+  detail: idempotency failure — a merchantReference already used on a transaction that reached Authorized/Processed/Completed
+  remediation: treat as already-applied; do not retry with the same reference
+- code: 300
+  title: Security error
+  detail: generic security error while processing the request
+- code: 326
+  title: Expired split token
+  remediation: prompt the user to log in again (new bank authorization)
+- code: 330
+  title: Invalid account
+- code: 331
+  title: Not enough balance
+- code: 375
+  title: Access control error
+  detail: a security parameter (accessId, accessKey or requestSignature) is invalid
+  remediation: check credentials and the signature parameter ordering
+- code: 380
+  title: Invalid split token
+- code: 390
+  title: Fraud analysis
+  detail: suspicious transaction or negative data
+- code: 397
+  title: splitToken is not valid
+transaction_status_codes:
+  note: status codes carried on transactions and event notifications (paymentProviderTransaction.status); the SW02x/SW05x decline family is expanded in errors/trustly-decline-codes.yml
+  families:
+  - prefix: SW
+    name: Payment Provider Transaction Status
+    codes: [SW010 Established, SW013 Canceled, SW020 Authorization received, SW021 Authorization denied, SW051 Merchant error, SW052 Bank error, SW053 Network error, SW054 Suspicious activity, SW055 Negative data, SW056 Invalid account, SW057 Expired split token, SW059 Instant rejected for risk, SW060 Bank or processor down]
+  - prefix: UC
+    name: User Canceled
+    count: 37
+    detail: UC01–UC37 name the Lightbox page at which the user abandoned (bank selection, login, MFA, account selection, manual entry, OAuth connect, VAN info, ...)
+  - prefix: AC
+    name: Acknowledged Communication
+    count: 19
+    detail: AC100–AC118 (pending, declined, approved, error, voided, processed, collected, awaiting capture/approval, suspended, in collection, in research, disputed, uncollected NSF, invalid/closed account, other returns, none, expired, settled)
+  - prefix: SE
+    name: System Error
+    codes: [SE01 maintenance mode, SE02 error connecting to API services, SE03 error connecting to financial services gateway]
+europe:
+  format: JSON-RPC 1.1 error object
+  shape: '{"version":"1.1","error":{"name":"JSONRPCError","code":616,"message":"ERROR_INVALID_CREDENTIALS","error":{"signature":"...","uuid":"...","method":"Deposit","data":{"code":616,"message":"ERROR_INVALID_CREDENTIALS"}}}}'
+  docs: https://docs.trustly.com/api/error-handling
+  note: uuid and method are null when the error is JSON-RPC-level (for example malformed JSON); messages are not consumer-presentable. Per-method error tables live under the MDD "Errors and details for ..." pages.
