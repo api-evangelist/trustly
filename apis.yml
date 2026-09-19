@@ -28,6 +28,19 @@ tags:
 - Bank Account Verification
 - Identity Verification
 - Fintech
+- Webhook
+- MCP
+tags_raw:
+- Company
+- Payments
+- Pay by Bank
+- Open Banking
+- Account-to-Account
+- Payouts
+- Direct Debit
+- Bank Account Verification
+- Identity Verification
+- Fintech
 - Webhooks
 - MCP
 apis:
@@ -40,6 +53,14 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Payments
+  - Pay by Bank
+  - Open Banking
+  - Payouts
+  - Bank Account Verification
+  - Identity Verification
+  - Webhook
+  tags_raw:
   - Payments
   - Pay by Bank
   - Open Banking
@@ -112,6 +133,14 @@ apis:
   humanURL: https://docs.trustly.com/api
   baseURL: https://api.trustly.com/1
   tags:
+  - Payments
+  - Pay by Bank
+  - Open Banking
+  - Payouts
+  - Direct Debit
+  - JSON-RPC
+  - Webhook
+  tags_raw:
   - Payments
   - Pay by Bank
   - Open Banking
