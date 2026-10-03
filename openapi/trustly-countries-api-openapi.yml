@@ -1,15 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Trustly Countries API
+  title: Countries API
   version: 1.0.0
-  x-refined-note:
-  - x-api-evangelist-provenance differs across the merged source definitions and was not carried
-  description: 'Operations tagged countries across 2 of this provider''s published API definitions: trustly-north-america-openapi.json, trustly-north-america-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://sandbox.trustly.one/api/v1
   description: Sandbox
-- url: https://trustly.one/api/v1
-  description: Production
 tags:
 - name: Countries
 paths:
@@ -60,11 +55,16 @@ paths:
                 $ref: '#/components/schemas/Get-countriesRequestBadRequestError'
       security:
       - HTTPBasic: []
-    servers:
-    - url: https://sandbox.trustly.one/api/v1
-      description: Sandbox
 components:
   schemas:
+    Countries_get-countries_Response_200:
+      type: object
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+      title: Countries_get-countries_Response_200
     Country:
       type: object
       properties:
@@ -99,28 +99,6 @@ components:
           type: boolean
           description: Indicates if the country is currently supported
       title: Country
-    Countries_get-countries_Response_200:
-      type: object
-      properties:
-        countries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Country'
-      title: Countries_get-countries_Response_200
-    Get-countriesRequestBadRequestError:
-      type: object
-      properties:
-        message:
-          type: string
-      title: Get-countriesRequestBadRequestError
-    PaymentProviderSubtype:
-      type: string
-      enum:
-      - '1000'
-      - '2000'
-      - '2001'
-      description: "Payment Provider Subtype:\n  * `1000`: EasyOnline\n  * `2000`: MEC\n  * `2001`: MCD"
-      title: PaymentProviderSubtype
     CountriesGetParametersCountry:
       type: string
       enum:
@@ -130,6 +108,14 @@ components:
       - DE
       - AU
       title: CountriesGetParametersCountry
+    PaymentProviderSubtype:
+      type: string
+      enum:
+      - '1000'
+      - '2000'
+      - '2001'
+      description: "Payment Provider Subtype:\n  * `1000`: EasyOnline\n  * `2000`: MEC\n  * `2001`: MCD"
+      title: PaymentProviderSubtype
     PaymentType:
       type: string
       enum:
@@ -141,14 +127,14 @@ components:
       - retrieval
       description: "Payment Type:\n  * `instant`: Instant payment. The debit instruction is automatically initiated with that day''s batch after consumer authorization.\n  * `deferred`: Deferred payment. Payment is authorized but the capture operation must be called to initiate the debit. You can start to initiate multiple captures that are less than or equal to the original transaction authorization amount.\n  * `recurring`: Recurring payment. Same as deferred but associated to a payment agreement between consumer and merchant that defines how much and when the capture can be started.\n  * `disbursement`: Disbursement payment. This payment type can only be used for disbursements.\n  * `verification`: This payment type is used to verify the customer financial institution account as the payments will be done outside of the Trustly system.\n  * `retrieval`: Data retrieval. This payment type is used to retrieve account and user information from Trustly without an associated payment request. This payment type is not enabled by default. Contact Trustly if you need this feature."
       title: PaymentType
+    Get-countriesRequestBadRequestError:
+      type: object
+      properties:
+        message:
+          type: string
+      title: Get-countriesRequestBadRequestError
   securitySchemes:
     HTTPBasic:
       type: http
       scheme: basic
       description: ''
-externalDocs:
-  description: Trustly North America API reference
-  url: https://amer.developers.trustly.com/api-reference/api
-x-refined-from:
-- trustly-north-america-openapi.json
-- trustly-north-america-openapi.yml

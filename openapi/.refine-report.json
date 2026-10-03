@@ -1,8 +1,7 @@
 {
   "provider": "trustly",
   "sources": [
-    "_original/trustly-north-america-openapi.json",
-    "trustly-north-america-openapi.yml"
+    "_original/trustly-north-america-openapi.json"
   ],
   "outputs": [
     "trustly-api-api-openapi.yml",
@@ -16,15 +15,15 @@
     "trustly-paymentproviders-api-openapi.yml",
     "trustly-payments-api-openapi.yml",
     "trustly-transactions-api-openapi.yml",
-    "trustly-verifycustomer-api-openapi.yml",
-    "trustly-trustly-north-america-api-api-openapi.yml"
+    "trustly-verifycustomer-api-openapi.yml"
   ],
   "archived": [
-    "archived openapi/trustly-north-america-openapi.yml"
+    "deleted 4 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
   "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "trustly-north-america-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "trustly-north-america-openapi.json: tagged webhooks POST eventNotifications_Authorize -> API",
@@ -38,30 +37,23 @@
     "trustly-north-america-openapi.json: tagged webhooks POST eventNotifications_Update -> API",
     "trustly-north-america-openapi.json: tagged webhooks POST eventNotifications_VerifyCustomer -> API",
     "trustly-north-america-openapi.json: declared missing tag: API",
-    "trustly-north-america-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Authorize -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Completed -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_DataReady -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Dispute -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Establish -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Expired -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Failed -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Refresh -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_Update -> Trustly North America API",
-    "trustly-north-america-openapi.yml: tagged webhooks POST eventNotifications_VerifyCustomer -> Trustly North America API",
-    "trustly-north-america-openapi.yml: declared missing tag: Trustly North America API",
-    "tag 'accountData' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'accounts' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'countries' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'customers' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'disputeManagement' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'identity' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'networkCheckApi' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'paymentProviders' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'payments' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'transactions' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "tag 'verifyCustomer' spans 2 source specs (trustly-north-america-openapi.json, trustly-north-america-openapi.yml): per-path servers applied",
-    "apis.yml register: written (+13 apis, 14 total)"
+    "superseded outputs removed: trustly-account-data-api-openapi.yml, trustly-dispute-management-api-openapi.yml, trustly-payment-providers-api-openapi.yml, trustly-trustly-north-america-api-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 13 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/trustly-north-america-openapi.yml: archived document superseded by a larger archived document",
+    "trustly-account-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-countries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-dispute-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-identity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-networkcheckapi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-payment-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-trustly-north-america-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustly-verifycustomer-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
