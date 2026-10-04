@@ -51,46 +51,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        address1:
-          type: string
-          minLength: 1
-          description: Address line 1 (e.g., street or PO Box)
-        address2:
-          type: string
-          description: Address line 2 (e.g., apartment, suite or unit number)
-        city:
-          type: string
-          minLength: 1
-          description: City, district, town or village
-        state:
-          type: string
-          minLength: 2
-          description: State, province or region code
-        zip:
-          type: string
-          minLength: 5
-          description: ZIP or Postal Code
-        country:
-          type: string
-          minLength: 2
-          description: 2 character [ISO Country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-      required:
-      - country
-      description: Valid mailing or billing address associated with the customer
-      title: Address
-    PaymentProviderCountry:
-      type: string
-      enum:
-      - US
-      - CA
-      - UK
-      - DE
-      - AU
-      description: 2-letter ISO country code of the financial institution
-      title: PaymentProviderCountry
     PaymentProviderSubType:
       type: string
       enum:
@@ -146,6 +106,46 @@ components:
       - name
       description: Details of the Financial institution
       title: PaymentProvider
+    Address:
+      type: object
+      properties:
+        address1:
+          type: string
+          minLength: 1
+          description: Address line 1 (e.g., street or PO Box)
+        address2:
+          type: string
+          description: Address line 2 (e.g., apartment, suite or unit number)
+        city:
+          type: string
+          minLength: 1
+          description: City, district, town or village
+        state:
+          type: string
+          minLength: 2
+          description: State, province or region code
+        zip:
+          type: string
+          minLength: 5
+          description: ZIP or Postal Code
+        country:
+          type: string
+          minLength: 2
+          description: 2 character [ISO Country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      required:
+      - country
+      description: Valid mailing or billing address associated with the customer
+      title: Address
+    PaymentProviderCountry:
+      type: string
+      enum:
+      - US
+      - CA
+      - UK
+      - DE
+      - AU
+      description: 2-letter ISO country code of the financial institution
+      title: PaymentProviderCountry
   securitySchemes:
     HTTPBasic:
       type: http

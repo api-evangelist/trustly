@@ -18,7 +18,7 @@
     "trustly-verifycustomer-api-openapi.yml"
   ],
   "archived": [
-    "deleted 4 superseded output(s) from the previous generation"
+    "deleted 3 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -37,7 +37,7 @@
     "trustly-north-america-openapi.json: tagged webhooks POST eventNotifications_Update -> API",
     "trustly-north-america-openapi.json: tagged webhooks POST eventNotifications_VerifyCustomer -> API",
     "trustly-north-america-openapi.json: declared missing tag: API",
-    "superseded outputs removed: trustly-account-data-api-openapi.yml, trustly-dispute-management-api-openapi.yml, trustly-payment-providers-api-openapi.yml, trustly-trustly-north-america-api-api-openapi.yml",
+    "superseded outputs removed: trustly-account-data-api-openapi.yml, trustly-dispute-management-api-openapi.yml, trustly-payment-providers-api-openapi.yml",
     "apis.yml register: written (+3 apis, 13 total)"
   ],
   "skipped": [
@@ -53,7 +53,6 @@
     "trustly-payment-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "trustly-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "trustly-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "trustly-trustly-north-america-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "trustly-verifycustomer-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

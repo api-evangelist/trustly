@@ -67,20 +67,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    CustomerLookupResponseErrorsListItems:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        location:
-          type: string
-        domain:
-          type: string
-        occurredAt:
-          type: integer
-      title: CustomerLookupResponseErrorsListItems
     BaseException:
       type: object
       properties:
@@ -95,6 +81,20 @@ components:
         occurredAt:
           type: integer
       title: BaseException
+    CustomerLookupResponseErrorsListItems:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        location:
+          type: string
+        domain:
+          type: string
+        occurredAt:
+          type: integer
+      title: CustomerLookupResponseErrorsListItems
     Get-customer-lookupRequestUnauthorizedError:
       type: object
       properties:

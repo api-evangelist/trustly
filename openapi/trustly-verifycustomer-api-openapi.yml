@@ -45,6 +45,14 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
+    Verify_Customer_get-verify-customer_Response_200:
+      type: object
+      properties:
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifyCustomerMatch'
+      title: Verify Customer_get-verify-customer_Response_200
     BaseException:
       type: object
       properties:
@@ -59,6 +67,33 @@ components:
         occurredAt:
           type: integer
       title: BaseException
+    Get-verify-customerRequestUnauthorizedError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseException'
+      required:
+      - errors
+      title: Get-verify-customerRequestUnauthorizedError
+    VerifyCustomerMatchResult:
+      type: string
+      enum:
+      - '-1'
+      - '0'
+      - '1'
+      - '2'
+      description: 'The result of the comparison:
+
+        * `-1`: Inconclusive
+
+        * `0`: NoMatch
+
+        * `1`: PartialMatch
+
+        * `2`: Match'
+      title: VerifyCustomerMatchResult
     Get-verify-customerRequestBadRequestError:
       type: object
       properties:
@@ -69,6 +104,23 @@ components:
       required:
       - errors
       title: Get-verify-customerRequestBadRequestError
+    VerifyCustomerMatchSource:
+      type: string
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      description: 'The data source used for comparison:
+
+        * `1`: Profile
+
+        * `2`: SelectedAccount
+
+        * `3`: OtherAccounts
+
+        * `4`: TrustlyUser'
+      title: VerifyCustomerMatchSource
     VerifyCustomerMatch:
       type: object
       properties:
@@ -98,58 +150,6 @@ components:
 
             * `4`: TrustlyUser'
       title: VerifyCustomerMatch
-    Get-verify-customerRequestUnauthorizedError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/BaseException'
-      required:
-      - errors
-      title: Get-verify-customerRequestUnauthorizedError
-    VerifyCustomerMatchResult:
-      type: string
-      enum:
-      - '-1'
-      - '0'
-      - '1'
-      - '2'
-      description: 'The result of the comparison:
-
-        * `-1`: Inconclusive
-
-        * `0`: NoMatch
-
-        * `1`: PartialMatch
-
-        * `2`: Match'
-      title: VerifyCustomerMatchResult
-    Verify_Customer_get-verify-customer_Response_200:
-      type: object
-      properties:
-        matches:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifyCustomerMatch'
-      title: Verify Customer_get-verify-customer_Response_200
-    VerifyCustomerMatchSource:
-      type: string
-      enum:
-      - '1'
-      - '2'
-      - '3'
-      - '4'
-      description: 'The data source used for comparison:
-
-        * `1`: Profile
-
-        * `2`: SelectedAccount
-
-        * `3`: OtherAccounts
-
-        * `4`: TrustlyUser'
-      title: VerifyCustomerMatchSource
   securitySchemes:
     HTTPBasic:
       type: http
