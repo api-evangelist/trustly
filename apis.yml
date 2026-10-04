@@ -98,6 +98,8 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -149,7 +151,8 @@ apis:
   description: The API API from Trustly Group — 0 operation(s) for api.
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - API
   properties:
   - type: OpenAPI
@@ -202,6 +205,8 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Countries
+  tags_raw:
   - countries
   properties:
   - type: OpenAPI
@@ -254,6 +259,8 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Customers
+  tags_raw:
   - customers
   properties:
   - type: OpenAPI
@@ -306,6 +313,8 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Identity
+  tags_raw:
   - identity
   properties:
   - type: OpenAPI
@@ -357,7 +366,8 @@ apis:
   description: The networkCheckApi API from Trustly Group — 1 operation(s) for networkcheckapi.
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - networkCheckApi
   properties:
   - type: OpenAPI
@@ -410,6 +420,8 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Payments
+  tags_raw:
   - payments
   properties:
   - type: OpenAPI
@@ -462,6 +474,8 @@ apis:
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
   tags:
+  - Transaction
+  tags_raw:
   - transactions
   properties:
   - type: OpenAPI
@@ -513,7 +527,8 @@ apis:
   description: The verifyCustomer API from Trustly Group — 1 operation(s) for verifycustomer.
   humanURL: https://amer.developers.trustly.com/api-reference/api
   baseURL: https://trustly.one/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - verifyCustomer
   properties:
   - type: OpenAPI
@@ -722,6 +737,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/trustly-capability-edges.yml
+  name: Trustly Group Business Capability Map
 - type: MCPServer
   url: https://amer.developers.trustly.com/_mcp/server
 - type: TrustCenter
