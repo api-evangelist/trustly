@@ -1,0 +1,12 @@
+{
+ "url": "https://amer.developers.trustly.com/openapi.json",
+ "requested_url": "https://amer.developers.trustly.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 168457,
+ "sha256": "5c376a06c899a1b083e1dc8727263a3195cb6fdfc694ef002de9b8a9af7d5469",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
