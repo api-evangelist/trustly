@@ -1,0 +1,920 @@
+{
+  "@context": {
+    "@vocab": "https://trustly.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "trustly": "https://trustly.com/schema#",
+    "Address3Country": "trustly:Address3Country",
+    "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaErrorsItems": "trustly:TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaErrorsItems",
+    "domain": {
+      "@id": "trustly:domain",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "trustly:code",
+      "@type": "xsd:decimal"
+    },
+    "location": {
+      "@id": "trustly:location",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "trustly:message",
+      "@type": "xsd:string"
+    },
+    "occurredAt": {
+      "@id": "trustly:occurredAt",
+      "@type": "xsd:decimal"
+    },
+    "Account_Data_get-transaction-account-summary_Response_200": "trustly:Account_Data_get-transaction-account-summary_Response_200",
+    "customerId": {
+      "@id": "trustly:customerId",
+      "@type": "xsd:string"
+    },
+    "lastUpdated": {
+      "@id": "trustly:lastUpdated",
+      "@type": "xsd:integer"
+    },
+    "summary": {
+      "@id": "trustly:summary",
+      "@container": "@list"
+    },
+    "PaymentProvider-2": "trustly:PaymentProvider-2",
+    "paymentProviderId": {
+      "@id": "trustly:paymentProviderId",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "trustly:type",
+      "@type": "xsd:decimal"
+    },
+    "name": {
+      "@id": "trustly:name",
+      "@type": "xsd:string"
+    },
+    "instantPayoutAvailable": {
+      "@id": "trustly:instantPayoutAvailable",
+      "@type": "xsd:boolean"
+    },
+    "subType": {
+      "@id": "trustly:subType",
+      "@type": "@id"
+    },
+    "swift": {
+      "@id": "trustly:swift",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "trustly:address",
+      "@type": "@id"
+    },
+    "country": {
+      "@id": "trustly:country",
+      "@type": "@id"
+    },
+    "instantPayment": {
+      "@id": "trustly:instantPayment",
+      "@type": "xsd:boolean"
+    },
+    "TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalanceAccount": "trustly:TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalanceAccount",
+    "providerId": {
+      "@id": "trustly:providerId",
+      "@type": "xsd:string"
+    },
+    "paymentProvider": {
+      "@id": "trustly:paymentProvider",
+      "@type": "@id"
+    },
+    "nameOnAccount": {
+      "@id": "trustly:nameOnAccount",
+      "@type": "xsd:string"
+    },
+    "profile": {
+      "@id": "trustly:profile",
+      "@type": "xsd:decimal"
+    },
+    "accountNumber": {
+      "@id": "trustly:accountNumber",
+      "@type": "xsd:string"
+    },
+    "iban": {
+      "@id": "trustly:iban",
+      "@type": "xsd:string"
+    },
+    "verified": {
+      "@id": "trustly:verified",
+      "@type": "xsd:boolean"
+    },
+    "verification": {
+      "@id": "trustly:verification",
+      "@type": "@id"
+    },
+    "source": {
+      "@id": "trustly:source",
+      "@type": "xsd:decimal"
+    },
+    "routingNumber": {
+      "@id": "trustly:routingNumber",
+      "@type": "xsd:string"
+    },
+    "token": {
+      "@id": "trustly:token",
+      "@type": "xsd:string"
+    },
+    "accountNumberLastFour": {
+      "@id": "trustly:accountNumberLastFour",
+      "@type": "xsd:string"
+    },
+    "virtualAccountRoutingPair": {
+      "@id": "trustly:virtualAccountRoutingPair",
+      "@type": "xsd:boolean"
+    },
+    "taxId": {
+      "@id": "trustly:taxId",
+      "@type": "xsd:string"
+    },
+    "List-selected-accountsRequestBadRequestError": "trustly:List-selected-accountsRequestBadRequestError",
+    "errors": {
+      "@id": "trustly:errors",
+      "@container": "@list"
+    },
+    "TransactionsTransactionIdPaymentPaymentProviderUserGetResponsesContentApplicationJsonSchemaErrorsItems": "trustly:TransactionsTransactionIdPaymentPaymentProviderUserGetResponsesContentApplicationJsonSchemaErrorsItems",
+    "TransactionsTransactionIdPaymentPaymentProviderAccountsGetResponsesContentApplicationJsonSchemaErrorsItems": "trustly:TransactionsTransactionIdPaymentPaymentProviderAccountsGetResponsesContentApplicationJsonSchemaErrorsItems",
+    "PaymentProvider2Country": "trustly:PaymentProvider2Country",
+    "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItemsAggregationsItems": "trustly:TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItemsAggregationsItems",
+    "days": {
+      "@id": "trustly:days",
+      "@type": "xsd:integer"
+    },
+    "activityEarliestDate": {
+      "@id": "trustly:activityEarliestDate",
+      "@type": "xsd:integer"
+    },
+    "activityLatestDate": {
+      "@id": "trustly:activityLatestDate",
+      "@type": "xsd:integer"
+    },
+    "balanceMax": {
+      "@id": "trustly:balanceMax",
+      "@type": "xsd:string"
+    },
+    "balanceMin": {
+      "@id": "trustly:balanceMin",
+      "@type": "xsd:string"
+    },
+    "balanceAvg": {
+      "@id": "trustly:balanceAvg",
+      "@type": "xsd:string"
+    },
+    "depositCount": {
+      "@id": "trustly:depositCount",
+      "@type": "xsd:integer"
+    },
+    "depositAmountTotal": {
+      "@id": "trustly:depositAmountTotal",
+      "@type": "xsd:string"
+    },
+    "depositAmountMax": {
+      "@id": "trustly:depositAmountMax",
+      "@type": "xsd:string"
+    },
+    "withdrawalCount": {
+      "@id": "trustly:withdrawalCount",
+      "@type": "xsd:integer"
+    },
+    "withdrawalAmountTotal": {
+      "@id": "trustly:withdrawalAmountTotal",
+      "@type": "xsd:string"
+    },
+    "withdrawalAmountMax": {
+      "@id": "trustly:withdrawalAmountMax",
+      "@type": "xsd:string"
+    },
+    "overdraftCount": {
+      "@id": "trustly:overdraftCount",
+      "@type": "xsd:integer"
+    },
+    "overdraftAmountTotal": {
+      "@id": "trustly:overdraftAmountTotal",
+      "@type": "xsd:string"
+    },
+    "nsfCount": {
+      "@id": "trustly:nsfCount",
+      "@type": "xsd:integer"
+    },
+    "nsfFeeAmountTotal": {
+      "@id": "trustly:nsfFeeAmountTotal",
+      "@type": "xsd:string"
+    },
+    "TransactionsTransactionIdPaymentPaymentProviderUserGetParametersExpandSchemaItems": "trustly:TransactionsTransactionIdPaymentPaymentProviderUserGetParametersExpandSchemaItems",
+    "Account_Data_get-transactions-account-balance_Response_200": "trustly:Account_Data_get-transactions-account-balance_Response_200",
+    "accountBalance": {
+      "@id": "trustly:accountBalance",
+      "@type": "@id"
+    },
+    "TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalanceAccountCountry": "trustly:TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalanceAccountCountry",
+    "FinancialInstitutionAccountVerification": "trustly:FinancialInstitutionAccountVerification",
+    "hasEnoughFunds": {
+      "@id": "trustly:hasEnoughFunds",
+      "@type": "xsd:boolean"
+    },
+    "verificationDate": {
+      "@id": "trustly:verificationDate",
+      "@type": "xsd:integer"
+    },
+    "score": {
+      "@id": "trustly:score",
+      "@type": "@id"
+    },
+    "thirdPartyScore": {
+      "@id": "trustly:thirdPartyScore",
+      "@type": "@id"
+    },
+    "numberOfTries": {
+      "@id": "trustly:numberOfTries",
+      "@type": "xsd:decimal"
+    },
+    "numberOfAttemptsLeft": {
+      "@id": "trustly:numberOfAttemptsLeft",
+      "@type": "xsd:decimal"
+    },
+    "SegmentedName": "trustly:SegmentedName",
+    "title": {
+      "@id": "trustly:title",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "trustly:firstName",
+      "@type": "xsd:string"
+    },
+    "middleName": {
+      "@id": "trustly:middleName",
+      "@container": "@list"
+    },
+    "lastName": {
+      "@id": "trustly:lastName",
+      "@type": "xsd:string"
+    },
+    "suffix": {
+      "@id": "trustly:suffix",
+      "@type": "xsd:string"
+    },
+    "FinancialInstitutionAccountVerificationThirdPartyScore": "trustly:FinancialInstitutionAccountVerificationThirdPartyScore",
+    "Get-transactions-account-balanceRequestBadRequestError": "trustly:Get-transactions-account-balanceRequestBadRequestError",
+    "PaymentProvider2SubType": "trustly:PaymentProvider2SubType",
+    "FIUser": "trustly:FIUser",
+    "fingerprint": {
+      "@id": "trustly:fingerprint",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "trustly:phone",
+      "@container": "@list"
+    },
+    "email": {
+      "@id": "trustly:email",
+      "@container": "@list"
+    },
+    "createdAt": {
+      "@id": "trustly:createdAt",
+      "@type": "xsd:integer"
+    },
+    "updatedAt": {
+      "@id": "trustly:updatedAt",
+      "@type": "xsd:integer"
+    },
+    "segmentedName": {
+      "@id": "trustly:segmentedName",
+      "@type": "@id"
+    },
+    "Account_Data_list-selected-accounts_Response_200": "trustly:Account_Data_list-selected-accounts_Response_200",
+    "accounts": {
+      "@id": "trustly:accounts",
+      "@container": "@list"
+    },
+    "Address-3": "trustly:Address-3",
+    "address1": {
+      "@id": "trustly:address1",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "trustly:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "trustly:state",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "trustly:zip",
+      "@type": "xsd:string"
+    },
+    "address2": {
+      "@id": "trustly:address2",
+      "@type": "xsd:string"
+    },
+    "TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaErrorsItems": "trustly:TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaErrorsItems",
+    "FinancialInstitutionAccountVerificationScore": "trustly:FinancialInstitutionAccountVerificationScore",
+    "Account2Country": "trustly:Account2Country",
+    "FinancialInstitutionAccountVerificationType": "trustly:FinancialInstitutionAccountVerificationType",
+    "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItems": "trustly:TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItems",
+    "selectedAccount": {
+      "@id": "trustly:selectedAccount",
+      "@type": "xsd:boolean"
+    },
+    "currency": {
+      "@id": "trustly:currency",
+      "@type": "xsd:string"
+    },
+    "aggregations": {
+      "@id": "trustly:aggregations",
+      "@container": "@list"
+    },
+    "Get-userRequestBadRequestError": "trustly:Get-userRequestBadRequestError",
+    "Get-transaction-account-summaryRequestBadRequestError": "trustly:Get-transaction-account-summaryRequestBadRequestError",
+    "TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalance": "trustly:TransactionsTransactionIdPaymentPaymentProviderAccountBalanceGetResponsesContentApplicationJsonSchemaAccountBalance",
+    "account": {
+      "@id": "trustly:account",
+      "@type": "@id"
+    },
+    "available": {
+      "@id": "trustly:available",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "trustly:amount",
+      "@type": "xsd:string"
+    },
+    "Account-2": "trustly:Account-2",
+    "Accounts_post-account-feedback_Response_200": "trustly:Accounts_post-account-feedback_Response_200",
+    "FeedbackCurrency": "trustly:FeedbackCurrency",
+    "FinancialInstitutionAccountType": "trustly:FinancialInstitutionAccountType",
+    "Get-accounts-verifyRequestBadRequestError": "trustly:Get-accounts-verifyRequestBadRequestError",
+    "PaymentProviderCountry": "trustly:PaymentProviderCountry",
+    "BaseException": "trustly:BaseException",
+    "FeedbackPostRequestBodyContentApplicationJsonSchemaAccount": "trustly:FeedbackPostRequestBodyContentApplicationJsonSchemaAccount",
+    "AccountsTokenizePostResponsesContentApplicationJsonSchemaCountry": "trustly:AccountsTokenizePostResponsesContentApplicationJsonSchemaCountry",
+    "AccountsTokenizePostRequestBodyContentApplicationJsonSchemaAccount": "trustly:AccountsTokenizePostRequestBodyContentApplicationJsonSchemaAccount",
+    "FinancialInstitutionAccount": "trustly:FinancialInstitutionAccount",
+    "accountId": {
+      "@id": "trustly:accountId",
+      "@type": "xsd:string"
+    },
+    "PaymentProviderSubType": "trustly:PaymentProviderSubType",
+    "PaymentProvider": "trustly:PaymentProvider",
+    "Accounts_post-accounts-tokenize_-verifyAccount_Response_200": "trustly:Accounts_post-accounts-tokenize_-verifyAccount_Response_200",
+    "FeedbackStatus": "trustly:FeedbackStatus",
+    "AccountsVerifyPostRequestBodyContentApplicationJsonSchemaAccount": "trustly:AccountsVerifyPostRequestBodyContentApplicationJsonSchemaAccount",
+    "AccountsTokenizePostResponsesContentApplicationJsonSchemaProfile": "trustly:AccountsTokenizePostResponsesContentApplicationJsonSchemaProfile",
+    "FinancialInstitutionAccountCountry": "trustly:FinancialInstitutionAccountCountry",
+    "FinancialInstitutionAccountProfile": "trustly:FinancialInstitutionAccountProfile",
+    "Address": "trustly:Address",
+    "Feedback": "trustly:Feedback",
+    "externalId": {
+      "@id": "trustly:externalId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "trustly:status",
+      "@type": "@id"
+    },
+    "subStatus": {
+      "@id": "trustly:subStatus",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "trustly:description",
+      "@type": "xsd:string"
+    },
+    "submissionDate": {
+      "@id": "trustly:submissionDate",
+      "@type": "xsd:decimal"
+    },
+    "returnDate": {
+      "@id": "trustly:returnDate",
+      "@type": "xsd:decimal"
+    },
+    "Post-accounts-tokenize_-verifyAccountRequestBadRequestError": "trustly:Post-accounts-tokenize_-verifyAccountRequestBadRequestError",
+    "AccountsTokenizePostResponsesContentApplicationJsonSchemaType": "trustly:AccountsTokenizePostResponsesContentApplicationJsonSchemaType",
+    "EventDataReady": "trustly:EventDataReady",
+    "eventId": {
+      "@id": "trustly:eventId",
+      "@type": "xsd:string"
+    },
+    "eventType": {
+      "@id": "trustly:eventType",
+      "@type": "xsd:string"
+    },
+    "merchantId": {
+      "@id": "trustly:merchantId",
+      "@type": "xsd:string"
+    },
+    "objectId": {
+      "@id": "trustly:objectId",
+      "@type": "xsd:string"
+    },
+    "objectType": {
+      "@id": "trustly:objectType",
+      "@type": "xsd:string"
+    },
+    "paymentType": {
+      "@id": "trustly:paymentType",
+      "@type": "xsd:string"
+    },
+    "statusMessage": {
+      "@id": "trustly:statusMessage",
+      "@type": "xsd:string"
+    },
+    "timeZone": {
+      "@id": "trustly:timeZone",
+      "@type": "xsd:string"
+    },
+    "transactionType": {
+      "@id": "trustly:transactionType",
+      "@type": "xsd:string"
+    },
+    "EventFailed": "trustly:EventFailed",
+    "paymentProviderTransaction": {
+      "@id": "trustly:paymentProviderTransaction",
+      "@type": "@id"
+    },
+    "EventRefresh": "trustly:EventRefresh",
+    "hardRefresh": {
+      "@id": "trustly:hardRefresh",
+      "@type": "xsd:boolean"
+    },
+    "refreshPurpose": {
+      "@id": "trustly:refreshPurpose",
+      "@type": "xsd:string"
+    },
+    "success": {
+      "@id": "trustly:success",
+      "@type": "xsd:boolean"
+    },
+    "EventEstablish": "trustly:EventEstablish",
+    "merchantReference": {
+      "@id": "trustly:merchantReference",
+      "@type": "xsd:string"
+    },
+    "EventRefreshPaymentProviderTransaction": "trustly:EventRefreshPaymentProviderTransaction",
+    "EventAuthorize": "trustly:EventAuthorize",
+    "splitToken": {
+      "@id": "trustly:splitToken",
+      "@type": "xsd:string"
+    },
+    "EventExpire": "trustly:EventExpire",
+    "paymentProviderTransaction.status": {
+      "@id": "trustly:paymentProviderTransaction.status",
+      "@type": "xsd:string"
+    },
+    "paymentProviderTransaction.statusMessage": {
+      "@id": "trustly:paymentProviderTransaction.statusMessage",
+      "@type": "xsd:string"
+    },
+    "EventCompletedPaymentProviderTransaction": "trustly:EventCompletedPaymentProviderTransaction",
+    "EventVerifyCustomer": "trustly:EventVerifyCustomer",
+    "customer.name": {
+      "@id": "trustly:customer.name",
+      "@type": "xsd:string"
+    },
+    "EventEstablishPaymentProviderTransaction": "trustly:EventEstablishPaymentProviderTransaction",
+    "EventFailedPaymentProviderTransaction": "trustly:EventFailedPaymentProviderTransaction",
+    "EventCompleted": "trustly:EventCompleted",
+    "EventUpdate": "trustly:EventUpdate",
+    "fiName": {
+      "@id": "trustly:fiName",
+      "@type": "xsd:string"
+    },
+    "CountriesGetParametersCountry": "trustly:CountriesGetParametersCountry",
+    "PaymentType": "trustly:PaymentType",
+    "Country": "trustly:Country",
+    "numericCode": {
+      "@id": "trustly:numericCode",
+      "@type": "xsd:integer"
+    },
+    "alpha2Code": {
+      "@id": "trustly:alpha2Code",
+      "@type": "xsd:string"
+    },
+    "alpha3Code": {
+      "@id": "trustly:alpha3Code",
+      "@type": "xsd:string"
+    },
+    "currencies": {
+      "@id": "trustly:currencies",
+      "@container": "@list"
+    },
+    "paymentTypes": {
+      "@id": "trustly:paymentTypes",
+      "@container": "@list"
+    },
+    "paymentProviderSubtypes": {
+      "@id": "trustly:paymentProviderSubtypes",
+      "@container": "@list"
+    },
+    "enabled": {
+      "@id": "trustly:enabled",
+      "@type": "xsd:boolean"
+    },
+    "Countries_get-countries_Response_200": "trustly:Countries_get-countries_Response_200",
+    "countries": {
+      "@id": "trustly:countries",
+      "@container": "@list"
+    },
+    "PaymentProviderSubtype": "trustly:PaymentProviderSubtype",
+    "Get-countriesRequestBadRequestError": "trustly:Get-countriesRequestBadRequestError",
+    "Customer": "trustly:Customer",
+    "dateOfBirth": {
+      "@id": "trustly:dateOfBirth",
+      "@type": "xsd:string"
+    },
+    "enrollDate": {
+      "@id": "trustly:enrollDate",
+      "@type": "xsd:integer"
+    },
+    "vip": {
+      "@id": "trustly:vip",
+      "@type": "xsd:string"
+    },
+    "balance": {
+      "@id": "trustly:balance",
+      "@type": "xsd:string"
+    },
+    "organizationNumber": {
+      "@id": "trustly:organizationNumber",
+      "@type": "xsd:string"
+    },
+    "externalTier": {
+      "@id": "trustly:externalTier",
+      "@type": "xsd:string"
+    },
+    "personId": {
+      "@id": "trustly:personId",
+      "@type": "xsd:string"
+    },
+    "customData": {
+      "@id": "trustly:customData",
+      "@type": "@id"
+    },
+    "driverLicense": {
+      "@id": "trustly:driverLicense",
+      "@type": "@id"
+    },
+    "nationalId": {
+      "@id": "trustly:nationalId",
+      "@type": "xsd:string"
+    },
+    "DriverLicense": "trustly:DriverLicense",
+    "number": {
+      "@id": "trustly:number",
+      "@type": "xsd:string"
+    },
+    "Customers_post-customers_Response_200": "trustly:Customers_post-customers_Response_200",
+    "customer": {
+      "@id": "trustly:customer",
+      "@type": "@id"
+    },
+    "Customers_get-customers_Response_200": "trustly:Customers_get-customers_Response_200",
+    "customers": {
+      "@id": "trustly:customers",
+      "@container": "@list"
+    },
+    "Customers_get-customers-customerId_Response_200": "trustly:Customers_get-customers-customerId_Response_200",
+    "Customers_post-customers-customerId_Response_200": "trustly:Customers_post-customers-customerId_Response_200",
+    "PaymentCountry": "trustly:PaymentCountry",
+    "PaymentAuth": "trustly:PaymentAuth",
+    "AccountCountry": "trustly:AccountCountry",
+    "Verification": "trustly:Verification",
+    "mode": {
+      "@id": "trustly:mode",
+      "@type": "@id"
+    },
+    "verifyCustomer": {
+      "@id": "trustly:verifyCustomer",
+      "@type": "xsd:boolean"
+    },
+    "Recurrence": "trustly:Recurrence",
+    "startDate": {
+      "@id": "trustly:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "endDate": {
+      "@id": "trustly:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "nextOccurrence": {
+      "@id": "trustly:nextOccurrence",
+      "@type": "xsd:dateTime"
+    },
+    "recurringAmount": {
+      "@id": "trustly:recurringAmount",
+      "@type": "xsd:string"
+    },
+    "debtSettlement": {
+      "@id": "trustly:debtSettlement",
+      "@type": "xsd:string"
+    },
+    "frequency": {
+      "@id": "trustly:frequency",
+      "@type": "xsd:integer"
+    },
+    "frequencyUnit": {
+      "@id": "trustly:frequencyUnit",
+      "@type": "xsd:decimal"
+    },
+    "frequencyUnitType": {
+      "@id": "trustly:frequencyUnitType",
+      "@type": "@id"
+    },
+    "automaticCapture": {
+      "@id": "trustly:automaticCapture",
+      "@type": "xsd:boolean"
+    },
+    "recurrenceId": {
+      "@id": "trustly:recurrenceId",
+      "@type": "xsd:string"
+    },
+    "Payment": "trustly:Payment",
+    "paymentId": {
+      "@id": "trustly:paymentId",
+      "@type": "xsd:string"
+    },
+    "merchant": {
+      "@id": "trustly:merchant",
+      "@type": "@id"
+    },
+    "returnUrl": {
+      "@id": "trustly:returnUrl",
+      "@type": "xsd:string"
+    },
+    "cancelUrl": {
+      "@id": "trustly:cancelUrl",
+      "@type": "xsd:string"
+    },
+    "allowedPaymentProviderType": {
+      "@id": "trustly:allowedPaymentProviderType",
+      "@container": "@list"
+    },
+    "auth": {
+      "@id": "trustly:auth",
+      "@type": "@id"
+    },
+    "authorization": {
+      "@id": "trustly:authorization",
+      "@type": "xsd:string"
+    },
+    "authorizationStatus": {
+      "@id": "trustly:authorizationStatus",
+      "@type": "xsd:decimal"
+    },
+    "authorizationStatusMessage": {
+      "@id": "trustly:authorizationStatusMessage",
+      "@type": "xsd:string"
+    },
+    "pending": {
+      "@id": "trustly:pending",
+      "@type": "xsd:string"
+    },
+    "paid": {
+      "@id": "trustly:paid",
+      "@type": "xsd:string"
+    },
+    "refunded": {
+      "@id": "trustly:refunded",
+      "@type": "xsd:string"
+    },
+    "reversed": {
+      "@id": "trustly:reversed",
+      "@type": "xsd:string"
+    },
+    "recordVersion": {
+      "@id": "trustly:recordVersion",
+      "@type": "xsd:decimal"
+    },
+    "paymentFlow": {
+      "@id": "trustly:paymentFlow",
+      "@type": "xsd:decimal"
+    },
+    "recurrence": {
+      "@id": "trustly:recurrence",
+      "@type": "@id"
+    },
+    "system": {
+      "@id": "trustly:system",
+      "@type": "@id"
+    },
+    "paymentProviderSubtype": {
+      "@id": "trustly:paymentProviderSubtype",
+      "@type": "@id"
+    },
+    "TransactionStatus": "trustly:TransactionStatus",
+    "Account": "trustly:Account",
+    "RecurrenceFrequencyUnitType": "trustly:RecurrenceFrequencyUnitType",
+    "PaymentProviderTransaction": "trustly:PaymentProviderTransaction",
+    "paymentProviderTransactionId": {
+      "@id": "trustly:paymentProviderTransactionId",
+      "@type": "xsd:string"
+    },
+    "signature": {
+      "@id": "trustly:signature",
+      "@type": "xsd:string"
+    },
+    "statusDescription": {
+      "@id": "trustly:statusDescription",
+      "@type": "xsd:string"
+    },
+    "paymentProcessor": {
+      "@id": "trustly:paymentProcessor",
+      "@type": "@id"
+    },
+    "thirdPartyDeclineCode": {
+      "@id": "trustly:thirdPartyDeclineCode",
+      "@type": "xsd:string"
+    },
+    "clearingHouse": {
+      "@id": "trustly:clearingHouse",
+      "@type": "xsd:string"
+    },
+    "instantSettle": {
+      "@id": "trustly:instantSettle",
+      "@type": "xsd:boolean"
+    },
+    "PaymentProviderTransactionPaymentProcessor": "trustly:PaymentProviderTransactionPaymentProcessor",
+    "paymentProcessorId": {
+      "@id": "trustly:paymentProcessorId",
+      "@type": "xsd:string"
+    },
+    "shortName": {
+      "@id": "trustly:shortName",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "trustly:url",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "trustly:active",
+      "@type": "xsd:string"
+    },
+    "VerificationStatus": "trustly:VerificationStatus",
+    "PaymentPaymentType": "trustly:PaymentPaymentType",
+    "PaymentSystem": "trustly:PaymentSystem",
+    "Transaction": "trustly:Transaction",
+    "transactionId": {
+      "@id": "trustly:transactionId",
+      "@type": "xsd:string"
+    },
+    "payment": {
+      "@id": "trustly:payment",
+      "@type": "@id"
+    },
+    "ip": {
+      "@id": "trustly:ip",
+      "@type": "xsd:string"
+    },
+    "processedAt": {
+      "@id": "trustly:processedAt",
+      "@type": "xsd:integer"
+    },
+    "completedAt": {
+      "@id": "trustly:completedAt",
+      "@type": "xsd:integer"
+    },
+    "ppTrxId": {
+      "@id": "trustly:ppTrxId",
+      "@type": "xsd:string"
+    },
+    "expiredAt": {
+      "@id": "trustly:expiredAt",
+      "@type": "xsd:integer"
+    },
+    "originalTransactionId": {
+      "@id": "trustly:originalTransactionId",
+      "@type": "xsd:string"
+    },
+    "fee": {
+      "@id": "trustly:fee",
+      "@type": "xsd:string"
+    },
+    "representmentScheduledAt": {
+      "@id": "trustly:representmentScheduledAt",
+      "@type": "xsd:decimal"
+    },
+    "paymentProcessorType": {
+      "@id": "trustly:paymentProcessorType",
+      "@type": "xsd:string"
+    },
+    "statusCode": {
+      "@id": "trustly:statusCode",
+      "@type": "xsd:string"
+    },
+    "preAuthorized": {
+      "@id": "trustly:preAuthorized",
+      "@type": "xsd:boolean"
+    },
+    "PaymentCurrency": "trustly:PaymentCurrency",
+    "TransactionCurrency": "trustly:TransactionCurrency",
+    "VerificationMode": "trustly:VerificationMode",
+    "TransactionTransactionType": "trustly:TransactionTransactionType",
+    "PaymentMerchant": "trustly:PaymentMerchant",
+    "UserVerificationErrorCode": "trustly:UserVerificationErrorCode",
+    "UserVerificationDetailDetail": "trustly:UserVerificationDetailDetail",
+    "attribute": {
+      "@id": "trustly:attribute",
+      "@container": "@list"
+    },
+    "AttributeVerificationDetail": "trustly:AttributeVerificationDetail",
+    "link": {
+      "@id": "trustly:link",
+      "@type": "xsd:string"
+    },
+    "AttributeVerificationDetailSource": "trustly:AttributeVerificationDetailSource",
+    "WatchlistScreeningResultGender": "trustly:WatchlistScreeningResultGender",
+    "UserVerificationResultCode": "trustly:UserVerificationResultCode",
+    "User": "trustly:User",
+    "deceased": {
+      "@id": "trustly:deceased",
+      "@type": "xsd:boolean"
+    },
+    "eligible": {
+      "@id": "trustly:eligible",
+      "@type": "xsd:boolean"
+    },
+    "AdversityMediaScreeningResult": "trustly:AdversityMediaScreeningResult",
+    "screeningType": {
+      "@id": "trustly:screeningType",
+      "@type": "@id"
+    },
+    "text": {
+      "@id": "trustly:text",
+      "@type": "xsd:string"
+    },
+    "date": {
+      "@id": "trustly:date",
+      "@type": "xsd:date"
+    },
+    "trustedEntity": {
+      "@id": "trustly:trustedEntity",
+      "@type": "xsd:string"
+    },
+    "TransactionsTransactionIdUserGetParametersExpandSchemaItems": "trustly:TransactionsTransactionIdUserGetParametersExpandSchemaItems",
+    "DriverLicense-2": "trustly:DriverLicense-2",
+    "UserVerificationDetail": "trustly:UserVerificationDetail",
+    "detail": {
+      "@id": "trustly:detail",
+      "@type": "@id"
+    },
+    "TransactionsTransactionIdUserDetailGetResponsesContentApplicationJsonSchemaErrorsItems": "trustly:TransactionsTransactionIdUserDetailGetResponsesContentApplicationJsonSchemaErrorsItems",
+    "Get-trustly-id-user-dataRequestBadRequestError": "trustly:Get-trustly-id-user-dataRequestBadRequestError",
+    "TransactionsTransactionIdUserDetailGetParametersExpandSchemaItems": "trustly:TransactionsTransactionIdUserDetailGetParametersExpandSchemaItems",
+    "UserVerificationResult": "trustly:UserVerificationResult",
+    "result": {
+      "@id": "trustly:result",
+      "@type": "@id"
+    },
+    "reasons": {
+      "@id": "trustly:reasons",
+      "@container": "@list"
+    },
+    "screeningResult": {
+      "@id": "trustly:screeningResult",
+      "@container": "@list"
+    },
+    "AttributeVerification": "trustly:AttributeVerification",
+    "verificationType": {
+      "@id": "trustly:verificationType",
+      "@type": "xsd:integer"
+    },
+    "verificationMethod": {
+      "@id": "trustly:verificationMethod",
+      "@type": "@id"
+    },
+    "verifiedAt": {
+      "@id": "trustly:verifiedAt",
+      "@type": "xsd:integer"
+    },
+    "Get-trustly-id-user-detailsRequestBadRequestError": "trustly:Get-trustly-id-user-detailsRequestBadRequestError",
+    "TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems": "trustly:TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems",
+    "UserVerificationReason": "trustly:UserVerificationReason",
+    "reason": {
+      "@id": "trustly:reason",
+      "@type": "xsd:string"
+    },
+    "Post-transaction-feedbackRequestUnauthorizedError": "trustly:Post-transaction-feedbackRequestUnauthorizedError",
+    "AttributeVerificationDetailName": "trustly:AttributeVerificationDetailName",
+    "Address2Country": "trustly:Address2Country",
+    "Address-2": "trustly:Address-2"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Trustly Group API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Trustly Group's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-12) from openapi/trustly-account-data-api-openapi.yml, openapi/trustly-accounts-api-openapi.yml, openapi/trustly-api-api-openapi.yml.",
+  "dcterms:created": "2026-10-12",
+  "dcterms:source": [
+    "openapi/trustly-account-data-api-openapi.yml",
+    "openapi/trustly-accounts-api-openapi.yml",
+    "openapi/trustly-api-api-openapi.yml",
+    "openapi/trustly-countries-api-openapi.yml",
+    "openapi/trustly-customers-api-openapi.yml"
+  ]
+}

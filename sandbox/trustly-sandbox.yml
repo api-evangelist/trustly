@@ -1,7 +1,7 @@
 generated: '2026-09-18'
 method: searched
 source: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-sources:
+sources: &id001
 - https://amer.developers.trustly.com/integrate/api-fundamentals/testing
 - https://docs.trustly.com/api/test-environment
 - https://docs.trustly.com/api/test-cases
@@ -12,7 +12,9 @@ environments:
   production_url: https://trustly.one/api/v1
   js_library: https://sandbox.trustly.one/start/scripts/trustly.js
   native_sdk_switch: establishData["env"] = "sandbox" (production for live)
-  deprecated_hosts: [https://sandbox.paywithmybank.com, https://paywithmybank.com]
+  deprecated_hosts:
+  - https://sandbox.paywithmybank.com
+  - https://paywithmybank.com
   credentials: separate accessId/accessKey per environment; the same OpenAPI applies to both
   parity: supports all features of production; payment operations move no funds
   event_timing: some asynchronous notifications (payout processing) are batched every 300 seconds
@@ -40,50 +42,123 @@ demo_banks:
   delay: username `Sleep` with the number of seconds as the password
   password_keyphrases:
     user_interaction_and_errors:
-    - {password: NoEligibleAccounts, effect: no eligible accounts found for the user}
-    - {password: LoginError, effect: wrong username or password}
-    - {password: Unavailable, effect: bank site cannot be reached}
-    - {password: AccountLocked, effect: user's bank account is locked}
-    - {password: '2FA', effect: bank requests an MFA challenge (answer 'error' to simulate a wrong credential)}
-    - {password: WrongCredentials, effect: general login retry scenario}
-    - {password: SessionTimeout, effect: expired bank session}
-    - {password: NotSupported, effect: user with no supported accounts (credit cards only)}
+    - password: NoEligibleAccounts
+      effect: no eligible accounts found for the user
+    - password: LoginError
+      effect: wrong username or password
+    - password: Unavailable
+      effect: bank site cannot be reached
+    - password: AccountLocked
+      effect: user's bank account is locked
+    - password: 2FA
+      effect: bank requests an MFA challenge (answer 'error' to simulate a wrong credential)
+    - password: WrongCredentials
+      effect: general login retry scenario
+    - password: SessionTimeout
+      effect: expired bank session
+    - password: NotSupported
+      effect: user with no supported accounts (credit cards only)
     conditional_data:
-    - {password: 'Balance{xxx}', effect: account balance of xxx (for example Balance1000)}
-    - {password: NotEnoughFunds, effect: single account with zero balance}
-    - {password: TimeoutError, effect: connector sleeps at least one minute (system timeout)}
-    - {password: ExpiredSplitToken, effect: authorization succeeds but later Refresh calls fail with an expired split token}
-    - {password: AccFromUsername, effect: 'account number taken from the username pattern {prefix}_{accountnumber}'}
-    - {password: AccNumberNull, effect: account number returns null}
-    - {password: Virtual, effect: returns a valid Virtual Account Number (VAN)}
+    - password: Balance{xxx}
+      effect: account balance of xxx (for example Balance1000)
+    - password: NotEnoughFunds
+      effect: single account with zero balance
+    - password: TimeoutError
+      effect: connector sleeps at least one minute (system timeout)
+    - password: ExpiredSplitToken
+      effect: authorization succeeds but later Refresh calls fail with an expired split token
+    - password: AccFromUsername
+      effect: account number taken from the username pattern {prefix}_{accountnumber}
+    - password: AccNumberNull
+      effect: account number returns null
+    - password: Virtual
+      effect: returns a valid Virtual Account Number (VAN)
     decline_simulation:
-    - {password: 'extendedreasoncode_<code>', effect: 'next capture is denied with paymentProviderTransaction.status SW054, reasonCode 1 and extendedReason.code <code> (for example extendedreasoncode_10000)'}
+    - password: extendedreasoncode_<code>
+      effect: next capture is denied with paymentProviderTransaction.status SW054, reasonCode 1 and extendedReason.code <code> (for example extendedreasoncode_10000)
 manual_entry_test_data:
   routing_number: '124003116'
   note: account/routing pairs that drive the verification risk score; all use routing 124003116
   accounts:
-  - {account: '1000000000', score: 0, verified: false, http: 200, type: Non Telecheck}
-  - {account: '1000000005', score: 5, verified: false, http: 200, type: Non Telecheck}
-  - {account: '1000000006', score: 6, verified: true, http: 200, type: Non Telecheck}
-  - {account: '1000000010', score: 10, verified: true, http: 200, type: Non Telecheck}
-  - {account: '1000001000', score: 0, third_party_score: 0, verified: false, http: 200, type: FCRA}
-  - {account: '1000001600', score: 6, third_party_score: 600, verified: true, http: 200, type: FCRA}
-  - {account: '1000001999', score: 10, third_party_score: 999, verified: true, http: 200, type: FCRA}
-  - {account: '1000001015', score: 1, third_party_score: 15, verified: false, http: 200, type: Non-FCRA}
-  - {account: '1000001045', score: 9, third_party_score: 45, verified: true, http: 200, type: Non-FCRA}
-  - {account: '1002000000', error_code: 200, http: 400}
-  - {account: '1003000000', error_code: 300, http: 401}
-  - {account: '1003250000', error_code: 325, http: 401}
-  - {account: '1003750000', error_code: 375, http: 401}
-  - {account: '1001000000', error_code: 100, http: 500}
+  - account: '1000000000'
+    score: 0
+    verified: false
+    http: 200
+    type: Non Telecheck
+  - account: '1000000005'
+    score: 5
+    verified: false
+    http: 200
+    type: Non Telecheck
+  - account: '1000000006'
+    score: 6
+    verified: true
+    http: 200
+    type: Non Telecheck
+  - account: '1000000010'
+    score: 10
+    verified: true
+    http: 200
+    type: Non Telecheck
+  - account: '1000001000'
+    score: 0
+    third_party_score: 0
+    verified: false
+    http: 200
+    type: FCRA
+  - account: '1000001600'
+    score: 6
+    third_party_score: 600
+    verified: true
+    http: 200
+    type: FCRA
+  - account: '1000001999'
+    score: 10
+    third_party_score: 999
+    verified: true
+    http: 200
+    type: FCRA
+  - account: '1000001015'
+    score: 1
+    third_party_score: 15
+    verified: false
+    http: 200
+    type: Non-FCRA
+  - account: '1000001045'
+    score: 9
+    third_party_score: 45
+    verified: true
+    http: 200
+    type: Non-FCRA
+  - account: '1002000000'
+    error_code: 200
+    http: 400
+  - account: '1003000000'
+    error_code: 300
+    http: 401
+  - account: '1003250000'
+    error_code: 325
+    http: 401
+  - account: '1003750000'
+    error_code: 375
+    http: 401
+  - account: '1001000000'
+    error_code: 100
+    http: 500
   note_accounts: the full table on the docs page lists scores 0–10 for each type (1000000000–1000000010, 1000001000–1000001999); only representative rows are copied here
   international:
-  - {country: United Kingdom, iban: GB33BUKB20201555555555}
-  - {country: France, iban: FR7630006000011234567890189}
-  - {country: Germany, iban: DE75512108001245126199}
-  - {country: Netherlands, iban: NL02ABNA0123456789}
+  - country: United Kingdom
+    iban: GB33BUKB20201555555555
+  - country: France
+    iban: FR7630006000011234567890189
+  - country: Germany
+    iban: DE75512108001245126199
+  - country: Netherlands
+    iban: NL02ABNA0123456789
 mobile_oauth_testing:
   demo_bank: OAuth Demo Bank (select via the Trustly UI search bar)
   ios_companion: https://testflight.apple.com/join/WDqTsd6U
   android_companion: request by email to amer.developer.experience@trustly.com with subject "Android Demo Bank App"
 test_clocks: false
+description: Trustly North America sandbox at https://sandbox.trustly.one/api/v1 with Demo Bank flows, manual-entry test account/routing pairs and an OAuth Demo Bank for mobile; Trustly Europe test environment documented on docs.trustly.com. No test clocks.
+docs: *id001

@@ -1,6 +1,7 @@
 generated: '2026-09-18'
 method: searched
 source: https://www.trustly.com/contact-sales
+name: Trustly Group API Plans
 sources_checked:
 - url: https://www.trustly.com/pricing
   status: 404

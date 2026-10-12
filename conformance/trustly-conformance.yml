@@ -19,8 +19,10 @@ conformance:
 - id: psd2
   conforms: true
   kind: regulation
-  evidence: https://www.trustly.com/security — Trustly Group AB is a licensed Swedish payment institution operating under the Swedish Payment Services Act (2010:751) and Directive (EU) 2015/2366 (PSD2), supervised by Finansinspektionen
-  note: PSD2 here is the licensing regime for the provider; Trustly is a payment initiation service, not an ASPSP publishing a PSD2/Berlin-Group/OBIE API
+  evidence: https://www.trustly.com/security — Trustly Group AB is a licensed Swedish payment institution operating under the Swedish Payment
+    Services Act (2010:751) and Directive (EU) 2015/2366 (PSD2), supervised by Finansinspektionen
+  note: PSD2 here is the licensing regime for the provider; Trustly is a payment initiation service, not an ASPSP publishing a PSD2/Berlin-Group/OBIE
+    API
 - id: uk-psr-2017
   conforms: true
   kind: regulation
@@ -28,11 +30,13 @@ conformance:
 - id: nacha
   conforms: true
   kind: scheme rules
-  evidence: https://amer.developers.trustly.com/integrate/core-concepts/key-concepts — the Lightbox authorization includes the NACHA agreement; ACH returns use the standard R01–R84 codes (status-codes page)
+  evidence: https://amer.developers.trustly.com/integrate/core-concepts/key-concepts — the Lightbox authorization includes the NACHA agreement;
+    ACH returns use the standard R01–R84 codes (status-codes page)
 - id: rfc9727-api-catalog
   conforms: true
   kind: rfc
-  evidence: https://amer.developers.trustly.com/.well-known/api-catalog served as application/linkset+json with the RFC 9727 profile, naming the OpenAPI as service-desc (saved as well-known/trustly-api-catalog.json)
+  evidence: https://amer.developers.trustly.com/.well-known/api-catalog served as application/linkset+json with the RFC 9727 profile, naming the
+    OpenAPI as service-desc (saved as well-known/trustly-api-catalog.json)
 - id: openapi-3.1
   conforms: true
   kind: specification
@@ -51,7 +55,8 @@ conformance:
   evidence: https://amer.developers.trustly.com/llms.txt (200, text/plain; docs.trustly.com/llms.txt is 404)
 - id: oauth2
   conforms: false
-  evidence: no OAuth 2.0 authorization server, scopes or discovery metadata on any host; the "OAuth" in the docs is the bank-side login the consumer completes inside the Lightbox
+  evidence: no OAuth 2.0 authorization server, scopes or discovery metadata on any host; the "OAuth" in the docs is the bank-side login the consumer
+    completes inside the Lightbox
 - id: oidc
   conforms: false
   evidence: /.well-known/openid-configuration 404 on every host probed
@@ -60,10 +65,12 @@ conformance:
   evidence: errors are {"errors":[{"domain","code","message","occurredAt"}]} with numeric codes, not application/problem+json
 - id: rfc9116-security-txt
   conforms: false
-  evidence: /.well-known/security.txt 404 on www.trustly.com, trustly.one, api.trustly.com, amer.developers.trustly.com and docs.trustly.com; disclosure is a web page (https://www.trustly.com/security/disclosure) instead
+  evidence: /.well-known/security.txt 404 on www.trustly.com, trustly.one, api.trustly.com, amer.developers.trustly.com and docs.trustly.com;
+    disclosure is a web page (https://www.trustly.com/security/disclosure) instead
 - id: idempotency-key
   conforms: false
-  evidence: replay protection is by unique merchantReference on establish/capture/deposit (code 210 on duplicates), not an Idempotency-Key header; see conventions/trustly-conventions.yml
+  evidence: replay protection is by unique merchantReference on establish/capture/deposit (code 210 on duplicates), not an Idempotency-Key header;
+    see conventions/trustly-conventions.yml
 - id: pci-dss
   conforms: null
   evidence: not claimed on https://www.trustly.com/security; Pay by Bank flows carry no card data
@@ -75,8 +82,19 @@ conformance:
   evidence: no FDX data-sharing API is published; account data is returned in Trustly's own schemas (AccountSummary, Balance, User)
 domain_standard_signature:
   found: false
-  note: >-
-    Checked the contract for a declared domain standard: no ISO 20022 message types, no NACHA file formats, no FDX or
-    Berlin Group / OBIE shapes, no Open Banking consent model appear in the OpenAPI. The North America API is a
-    proprietary REST projection over ACH/RTP/FedNow rails; the Europe API is a proprietary JSON-RPC surface. Reward-only
-    check, so nothing is asserted.
+  note: 'Checked the contract for a declared domain standard: no ISO 20022 message types, no NACHA file formats, no FDX or Berlin Group / OBIE
+    shapes, no Open Banking consent model appear in the OpenAPI. The North America API is a proprietary REST projection over ACH/RTP/FedNow rails;
+    the Europe API is a proprietary JSON-RPC surface. Reward-only check, so nothing is asserted.'
+standards:
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: HTTPBasic (http)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: true
+  evidence: Idempotency-Key declared on 1 of 15 mutating operations (partial)

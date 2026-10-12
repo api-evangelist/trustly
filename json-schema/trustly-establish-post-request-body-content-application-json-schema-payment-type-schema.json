@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-establish-post-request-body-content-application-json-schema-payment-type-schema.json",
+  "title": "EstablishPostRequestBodyContentApplicationJsonSchemaPaymentType",
+  "description": "Specifies the type of transaction to create. Possible values are Instant, Deferred, Disbursement, Recurring, Verification, and Retrieval. Default is Retrieval.\n\n **Note:** If your application is configured for \"Money Transfer\" and utilizes the \"Instant\" `paymentType` several properties under `customer`, `beneficiary` and `beneficiaryAccount` will be required. \n> See [Send money](/integrate/send-money) for more details.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-transactions-api-openapi.yml#/components/schemas/EstablishPostRequestBodyContentApplicationJsonSchemaPaymentType",
+  "type": "string",
+  "enum": [
+    "Retrieval",
+    "Deferred",
+    "Disbursement",
+    "Instant",
+    "Recurring",
+    "Verification"
+  ]
+}

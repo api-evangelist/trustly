@@ -1,0 +1,69 @@
+generated: '2026-10-12'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: www.trustly.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: cloudfront
+  name: Amazon CloudFront
+  area: cdn
+  host: www.trustly.com
+  evidence: header:x-amz-cf-id
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: vercel
+  name: Vercel
+  area: hosting
+  host: amer.developers.trustly.com
+  evidence: header:x-vercel-id
+  signal: header
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - cdn
+  - hosting
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.167
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: not probed'
+- www.trustly.com (Website)
+- amer.developers.trustly.com (DeveloperPortal)
+- docs.trustly.com (Documentation)
+- amer.developers.trustly.com (APIReference)
+- amer.developers.trustly.com (GettingStarted)
+- www.trustly.com (Support)
+- amer.developers.trustly.com (HelpCenter)
+- backoffice.trustly.com (Login)
+- paywithmybank.com (Login)
+- www.trustly.com (SignUp)
+- status.trustly.net (StatusPage)
+- api.trustly.com (baseURL)
+- trustly.one (baseURL)
+- amer.developers.trustly.com (mcp)

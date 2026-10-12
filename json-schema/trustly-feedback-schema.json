@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-feedback-schema.json",
+  "title": "Feedback",
+  "description": "The resulting feedback of an ACH transaction",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-accounts-api-openapi.yml#/components/schemas/Feedback",
+  "type": "object",
+  "properties": {
+    "externalId": {
+      "type": "string",
+      "description": "The merchant reference of the payment."
+    },
+    "status": {
+      "$ref": "#/$defs/FeedbackStatus",
+      "description": "The final status of the payment operation:\n* `2`: Authorized\n* `3`: Processed\n* `4`: Completed\n* `5`: Failed\n* `6`: Expired\n* `7`: Canceled\n* `9`: Disputed\n* `10`: Reversed\n* `13`: Voided"
+    },
+    "subStatus": {
+      "type": "string",
+      "description": "The ACH return code. Example:\n* `R01`: Insufficient Fund\n* `R04`: Invalid Account Number\n* `R16`: Account Frozen"
+    },
+    "description": {
+      "type": "string",
+      "description": "Unrestricted field to inform any description about the payment."
+    },
+    "submissionDate": {
+      "type": "number",
+      "format": "double",
+      "description": "The Unix Timestamp (epoch) in ms of when the payment was sent to ACH."
+    },
+    "returnDate": {
+      "type": "number",
+      "format": "double",
+      "description": "The Unix Timestamp (epoch) in ms of when ACH provided a return."
+    },
+    "amount": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The amount of the payment. (10 characters with support for 2 decimal places)"
+    },
+    "currency": {
+      "$ref": "#/$defs/FeedbackCurrency",
+      "description": "3-letter ISO Currency Code. Currently only USD is supported."
+    }
+  },
+  "required": [
+    "status",
+    "subStatus"
+  ],
+  "$defs": {
+    "FeedbackCurrency": {
+      "type": "string",
+      "enum": [
+        "USD"
+      ],
+      "description": "3-letter ISO Currency Code. Currently only USD is supported.",
+      "title": "FeedbackCurrency"
+    },
+    "FeedbackStatus": {
+      "type": "string",
+      "enum": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "13"
+      ],
+      "description": "The final status of the payment operation:\n* `2`: Authorized\n* `3`: Processed\n* `4`: Completed\n* `5`: Failed\n* `6`: Expired\n* `7`: Canceled\n* `9`: Disputed\n* `10`: Reversed\n* `13`: Voided",
+      "title": "FeedbackStatus"
+    }
+  }
+}

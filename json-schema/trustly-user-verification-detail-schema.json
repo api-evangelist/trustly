@@ -1,0 +1,379 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-user-verification-detail-schema.json",
+  "title": "UserVerificationDetail",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-identity-api-openapi.yml#/components/schemas/UserVerificationDetail",
+  "type": "object",
+  "properties": {
+    "detail": {
+      "$ref": "#/$defs/UserVerificationDetailDetail"
+    }
+  },
+  "$defs": {
+    "AdversityMediaScreeningResult": {
+      "type": "object",
+      "properties": {
+        "screeningType": {
+          "$ref": "#/$defs/ScreeningResultScreeningType"
+        },
+        "score": {
+          "type": "string",
+          "title": "float",
+          "description": "Match score indicating the strength of a match."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the user."
+        },
+        "text": {
+          "type": "string",
+          "description": "Text description."
+        },
+        "url": {
+          "type": "string",
+          "description": "Source's URL."
+        },
+        "title": {
+          "type": "string",
+          "description": "The adverse media title."
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "The adverse media date."
+        },
+        "trustedEntity": {
+          "type": "string",
+          "description": "The name of the entity that provided the adverse media match."
+        }
+      },
+      "description": "Screening information for Adversity Media Screening.",
+      "title": "AdversityMediaScreeningResult"
+    },
+    "AttributeVerification": {
+      "type": "object",
+      "properties": {
+        "trustedEntity": {
+          "type": "string",
+          "description": "The name of the entity that verified the attribute."
+        },
+        "verificationType": {
+          "type": "integer",
+          "description": "Indicates the type of the entity that verified this piece of data. It can be:\n* `1` verified by a financial institution.\n* `2` verified by user input.\n* `3` verified by the Trustly internal database.\n* `4` verified by an external provider."
+        },
+        "verificationMethod": {
+          "$ref": "#/$defs/AttributeVerificationMethod"
+        },
+        "result": {
+          "$ref": "#/$defs/AttributeVerificationResult"
+        },
+        "verifiedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unix Timestamp in milliseconds (since the epoch) when the verification took place."
+        }
+      },
+      "title": "AttributeVerification"
+    },
+    "AttributeVerificationDetail": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/AttributeVerificationDetailName",
+          "description": "Which attribute does this entry refer to."
+        },
+        "source": {
+          "$ref": "#/$defs/AttributeVerificationDetailSource"
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unix Timestamp in milliseconds (since the epoch) when the attribute was fetched from an external source and associated with the user."
+        },
+        "link": {
+          "type": "string",
+          "description": "Link to user attribute using JSON pointer syntax."
+        },
+        "verification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AttributeVerification"
+          }
+        }
+      },
+      "description": "Attribute details as part of a Trustly ID user verification details",
+      "title": "AttributeVerificationDetail"
+    },
+    "AttributeVerificationDetailName": {
+      "type": "string",
+      "enum": [
+        "taxId",
+        "name",
+        "address",
+        "phone",
+        "dateOfBirth",
+        "email",
+        "driverLicense",
+        "deceased"
+      ],
+      "description": "Which attribute does this entry refer to.",
+      "title": "AttributeVerificationDetailName"
+    },
+    "AttributeVerificationDetailSource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the entity where the attribute value was fetched from."
+        },
+        "type": {
+          "type": "integer",
+          "description": "Indicates the type of the entity that provided this piece of data. It can be:\n* `1` the data came from a financial institution.\n* `2` the data came from the user.\n* `4` the data came from an external provider.\n* `5` the data came from the merchant."
+        }
+      },
+      "title": "AttributeVerificationDetailSource"
+    },
+    "AttributeVerificationMethod": {
+      "type": "integer",
+      "description": "Indicates which type of verification was performed. It can be:\n* `1` means electronic identity verification.\n* `2` meaning it is manual document verification.\n* `3` meaning it is OCR verification.\n* `4` meaning it is Trusted Entity.",
+      "title": "AttributeVerificationMethod"
+    },
+    "AttributeVerificationResult": {
+      "type": "integer",
+      "description": "Indicates the result of the individual attribute verification. It can be:\n* `1` meaning the attribute did not match the expected value.\n* `2` meaning the result was inconclusive.\n* `3` meaning attribute did match the expected attribute.",
+      "title": "AttributeVerificationResult"
+    },
+    "PEPScreeningResult": {
+      "type": "object",
+      "properties": {
+        "screeningType": {
+          "$ref": "#/$defs/ScreeningResultScreeningType"
+        },
+        "score": {
+          "type": "string",
+          "title": "float",
+          "description": "Match score indicating the strength of a match."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the user."
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of birth."
+        },
+        "contry": {
+          "type": "string",
+          "description": "Country."
+        },
+        "professionalHistory": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trustedEntity": {
+          "type": "string",
+          "description": "The name of the entity that provided the PEP match."
+        }
+      },
+      "description": "Screening information for PEP Screening.",
+      "title": "PEPScreeningResult"
+    },
+    "ScreeningResult": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScreeningResultItems"
+      },
+      "title": "ScreeningResult"
+    },
+    "ScreeningResultItems": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/WatchlistScreeningResult"
+        },
+        {
+          "$ref": "#/$defs/AdversityMediaScreeningResult"
+        },
+        {
+          "$ref": "#/$defs/PEPScreeningResult"
+        }
+      ],
+      "title": "ScreeningResultItems"
+    },
+    "ScreeningResultScreeningType": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "description": "Type of screening being performed. May be:\n* `1`: Watchlist Screening.\n* `2`: Adverse Media Screening.\n* `3`: PEP Screening.",
+      "title": "ScreeningResultScreeningType"
+    },
+    "UserVerificationDetailDetail": {
+      "type": "object",
+      "properties": {
+        "verification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserVerificationResult"
+          }
+        },
+        "attribute": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AttributeVerificationDetail"
+          }
+        }
+      },
+      "title": "UserVerificationDetailDetail"
+    },
+    "UserVerificationErrorCode": {
+      "type": "string",
+      "enum": [
+        "-1",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "description": "An error code indicating why the user verification has failed. May be:\n* `-1`: no error. the verification was successful.\n* `1`: there was an internal, unspecified error (should not happen).\n* `2`: the user is below the minimum age.\n* `3`: some of the attributes did not meet the minimum verification criteria.\n* `4`: some mandatory attributes are not available.\n* `5`: the user was identified as a person who is deceased.\n* `6`: entries were matched during the screening process",
+      "title": "UserVerificationErrorCode"
+    },
+    "UserVerificationReason": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/UserVerificationErrorCode"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Descriptive text, in English, on why the user verification failed."
+        }
+      },
+      "description": "An object describing why an user verification has succeeded or failed.",
+      "title": "UserVerificationReason"
+    },
+    "UserVerificationResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/$defs/UserVerificationResultCode"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserVerificationReason"
+          }
+        },
+        "screeningResult": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScreeningResult"
+          }
+        }
+      },
+      "description": "Details on the user verification.",
+      "title": "UserVerificationResult"
+    },
+    "UserVerificationResultCode": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "description": "A code indicating the final outcome of the verification. May be:\n* `1`: the verification was rejected.\n* `2`: the verification was inconclusive.\n* `3`: the verification was approved.",
+      "title": "UserVerificationResultCode"
+    },
+    "WatchlistScreeningResult": {
+      "type": "object",
+      "properties": {
+        "screeningType": {
+          "$ref": "#/$defs/ScreeningResultScreeningType"
+        },
+        "score": {
+          "type": "string",
+          "title": "float",
+          "description": "Match score indicating the strength of a match."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the user."
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of known aliases."
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of birth."
+        },
+        "nationality": {
+          "type": "string",
+          "description": "Nationality."
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the information."
+        },
+        "sourceRegion": {
+          "type": "string",
+          "description": "Region of the source."
+        },
+        "remarks": {
+          "type": "string",
+          "description": "Additional remarks."
+        },
+        "caution": {
+          "type": "string",
+          "description": "Caution notes."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Source's URL."
+        },
+        "address": {
+          "type": "string",
+          "description": "Full street address of the user with city and country."
+        },
+        "gender": {
+          "$ref": "#/$defs/WatchlistScreeningResultGender",
+          "description": "Gender of the user."
+        },
+        "designationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Designation date."
+        },
+        "trustedEntity": {
+          "type": "string",
+          "description": "The name of the entity that provided the watchlist match."
+        }
+      },
+      "description": "Screening information for Watchlist Screening.",
+      "title": "WatchlistScreeningResult"
+    },
+    "WatchlistScreeningResultGender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female"
+      ],
+      "description": "Gender of the user.",
+      "title": "WatchlistScreeningResultGender"
+    }
+  }
+}

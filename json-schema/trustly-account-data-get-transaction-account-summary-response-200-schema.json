@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-account-data-get-transaction-account-summary-response-200-schema.json",
+  "title": "Account Data_get-transaction-account-summary_Response_200",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-account-data-api-openapi.yml#/components/schemas/Account_Data_get-transaction-account-summary_Response_200",
+  "type": "object",
+  "properties": {
+    "customerId": {
+      "type": "string"
+    },
+    "lastUpdated": {
+      "type": "integer"
+    },
+    "summary": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItems"
+      }
+    }
+  },
+  "$defs": {
+    "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItems": {
+      "type": "object",
+      "properties": {
+        "selectedAccount": {
+          "type": "boolean"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "nameOnAccount": {
+          "type": "string"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "routingNumber": {
+          "type": "string"
+        },
+        "aggregations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItemsAggregationsItems"
+          }
+        }
+      },
+      "title": "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItems"
+    },
+    "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItemsAggregationsItems": {
+      "type": "object",
+      "properties": {
+        "days": {
+          "type": "integer"
+        },
+        "activityEarliestDate": {
+          "type": "integer"
+        },
+        "activityLatestDate": {
+          "type": "integer"
+        },
+        "balanceMax": {
+          "type": "string"
+        },
+        "balanceMin": {
+          "type": "string"
+        },
+        "balanceAvg": {
+          "type": "string"
+        },
+        "depositCount": {
+          "type": "integer"
+        },
+        "depositAmountTotal": {
+          "type": "string"
+        },
+        "depositAmountMax": {
+          "type": "string"
+        },
+        "withdrawalCount": {
+          "type": "integer"
+        },
+        "withdrawalAmountTotal": {
+          "type": "string"
+        },
+        "withdrawalAmountMax": {
+          "type": "string"
+        },
+        "overdraftCount": {
+          "type": "integer"
+        },
+        "overdraftAmountTotal": {
+          "type": "string"
+        },
+        "nsfCount": {
+          "type": "integer"
+        },
+        "nsfFeeAmountTotal": {
+          "type": "string"
+        }
+      },
+      "title": "TransactionsTransactionIdAccountSummaryGetResponsesContentApplicationJsonSchemaSummaryItemsAggregationsItems"
+    }
+  }
+}

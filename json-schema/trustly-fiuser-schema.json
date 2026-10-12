@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-fiuser-schema.json",
+  "title": "FIUser",
+  "description": "Financial Institution User",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-account-data-api-openapi.yml#/components/schemas/FIUser",
+  "type": "object",
+  "properties": {
+    "fingerprint": {
+      "type": "string",
+      "description": "Internal use only."
+    },
+    "paymentProvider": {
+      "$ref": "#/$defs/PaymentProvider-2"
+    },
+    "name": {
+      "type": "array",
+      "items": {
+        "description": "Any type"
+      },
+      "description": "Array of User Name's associated with the Bank Account."
+    },
+    "address": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Address-3"
+      },
+      "description": "Array of Addresses associated with the Bank Account. See Address Object."
+    },
+    "phone": {
+      "type": "array",
+      "items": {
+        "description": "Any type"
+      },
+      "description": "Array of Phone Numbers associated with the Bank Account."
+    },
+    "email": {
+      "type": "array",
+      "items": {
+        "description": "Any type"
+      },
+      "description": "Array of Email Addresses associated with the Bank Account."
+    },
+    "createdAt": {
+      "type": "integer",
+      "description": "Timestamp representing the time the User Object was created."
+    },
+    "updatedAt": {
+      "type": "integer",
+      "description": "Timestamp representing the time the User Object was last updated."
+    },
+    "segmentedName": {
+      "$ref": "#/$defs/SegmentedName"
+    }
+  },
+  "$defs": {
+    "Address-3": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address Line 1."
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address City."
+        },
+        "state": {
+          "type": "string",
+          "minLength": 1,
+          "description": "2 character ISO State code."
+        },
+        "zip": {
+          "type": "string",
+          "minLength": 1,
+          "description": "5 character US Zip Code."
+        },
+        "country": {
+          "$ref": "#/$defs/Address3Country",
+          "description": "2 character ISO Country code. Currently only the US is supported."
+        },
+        "address2": {
+          "type": "string",
+          "description": "Address Line 2."
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "title": "Address-3"
+    },
+    "Address3Country": {
+      "type": "string",
+      "enum": [
+        "US"
+      ],
+      "description": "2 character ISO Country code. Currently only the US is supported.",
+      "title": "Address3Country"
+    },
+    "PaymentProvider-2": {
+      "type": "object",
+      "properties": {
+        "paymentProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A unique identifier for the Payment Provider."
+        },
+        "type": {
+          "type": "number",
+          "format": "double"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Payment Provider name."
+        },
+        "instantPayoutAvailable": {
+          "type": "boolean",
+          "description": "Whether payment provider supports instant payout."
+        },
+        "subType": {
+          "$ref": "#/$defs/PaymentProvider2SubType",
+          "description": "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n"
+        },
+        "swift": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/$defs/Address-3"
+        },
+        "country": {
+          "$ref": "#/$defs/PaymentProvider2Country",
+          "description": "2-character ISO code of the country for the bank account that was selected. Currently only the US, CA, UK, DE, and AU are supported."
+        },
+        "instantPayment": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "paymentProviderId",
+        "type",
+        "name",
+        "instantPayoutAvailable"
+      ],
+      "title": "PaymentProvider-2"
+    },
+    "PaymentProvider2Country": {
+      "type": "string",
+      "enum": [
+        "US",
+        "CA",
+        "UK",
+        "DE",
+        "AU"
+      ],
+      "description": "2-character ISO code of the country for the bank account that was selected. Currently only the US, CA, UK, DE, and AU are supported.",
+      "title": "PaymentProvider2Country"
+    },
+    "PaymentProvider2SubType": {
+      "type": "string",
+      "enum": [
+        "1000",
+        "2000",
+        "2001"
+      ],
+      "description": "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n",
+      "title": "PaymentProvider2SubType"
+    },
+    "SegmentedName": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of a given full name."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of a given full name."
+        },
+        "middleName": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The list of middle names of a given full name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of a given full name."
+        },
+        "suffix": {
+          "type": "string",
+          "description": "The suffix of a given full name."
+        }
+      },
+      "description": "The segmented version of a given name.",
+      "title": "SegmentedName"
+    }
+  }
+}

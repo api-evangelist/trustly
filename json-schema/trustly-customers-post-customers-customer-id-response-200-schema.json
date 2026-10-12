@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-customers-post-customers-customer-id-response-200-schema.json",
+  "title": "Customers_post-customers-customerId_Response_200",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-customers-api-openapi.yml#/components/schemas/Customers_post-customers-customerId_Response_200",
+  "type": "object",
+  "properties": {
+    "customer": {
+      "$ref": "#/$defs/Customer"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address line 1 (e.g., street or PO Box)"
+        },
+        "address2": {
+          "type": "string",
+          "description": "Address line 2 (e.g., apartment, suite or unit number)"
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "description": "City, district, town or village"
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "description": "State, province or region code"
+        },
+        "zip": {
+          "type": "string",
+          "minLength": 5,
+          "description": "ZIP or Postal Code"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "description": "2 character [ISO Country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "description": "Valid mailing or billing address associated with the customer",
+      "title": "Address"
+    },
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Full name of the Customer"
+        },
+        "taxId": {
+          "type": "string",
+          "description": "Customer tax ID (e.g. SSN [US], SIN [CA]). *May be required depending on industry and location.*"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Customer phone number."
+        },
+        "email": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Customer email address."
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "description": "Customer date of birth."
+        },
+        "createdAt": {
+          "type": "integer",
+          "description": "The record created date and time as a UNIX timestamp."
+        },
+        "updatedAt": {
+          "type": "integer",
+          "description": "The record created date and time as a UNIX timestamp."
+        },
+        "customerId": {
+          "type": "string",
+          "description": "A unique Trustly customer identifier."
+        },
+        "externalId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A unique merchant customer identifier."
+        },
+        "merchantId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A unique Trustly merchant identifier."
+        },
+        "enrollDate": {
+          "type": "integer",
+          "description": "Date of the user's first transaction in your system, regardless of payment method used as a UNIX timestamp."
+        },
+        "vip": {
+          "type": "string",
+          "description": "Range that determines how low-risk the customer represents to the merchant"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Customer currency."
+        },
+        "balance": {
+          "type": "string",
+          "description": "Customer account balance (not associated with a financial institution account)."
+        },
+        "organizationNumber": {
+          "type": "string",
+          "description": "Organization number for business accounts"
+        },
+        "externalTier": {
+          "type": "string",
+          "description": "It should describe the customer''s rank to the merchant (e.g. Gold, Diamond, 4 stars, etc.)"
+        },
+        "personId": {
+          "type": "string",
+          "description": "Unique customer identity throughout different banks."
+        },
+        "customData": {
+          "$ref": "#/$defs/CustomerCustomData",
+          "description": "Object for sending merchant-specific custom data."
+        },
+        "driverLicense": {
+          "$ref": "#/$defs/DriverLicense"
+        },
+        "nationalId": {
+          "type": "string",
+          "description": "Customer National ID"
+        }
+      },
+      "required": [
+        "name",
+        "address",
+        "phone",
+        "email"
+      ],
+      "description": "The Trustly customer object, containing identification details and contact information.",
+      "title": "Customer"
+    },
+    "CustomerCustomData": {
+      "type": "object",
+      "properties": {},
+      "description": "Object for sending merchant-specific custom data.",
+      "title": "CustomerCustomData"
+    },
+    "DriverLicense": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "Driver License number."
+        },
+        "state": {
+          "type": "string",
+          "description": "2 character ISO State code."
+        }
+      },
+      "required": [
+        "number",
+        "state"
+      ],
+      "title": "DriverLicense"
+    }
+  }
+}

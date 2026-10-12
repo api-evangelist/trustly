@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-verify-customer-get-verify-customer-response-200-schema.json",
+  "title": "Verify Customer_get-verify-customer_Response_200",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-verifycustomer-api-openapi.yml#/components/schemas/Verify_Customer_get-verify-customer_Response_200",
+  "type": "object",
+  "properties": {
+    "matches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/VerifyCustomerMatch"
+      }
+    }
+  },
+  "$defs": {
+    "VerifyCustomerMatch": {
+      "type": "object",
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "description": "The customer attribute that was compared. For example, customer.name or customer.address.zip."
+        },
+        "result": {
+          "$ref": "#/$defs/VerifyCustomerMatchResult",
+          "description": "The result of the comparison:\n* `-1`: Inconclusive\n* `0`: NoMatch\n* `1`: PartialMatch\n* `2`: Match"
+        },
+        "source": {
+          "$ref": "#/$defs/VerifyCustomerMatchSource",
+          "description": "The data source used for comparison:\n* `1`: Profile\n* `2`: SelectedAccount\n* `3`: OtherAccounts\n* `4`: TrustlyUser"
+        }
+      },
+      "title": "VerifyCustomerMatch"
+    },
+    "VerifyCustomerMatchResult": {
+      "type": "string",
+      "enum": [
+        "-1",
+        "0",
+        "1",
+        "2"
+      ],
+      "description": "The result of the comparison:\n* `-1`: Inconclusive\n* `0`: NoMatch\n* `1`: PartialMatch\n* `2`: Match",
+      "title": "VerifyCustomerMatchResult"
+    },
+    "VerifyCustomerMatchSource": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "description": "The data source used for comparison:\n* `1`: Profile\n* `2`: SelectedAccount\n* `3`: OtherAccounts\n* `4`: TrustlyUser",
+      "title": "VerifyCustomerMatchSource"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-establish-post-request-body-content-application-json-schema-beneficiary-schema.json",
+  "title": "EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiary",
+  "description": "The ultimate beneficiary of this payment. Required when using `paymentType: Instant` for [Money Transfer](/integrate/send-money)",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-transactions-api-openapi.yml#/components/schemas/EstablishPostRequestBodyContentApplicationJsonSchemaBeneficiary",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the Customer"
+    },
+    "taxId": {
+      "type": "string",
+      "description": "Customer tax ID (e.g. SSN [US], SIN [CA]). *May be required depending on industry and location.*"
+    },
+    "address": {
+      "$ref": "#/$defs/Address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Customer phone number."
+    },
+    "email": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Customer email address."
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "description": "Customer date of birth."
+    },
+    "createdAt": {
+      "type": "integer",
+      "description": "The record created date and time as a UNIX timestamp."
+    },
+    "updatedAt": {
+      "type": "integer",
+      "description": "The record created date and time as a UNIX timestamp."
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address line 1 (e.g., street or PO Box)"
+        },
+        "address2": {
+          "type": "string",
+          "description": "Address line 2 (e.g., apartment, suite or unit number)"
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "description": "City, district, town or village"
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "description": "State, province or region code"
+        },
+        "zip": {
+          "type": "string",
+          "minLength": 5,
+          "description": "ZIP or Postal Code"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "description": "2 character [ISO Country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "description": "Valid mailing or billing address associated with the customer",
+      "title": "Address"
+    }
+  }
+}

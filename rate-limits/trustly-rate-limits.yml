@@ -1,6 +1,7 @@
 generated: '2026-09-18'
 method: searched
 source: https://amer.developers.trustly.com/integrate/api-fundamentals
+name: Trustly Group API Rate Limits
 sources_checked:
 - https://amer.developers.trustly.com/llms.txt
 - https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions

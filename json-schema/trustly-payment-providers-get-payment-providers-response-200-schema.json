@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-payment-providers-get-payment-providers-response-200-schema.json",
+  "title": "Payment Providers_get-paymentProviders_Response_200",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-payment-providers-api-openapi.yml#/components/schemas/Payment_Providers_get-paymentProviders_Response_200",
+  "type": "object",
+  "properties": {
+    "paymentProviders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PaymentProvider"
+      }
+    },
+    "startIndex": {
+      "type": "number",
+      "format": "double"
+    },
+    "itemsPerPage": {
+      "type": "number",
+      "format": "double"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address line 1 (e.g., street or PO Box)"
+        },
+        "address2": {
+          "type": "string",
+          "description": "Address line 2 (e.g., apartment, suite or unit number)"
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "description": "City, district, town or village"
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "description": "State, province or region code"
+        },
+        "zip": {
+          "type": "string",
+          "minLength": 5,
+          "description": "ZIP or Postal Code"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "description": "2 character [ISO Country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "description": "Valid mailing or billing address associated with the customer",
+      "title": "Address"
+    },
+    "PaymentProvider": {
+      "type": "object",
+      "properties": {
+        "paymentProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A unique identifier for the Payment Provider."
+        },
+        "type": {
+          "type": "number",
+          "format": "double"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the payment provider"
+        },
+        "instantPayoutAvailable": {
+          "type": "boolean",
+          "description": "Whether payment provider supports instant payout."
+        },
+        "subType": {
+          "$ref": "#/$defs/PaymentProviderSubType",
+          "description": "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n"
+        },
+        "swift": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "country": {
+          "$ref": "#/$defs/PaymentProviderCountry",
+          "description": "2-letter ISO country code of the financial institution"
+        },
+        "instantPayment": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "description": "Details of the Financial institution",
+      "title": "PaymentProvider"
+    },
+    "PaymentProviderCountry": {
+      "type": "string",
+      "enum": [
+        "US",
+        "CA",
+        "UK",
+        "DE",
+        "AU"
+      ],
+      "description": "2-letter ISO country code of the financial institution",
+      "title": "PaymentProviderCountry"
+    },
+    "PaymentProviderSubType": {
+      "type": "string",
+      "enum": [
+        "1000",
+        "2000",
+        "2001"
+      ],
+      "description": "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n",
+      "title": "PaymentProviderSubType"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-establish-post-request-body-content-application-json-schema-metadata-schema.json",
+  "title": "EstablishPostRequestBodyContentApplicationJsonSchemaMetadata",
+  "description": "Provide additional use case-specific properties in this object.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-transactions-api-openapi.yml#/components/schemas/EstablishPostRequestBodyContentApplicationJsonSchemaMetadata",
+  "type": "object",
+  "properties": {
+    "lang": {
+      "type": "string",
+      "description": "Display language for text in the Trustly UI using the [ISO 639 Language Code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) format (e.g. `de_DE` or `fr_CA`). Defaults to `en_US` if not provided."
+    },
+    "finishButtonLabelType": {
+      "$ref": "#/$defs/EstablishPostRequestBodyContentApplicationJsonSchemaMetadataFinishButtonLabelType",
+      "description": "Modify the final button label of the Trustly UI. The default label is \"Continue\", by passing a supported alternative in this property the button label can be changed to \"Pay Now\", \"Deposit\" or \"Withdraw\"."
+    },
+    "integrationContext": {
+      "$ref": "#/$defs/EstablishPostRequestBodyContentApplicationJsonSchemaMetadataIntegrationContext",
+      "description": "Configuration required for mobile app compatibility with OAuth bank login flows. More details can be found in the [OAuth and Mobile apps guide](doc:oauth-guide)."
+    },
+    "urlScheme": {
+      "type": "string",
+      "description": "The deep link url associated with your mobile application. When users are directed to an external bank login or bank application on success or failure they will be redirected to this url. More details can be found in the [OAuth and Mobile apps guide](doc:oauth-guide)."
+    },
+    "clc": {
+      "$ref": "#/$defs/EstablishPostRequestBodyContentApplicationJsonSchemaMetadataClc",
+      "description": "Properties relating to Trustly In-Person configuration. Required for Trustly In-Person apps."
+    }
+  },
+  "$defs": {
+    "EstablishPostRequestBodyContentApplicationJsonSchemaMetadataClc": {
+      "type": "object",
+      "properties": {
+        "propertyId": {
+          "type": "number",
+          "format": "double",
+          "description": "ID number for property or location"
+        },
+        "machineId": {
+          "type": "number",
+          "format": "double",
+          "description": "ID number specific to an associated Electronic Wagering System"
+        },
+        "qrTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of QR code generation"
+        },
+        "playerNumber": {
+          "type": "number",
+          "format": "double",
+          "description": "Player tracking number"
+        }
+      },
+      "description": "Properties relating to Trustly In-Person configuration. Required for Trustly In-Person apps.",
+      "title": "EstablishPostRequestBodyContentApplicationJsonSchemaMetadataClc"
+    },
+    "EstablishPostRequestBodyContentApplicationJsonSchemaMetadataFinishButtonLabelType": {
+      "type": "string",
+      "enum": [
+        "pay",
+        "deposit",
+        "withdraw"
+      ],
+      "description": "Modify the final button label of the Trustly UI. The default label is \"Continue\", by passing a supported alternative in this property the button label can be changed to \"Pay Now\", \"Deposit\" or \"Withdraw\".",
+      "title": "EstablishPostRequestBodyContentApplicationJsonSchemaMetadataFinishButtonLabelType"
+    },
+    "EstablishPostRequestBodyContentApplicationJsonSchemaMetadataIntegrationContext": {
+      "type": "string",
+      "enum": [
+        "InAppBrowser",
+        "InAppBrowserNotify",
+        "ExternalBrowser"
+      ],
+      "description": "Configuration required for mobile app compatibility with OAuth bank login flows. More details can be found in the [OAuth and Mobile apps guide](doc:oauth-guide).",
+      "title": "EstablishPostRequestBodyContentApplicationJsonSchemaMetadataIntegrationContext"
+    }
+  }
+}

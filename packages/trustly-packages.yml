@@ -1,19 +1,18 @@
 generated: '2026-09-18'
 method: searched
-source: registry metadata (npm, Maven Central, CocoaPods Specs, Packagist, NuGet) cross-checked with https://amer.developers.trustly.com/sdks and https://docs.trustly.com/api/code-library
-note: >-
-  Two SDK families. Trustly North America (TrustlyInc GitHub org) ships the Lightbox/Select-Bank client SDKs: a hosted
-  trustly.js, Android (Maven Central net.trustly), iOS (CocoaPods TrustlySDK + Swift Package Manager) and React Native
-  (npm). Trustly Europe (trustly GitHub org) ships server-side JSON-RPC client libraries for Java, .NET, PHP and
-  Node/TypeScript plus a legacy Android/iOS checkout SDK. Registry versions and dates were read from each registry's
-  metadata endpoint on 2026-09-18.
+source: registry metadata (npm, Maven Central, CocoaPods Specs, Packagist, NuGet) cross-checked with https://amer.developers.trustly.com/sdks
+  and https://docs.trustly.com/api/code-library
+note: 'Two SDK families. Trustly North America (TrustlyInc GitHub org) ships the Lightbox/Select-Bank client SDKs: a hosted trustly.js, Android
+  (Maven Central net.trustly), iOS (CocoaPods TrustlySDK + Swift Package Manager) and React Native (npm). Trustly Europe (trustly GitHub org)
+  ships server-side JSON-RPC client libraries for Java, .NET, PHP and Node/TypeScript plus a legacy Android/iOS checkout SDK. Registry versions
+  and dates were read from each registry''s metadata endpoint on 2026-09-18.'
 packages:
 - language: javascript
   registry: cdn
   name: trustly.js
   surface: Trustly North America
   url: https://trustly.one/start/scripts/trustly.js
-  install: '<script src="https://trustly.one/start/scripts/trustly.js?accessId=YOUR_ACCESS_ID"></script>'
+  install: <script src="https://trustly.one/start/scripts/trustly.js?accessId=YOUR_ACCESS_ID"></script>
   sandbox_url: https://sandbox.trustly.one/start/scripts/trustly.js
   official: true
   version: null
@@ -54,6 +53,7 @@ packages:
   version: 1.1.2
   published: '2026-07-02'
   docs: https://amer.developers.trustly.com/sdks/react-native
+  ownership_audit: metadata names trustly.com
 - language: java
   registry: maven
   name: com.trustly.api:trustly-java-client
@@ -73,11 +73,12 @@ packages:
   url: https://www.nuget.org/packages/trustly-api-client
   install: dotnet add package trustly-api-client
   repository: https://github.com/trustly/trustly-client-net
-  official: true
+  official: false
   version: 0.0.9
   published: '2024-04-23'
   note: companion package trustly-api-domain 0.0.9 (same date) carries the request/response types
   docs: https://docs.trustly.com/api/code-library
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
 - language: php
   registry: packagist
   name: trustly/trustly-client-php
@@ -88,8 +89,10 @@ packages:
   official: true
   version: 2021.1.0
   published: '2018-11-06'
-  note: Packagist tag dates to 2018 while the GitHub repository was pushed on 2026-09-02; the docs call it an "example reference implementation" to copy rather than a maintained library
+  note: Packagist tag dates to 2018 while the GitHub repository was pushed on 2026-09-02; the docs call it an "example reference implementation"
+    to copy rather than a maintained library
   docs: https://docs.trustly.com/api/code-library
+  ownership_audit: metadata names trustly.com
 - language: typescript
   registry: npm
   name: '@trustly-group/client'
@@ -101,6 +104,7 @@ packages:
   version: 0.0.4
   published: '2024-01-23'
   docs: https://docs.trustly.com/api/code-library
+  ownership_audit: metadata names trustly.com
 - language: java
   registry: maven
   name: com.trustly:trustly-android-library

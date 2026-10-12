@@ -6,9 +6,9 @@ format: custom
 envelope:
   shape: '{"errors":[{"domain":"<exception class>","code":<int>,"message":"<text>","location":"<field>","occurredAt":<epoch ms>}]}'
   schema: '#/components/schemas/BaseException (code, message, location, domain, occurredAt) — some 400 responses collapse to {"message"}'
-  observed_live: 'GET https://sandbox.trustly.one/api/v1/countries without credentials -> 401 {"errors":[{"domain":"com.paywithmybank.merchantgateway.v1.exception.AccessControlException","code":375,"message":"Access not authorized","occurredAt":...}]}'
+  observed_live: GET https://sandbox.trustly.one/api/v1/countries without credentials -> 401 {"errors":[{"domain":"com.paywithmybank.merchantgateway.v1.exception.AccessControlException","code":375,"message":"Access not authorized","occurredAt":...}]}
   note: not application/problem+json; codes are numeric Trustly-internal codes, not RFC 9457 type URIs
-http_statuses:
+problems:
 - status: 400
   title: Bad Request
   detail: often a missing required parameter
@@ -27,7 +27,45 @@ http_statuses:
 - status: 503
   title: Service Unavailable
   detail: temporary overloading or maintenance
-problems:
+transaction_status_codes:
+  note: status codes carried on transactions and event notifications (paymentProviderTransaction.status); the SW02x/SW05x decline family is expanded in errors/trustly-decline-codes.yml
+  families:
+  - prefix: SW
+    name: Payment Provider Transaction Status
+    codes:
+    - SW010 Established
+    - SW013 Canceled
+    - SW020 Authorization received
+    - SW021 Authorization denied
+    - SW051 Merchant error
+    - SW052 Bank error
+    - SW053 Network error
+    - SW054 Suspicious activity
+    - SW055 Negative data
+    - SW056 Invalid account
+    - SW057 Expired split token
+    - SW059 Instant rejected for risk
+    - SW060 Bank or processor down
+  - prefix: UC
+    name: User Canceled
+    count: 37
+    detail: UC01–UC37 name the Lightbox page at which the user abandoned (bank selection, login, MFA, account selection, manual entry, OAuth connect, VAN info, ...)
+  - prefix: AC
+    name: Acknowledged Communication
+    count: 19
+    detail: AC100–AC118 (pending, declined, approved, error, voided, processed, collected, awaiting capture/approval, suspended, in collection, in research, disputed, uncollected NSF, invalid/closed account, other returns, none, expired, settled)
+  - prefix: SE
+    name: System Error
+    codes:
+    - SE01 maintenance mode
+    - SE02 error connecting to API services
+    - SE03 error connecting to financial services gateway
+europe:
+  format: JSON-RPC 1.1 error object
+  shape: '{"version":"1.1","error":{"name":"JSONRPCError","code":616,"message":"ERROR_INVALID_CREDENTIALS","error":{"signature":"...","uuid":"...","method":"Deposit","data":{"code":616,"message":"ERROR_INVALID_CREDENTIALS"}}}}'
+  docs: https://docs.trustly.com/api/error-handling
+  note: uuid and method are null when the error is JSON-RPC-level (for example malformed JSON); messages are not consumer-presentable. Per-method error tables live under the MDD "Errors and details for ..." pages.
+error_codes:
 - code: 100
   title: Internal error
   detail: an internal database exception occurred while processing the request
@@ -65,25 +103,4 @@ problems:
   detail: suspicious transaction or negative data
 - code: 397
   title: splitToken is not valid
-transaction_status_codes:
-  note: status codes carried on transactions and event notifications (paymentProviderTransaction.status); the SW02x/SW05x decline family is expanded in errors/trustly-decline-codes.yml
-  families:
-  - prefix: SW
-    name: Payment Provider Transaction Status
-    codes: [SW010 Established, SW013 Canceled, SW020 Authorization received, SW021 Authorization denied, SW051 Merchant error, SW052 Bank error, SW053 Network error, SW054 Suspicious activity, SW055 Negative data, SW056 Invalid account, SW057 Expired split token, SW059 Instant rejected for risk, SW060 Bank or processor down]
-  - prefix: UC
-    name: User Canceled
-    count: 37
-    detail: UC01–UC37 name the Lightbox page at which the user abandoned (bank selection, login, MFA, account selection, manual entry, OAuth connect, VAN info, ...)
-  - prefix: AC
-    name: Acknowledged Communication
-    count: 19
-    detail: AC100–AC118 (pending, declined, approved, error, voided, processed, collected, awaiting capture/approval, suspended, in collection, in research, disputed, uncollected NSF, invalid/closed account, other returns, none, expired, settled)
-  - prefix: SE
-    name: System Error
-    codes: [SE01 maintenance mode, SE02 error connecting to API services, SE03 error connecting to financial services gateway]
-europe:
-  format: JSON-RPC 1.1 error object
-  shape: '{"version":"1.1","error":{"name":"JSONRPCError","code":616,"message":"ERROR_INVALID_CREDENTIALS","error":{"signature":"...","uuid":"...","method":"Deposit","data":{"code":616,"message":"ERROR_INVALID_CREDENTIALS"}}}}'
-  docs: https://docs.trustly.com/api/error-handling
-  note: uuid and method are null when the error is JSON-RPC-level (for example malformed JSON); messages are not consumer-presentable. Per-method error tables live under the MDD "Errors and details for ..." pages.
+error_codes_note: error_codes are Trustly application error codes carried in the response body envelope, not HTTP statuses.

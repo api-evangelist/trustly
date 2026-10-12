@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trustly/main/json-schema/trustly-user-schema.json",
+  "title": "User",
+  "description": "Trustly User",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/trustly-identity-api-openapi.yml#/components/schemas/User",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The full name of the user"
+    },
+    "address": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Address-2"
+      },
+      "description": "Array of addresses associated with the user."
+    },
+    "phone": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of phone numbers associated with the user."
+    },
+    "email": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of e-mail addresses associated with the user."
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "description": "The date of birth of the user in the format YYYY-MM-DD"
+    },
+    "taxId": {
+      "type": "string",
+      "description": "The user's government issued tax ID e.g. SSN (US) or SIN (CA)"
+    },
+    "deceased": {
+      "type": "boolean",
+      "description": "If `true`, then the user is deceased."
+    },
+    "driverLicense": {
+      "$ref": "#/$defs/DriverLicense-2"
+    },
+    "eligible": {
+      "type": "boolean",
+      "description": "Indicates if the user has got a successful result in all verifications and is eligible."
+    },
+    "createdAt": {
+      "type": "integer",
+      "description": "Timestamp representing the time the User Object was created."
+    },
+    "updatedAt": {
+      "type": "integer",
+      "description": "Timestamp representing the time the User Object was last updated."
+    },
+    "segmentedName": {
+      "$ref": "#/$defs/SegmentedName"
+    }
+  },
+  "$defs": {
+    "Address-2": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address Line 1."
+        },
+        "address2": {
+          "type": "string",
+          "description": "Address Line 2."
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Address City."
+        },
+        "state": {
+          "$ref": "#/$defs/StateCode"
+        },
+        "zip": {
+          "type": "string",
+          "minLength": 1,
+          "description": "5 character US Zip Code."
+        },
+        "country": {
+          "$ref": "#/$defs/Address2Country",
+          "description": "2 character ISO Country code. Currently only the US is supported."
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "title": "Address-2"
+    },
+    "Address2Country": {
+      "type": "string",
+      "enum": [
+        "US"
+      ],
+      "description": "2 character ISO Country code. Currently only the US is supported.",
+      "title": "Address2Country"
+    },
+    "DriverLicense-2": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The driver's license number. Even though this field is called 'number', it may contain non-numeric characters if the country allows that."
+        },
+        "state": {
+          "$ref": "#/$defs/StateCode"
+        }
+      },
+      "description": "A driver's license.",
+      "title": "DriverLicense-2"
+    },
+    "SegmentedName": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of a given full name."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of a given full name."
+        },
+        "middleName": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The list of middle names of a given full name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of a given full name."
+        },
+        "suffix": {
+          "type": "string",
+          "description": "The suffix of a given full name."
+        }
+      },
+      "description": "The segmented version of a given name.",
+      "title": "SegmentedName"
+    },
+    "StateCode": {
+      "type": "string",
+      "minLength": 1,
+      "description": "2 character ISO State code.",
+      "title": "StateCode"
+    }
+  }
+}

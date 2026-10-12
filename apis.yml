@@ -1,22 +1,34 @@
 aid: trustly
+
 name: Trustly Group
-description: Trustly is a Pay by Bank payments company operating two developer surfaces. Trustly Europe (Trustly Group AB,
-  Stockholm, a licensed Swedish payment institution) exposes a JSON-RPC 1.1 API at api.trustly.com for deposits, withdrawals/payouts,
-  refunds, account tokenisation (SelectAccount/RegisterAccount), recurring direct debit (Autogiro, BACS, SEPA), local methods
-  (Swish, iDEAL, MB Way, Bancontact) and settlement/ledger reporting, with RSA-signed requests and notifications. Trustly
-  North America (Trustly Inc., formerly PayWithMyBank) exposes a REST API at trustly.one/api/v1 for establishing and authorizing
-  bank transactions, capture, deposit, payout, refund, account verification and tokenization, Trustly ID identity data and
-  event-notification webhooks, documented with a public OpenAPI 3.1, an llms.txt and a hosted MCP docs server.
+
+description: Trustly is a Pay by Bank payments company operating two developer surfaces. Trustly Europe (Trustly Group AB, Stockholm, a licensed
+  Swedish payment institution) exposes a JSON-RPC 1.1 API at api.trustly.com for deposits, withdrawals/payouts, refunds, account tokenisation
+  (SelectAccount/RegisterAccount), recurring direct debit (Autogiro, BACS, SEPA), local methods (Swish, iDEAL, MB Way, Bancontact) and settlement/ledger
+  reporting, with RSA-signed requests and notifications. Trustly North America (Trustly Inc., formerly PayWithMyBank) exposes a REST API at trustly.one/api/v1
+  for establishing and authorizing bank transactions, capture, deposit, payout, refund, account verification and tokenization, Trustly ID identity
+  data and event-notification webhooks, documented with a public OpenAPI 3.1, an llms.txt and a hosted MCP docs server.
+
 url: https://raw.githubusercontent.com/api-evangelist/trustly/refs/heads/main/apis.yml
+
 image: https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
+
 position: Consuming
+
 x-type: company
+
 x-source: harvest:secondary-market
+
 x-tier: enriched
+
 x-tier-reason: enrichment-pipeline
+
 specificationVersion: '0.20'
+
 created: '2026-09-18'
-modified: '2026-09-18'
+
+modified: '2026-10-12'
+
 tags:
 - Company
 - Payments
@@ -30,6 +42,7 @@ tags:
 - Fintech
 - Webhook
 - MCP
+
 tags_raw:
 - Company
 - Payments
@@ -43,700 +56,28 @@ tags_raw:
 - Fintech
 - Webhooks
 - MCP
-apis:
-- name: Trustly Europe API
-  description: >-
-    JSON-RPC 1.1 API for Trustly Pay by Bank in Europe and the UK. Methods cover Deposit, Withdraw/AccountPayout,
-    Refund, SelectAccount, RegisterAccount, VerifyAccount, Charge and recurring direct debit (Autogiro,
-    BACS, SEPA via DirectDebitMandate/DirectDebit/DirectCredit and batch variants), local payment methods
-    (Swish, iDEAL/Wero, MB Way, Bancontact), Verification of Payee, and reporting (AccountLedger, MerchantSettlement,
-    GetWithdrawals, CurrentBalance, ClosingBalance). Every request is signed with the merchant's RSA private
-    key and every response and notification is signed by Trustly; notifications (account, pending, credit,
-    debit, cancel, kyc, payoutconfirmation, payoutfailed) are JSON-RPC calls back to the merchant's NotificationURL.
-  humanURL: https://docs.trustly.com/api
-  baseURL: https://api.trustly.com/1
-  tags:
-  - Payments
-  - Pay by Bank
-  - Open Banking
-  - Payouts
-  - Direct Debit
-  - JSON-RPC
-  - Webhook
-  tags_raw:
-  - Payments
-  - Pay by Bank
-  - Open Banking
-  - Payouts
-  - Direct Debit
-  - JSON-RPC
-  - Webhooks
-  properties:
-  - type: Documentation
-    url: https://docs.trustly.com/
-  - type: APIReference
-    url: https://docs.trustly.com/api
-  - type: GettingStarted
-    url: https://docs.trustly.com/get-started
-  - type: Authentication
-    url: https://docs.trustly.com/api/authentication
-  - type: Sandbox
-    url: https://docs.trustly.com/api/test-environment
-  - type: Webhooks
-    url: https://docs.trustly.com/api/notifications-overview
-  - type: ErrorCodes
-    url: https://docs.trustly.com/api/error-handling
-  - type: SDKs
-    url: https://docs.trustly.com/api/code-library
-  - type: Plugins
-    url: https://docs.trustly.com/api/plugins
-  image: >-
-    https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
-- aid: trustly:trustly-accounts-api
-  name: Trustly Group Accounts API
-  description: The accounts API from Trustly Group — 3 operation(s) for accounts.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags:
-  - Account
-  tags_raw:
-  - accounts
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-accounts-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-api-api
-  name: Trustly Group API
-  description: The API API from Trustly Group — 0 operation(s) for api.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags: []
-  tags_raw:
-  - API
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-api-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-countries-api
-  name: Trustly Group Countries API
-  description: The countries API from Trustly Group — 1 operation(s) for countries.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags:
-  - Countries
-  tags_raw:
-  - countries
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-countries-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-customers-api
-  name: Trustly Group Customers API
-  description: The customers API from Trustly Group — 2 operation(s) for customers.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags:
-  - Customers
-  tags_raw:
-  - customers
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-customers-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-identity-api
-  name: Trustly Group Identity API
-  description: The identity API from Trustly Group — 3 operation(s) for identity.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags:
-  - Identity
-  tags_raw:
-  - identity
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-identity-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-networkcheckapi-api
-  name: Trustly Group Network Check API
-  description: The networkCheckApi API from Trustly Group — 1 operation(s) for networkcheckapi.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags: []
-  tags_raw:
-  - networkCheckApi
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-networkcheckapi-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-payments-api
-  name: Trustly Group Payments API
-  description: The payments API from Trustly Group — 2 operation(s) for payments.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags:
-  - Payments
-  tags_raw:
-  - payments
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-payments-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-transactions-api
-  name: Trustly Group Transactions API
-  description: The transactions API from Trustly Group — 10 operation(s) for transactions.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags:
-  - Transaction
-  tags_raw:
-  - transactions
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-transactions-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-verifycustomer-api
-  name: Trustly Group Verify Customer API
-  description: The verifyCustomer API from Trustly Group — 1 operation(s) for verifycustomer.
-  humanURL: https://amer.developers.trustly.com/api-reference/api
-  baseURL: https://trustly.one/api/v1
-  tags: []
-  tags_raw:
-  - verifyCustomer
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-verifycustomer-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-account-data-api
-  name: Trustly Group Account Data API
-  description: The Account Data API from Trustly Group — 4 operation(s) for account data.
-  humanURL: https://docs.trustly.com/api
-  baseURL: https://api.trustly.com/1
-  tags:
-  - Account Data
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-account-data-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-dispute-management-api
-  name: Trustly Group Dispute Management API
-  description: The Dispute Management API from Trustly Group — 1 operation(s) for dispute management.
-  humanURL: https://docs.trustly.com/api
-  baseURL: https://api.trustly.com/1
-  tags:
-  - Dispute Management
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-dispute-management-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
-- aid: trustly:trustly-payment-providers-api
-  name: Trustly Group Payment Providers API
-  description: The Payment Providers API from Trustly Group — 1 operation(s) for payment providers.
-  humanURL: https://docs.trustly.com/api
-  baseURL: https://api.trustly.com/1
-  tags:
-  - Payment Providers
-  properties:
-  - type: OpenAPI
-    url: openapi/trustly-payment-providers-api-openapi.yml
-  - type: Documentation
-    url: https://amer.developers.trustly.com/welcome
-  - type: APIReference
-    url: https://amer.developers.trustly.com/api-reference/api
-  - type: GettingStarted
-    url: https://amer.developers.trustly.com/integrate/get-started
-  - type: Authentication
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
-  - type: Sandbox
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
-  - type: Webhooks
-    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
-  - type: ErrorCodes
-    url: >-
-      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
-  - type: SDKs
-    url: https://amer.developers.trustly.com/sdks
-  - type: LLMsTxt
-    url: https://amer.developers.trustly.com/llms.txt
-  - type: APICatalog
-    url: https://amer.developers.trustly.com/.well-known/api-catalog
-  - type: Conventions
-    url: conventions/trustly-conventions.yml
-  - type: Idempotency
-    url: conventions/trustly-conventions.yml
-  - type: DataModel
-    url: data-model/trustly-data-model.yml
-  - type: ErrorCatalog
-    url: errors/trustly-problem-types.yml
-  - type: DeclineCodes
-    url: errors/trustly-decline-codes.yml
-  - type: Webhooks
-    url: asyncapi/trustly-north-america-webhooks.yml
-  - type: ToolCrosswalk
-    url: mcp/trustly-tool-crosswalk.yml
-  - type: Sandbox
-    url: sandbox/trustly-sandbox.yml
-  - type: LLMsTxt
-    url: llms/trustly-llms.txt
-  - type: Authentication
-    url: authentication/trustly-authentication.yml
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/trustly-agentic-access.yml
+- type: Spectral
+  url: rules/trustly-rules.yml
+- type: JSONLD
+  url: json-ld/trustly-context.jsonld
+- type: Vocabulary
+  url: vocabulary/trustly-vocabulary.yml
+- type: Hosts
+  url: hosts/trustly-hosts.yml
+- type: Vendors
+  url: vendors/trustly-vendors.yml
+- type: Newsroom
+  url: https://www.trustly.com/br/press
 - type: CapabilityMap
   url: capabilities/trustly-capability-edges.yml
   name: Trustly Group Business Capability Map
@@ -841,8 +182,733 @@ common:
   url: security/trustly-vulnerability-disclosure.yml
 - type: Overlay
   url: overlays/trustly-north-america-overlay.yaml
+
+apis:
+- name: Trustly Europe API
+  description: JSON-RPC 1.1 API for Trustly Pay by Bank in Europe and the UK. Methods cover Deposit, Withdraw/AccountPayout, Refund, SelectAccount,
+    RegisterAccount, VerifyAccount, Charge and recurring direct debit (Autogiro, BACS, SEPA via DirectDebitMandate/DirectDebit/DirectCredit and
+    batch variants), local payment methods (Swish, iDEAL/Wero, MB Way, Bancontact), Verification of Payee, and reporting (AccountLedger, MerchantSettlement,
+    GetWithdrawals, CurrentBalance, ClosingBalance). Every request is signed with the merchant's RSA private key and every response and notification
+    is signed by Trustly; notifications (account, pending, credit, debit, cancel, kyc, payoutconfirmation, payoutfailed) are JSON-RPC calls back
+    to the merchant's NotificationURL.
+  humanURL: https://docs.trustly.com/api
+  baseURL: https://api.trustly.com/1
+  tags:
+  - Payments
+  - Pay by Bank
+  - Open Banking
+  - Payouts
+  - Direct Debit
+  - JSON-RPC
+  - Webhook
+  tags_raw:
+  - Payments
+  - Pay by Bank
+  - Open Banking
+  - Payouts
+  - Direct Debit
+  - JSON-RPC
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://docs.trustly.com/
+  - type: APIReference
+    url: https://docs.trustly.com/api
+  - type: GettingStarted
+    url: https://docs.trustly.com/get-started
+  - type: Authentication
+    url: https://docs.trustly.com/api/authentication
+  - type: Sandbox
+    url: https://docs.trustly.com/api/test-environment
+  - type: Webhooks
+    url: https://docs.trustly.com/api/notifications-overview
+  - type: ErrorCodes
+    url: https://docs.trustly.com/api/error-handling
+  - type: SDKs
+    url: https://docs.trustly.com/api/code-library
+  - type: Plugins
+    url: https://docs.trustly.com/api/plugins
+  image: https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
+  aid: trustly:trustly-europe-api
+- aid: trustly:trustly-accounts-api
+  name: Trustly Group Accounts API
+  description: The accounts API from Trustly Group — 3 operation(s) for accounts.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Account
+  tags_raw:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-accounts-post-accounts-tokenize-verify-account-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-financial-institution-account-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-feedback-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-accounts-tokenize-post-request-body-content-application-json-schema-account-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-accounts-verify-post-request-body-content-application-json-schema-account-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-feedback-post-request-body-content-application-json-schema-account-schema.json
+- aid: trustly:trustly-api-api
+  name: Trustly Group API
+  description: The API API from Trustly Group — 0 operation(s) for api.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags: []
+  tags_raw:
+  - API
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-api-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+- aid: trustly:trustly-countries-api
+  name: Trustly Group Countries API
+  description: The countries API from Trustly Group — 1 operation(s) for countries.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Countries
+  tags_raw:
+  - countries
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-countries-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-countries-get-countries-response-200-schema.json
+- aid: trustly:trustly-customers-api
+  name: Trustly Group Customers API
+  description: The customers API from Trustly Group — 2 operation(s) for customers.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Customers
+  tags_raw:
+  - customers
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-customers-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-customers-get-customers-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-customers-post-customers-customer-id-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-customers-get-customers-customer-id-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-customers-post-customers-response-200-schema.json
+- aid: trustly:trustly-identity-api
+  name: Trustly Group Identity API
+  description: The identity API from Trustly Group — 3 operation(s) for identity.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Identity
+  tags_raw:
+  - identity
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-identity-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-user-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-user-verification-detail-schema.json
+- aid: trustly:trustly-networkcheckapi-api
+  name: Trustly Group Network Check API
+  description: The networkCheckApi API from Trustly Group — 1 operation(s) for networkcheckapi.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags: []
+  tags_raw:
+  - networkCheckApi
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-networkcheckapi-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-customer-lookup-response-schema.json
+- aid: trustly:trustly-payments-api
+  name: Trustly Group Payments API
+  description: The payments API from Trustly Group — 2 operation(s) for payments.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Payments
+  tags_raw:
+  - payments
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-payments-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-payments-list-payments-response-200-schema.json
+- aid: trustly:trustly-transactions-api
+  name: Trustly Group Transactions API
+  description: The transactions API from Trustly Group — 10 operation(s) for transactions.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags:
+  - Transaction
+  tags_raw:
+  - transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-establish-data-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-establish-post-request-body-content-application-json-schema-metadata-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-establish-post-request-body-content-application-json-schema-beneficiary-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-establish-post-request-body-content-application-json-schema-payment-type-schema.json
+- aid: trustly:trustly-verifycustomer-api
+  name: Trustly Group Verify Customer API
+  description: The verifyCustomer API from Trustly Group — 1 operation(s) for verifycustomer.
+  humanURL: https://amer.developers.trustly.com/api-reference/api
+  baseURL: https://trustly.one/api/v1
+  tags: []
+  tags_raw:
+  - verifyCustomer
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-verifycustomer-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-verify-customer-get-verify-customer-response-200-schema.json
+- aid: trustly:trustly-account-data-api
+  name: Trustly Group Account Data API
+  description: The Account Data API from Trustly Group — 4 operation(s) for account data.
+  humanURL: https://docs.trustly.com/api
+  baseURL: https://api.trustly.com/1
+  tags:
+  - Account Data
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-account-data-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-fiuser-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-account-data-get-transaction-account-summary-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-account-data-get-transactions-account-balance-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-account-data-list-selected-accounts-response-200-schema.json
+- aid: trustly:trustly-dispute-management-api
+  name: Trustly Group Dispute Management API
+  description: The Dispute Management API from Trustly Group — 1 operation(s) for dispute management.
+  humanURL: https://docs.trustly.com/api
+  baseURL: https://api.trustly.com/1
+  tags:
+  - Dispute Management
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-dispute-management-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-transaction-schema.json
+- aid: trustly:trustly-payment-providers-api
+  name: Trustly Group Payment Providers API
+  description: The Payment Providers API from Trustly Group — 1 operation(s) for payment providers.
+  humanURL: https://docs.trustly.com/api
+  baseURL: https://api.trustly.com/1
+  tags:
+  - Payment Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/trustly-payment-providers-api-openapi.yml
+  - type: Documentation
+    url: https://amer.developers.trustly.com/welcome
+  - type: APIReference
+    url: https://amer.developers.trustly.com/api-reference/api
+  - type: GettingStarted
+    url: https://amer.developers.trustly.com/integrate/get-started
+  - type: Authentication
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+  - type: Sandbox
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
+  - type: Webhooks
+    url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
+  - type: ErrorCodes
+    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+  - type: SDKs
+    url: https://amer.developers.trustly.com/sdks
+  - type: LLMsTxt
+    url: https://amer.developers.trustly.com/llms.txt
+  - type: APICatalog
+    url: https://amer.developers.trustly.com/.well-known/api-catalog
+  - type: Conventions
+    url: conventions/trustly-conventions.yml
+  - type: Idempotency
+    url: conventions/trustly-conventions.yml
+  - type: DataModel
+    url: data-model/trustly-data-model.yml
+  - type: ErrorCatalog
+    url: errors/trustly-problem-types.yml
+  - type: DeclineCodes
+    url: errors/trustly-decline-codes.yml
+  - type: Webhooks
+    url: asyncapi/trustly-north-america-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/trustly-tool-crosswalk.yml
+  - type: Sandbox
+    url: sandbox/trustly-sandbox.yml
+  - type: LLMsTxt
+    url: llms/trustly-llms.txt
+  - type: Authentication
+    url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-payment-providers-get-payment-providers-response-200-schema.json
 x-enrichment:
-  date: '2026-09-18'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 27
-  pass: local-v3
+  artifacts_added: 2
+  pass: local-v5
