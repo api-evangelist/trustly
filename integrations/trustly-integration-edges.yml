@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/trustly/integrations
 - https://zapier.com/apps/trustly-group/integrations
@@ -9,15 +9,49 @@ source:
 checked:
 - https://apps.shopify.com/search?q=trustly
 - https://composio.dev/toolkits/trustly
+- https://kantarainitiative.org/trust-status-list/
 - https://monid.ai/tools/trustly
+- https://msb.fincen.gov/
 - https://n8n.io/integrations/trustly/
+- https://www.access-dvs-register.service.gov.uk/register/download-register
 - https://www.make.com/en/integrations/trustly
 - https://www.trustly.com/partner
 - https://zapier.com/apps/trustly-group/integrations
 - https://zapier.com/apps/trustly/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: FinCEN (MSB registration)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://msb.fincen.gov/
+  category: Money services business
+  contract_reference:
+    register: FinCEN MSB Registrant Search (msb.fincen.gov, full list export)
+    spec_file: null
+    standard: FinCEN MSB registration (US Bank Secrecy Act)
+    role: fincen-msb-registrant
+    registered_name: Trustly Inc
+    dba_name: null
+    register_id: Trustly Inc
+    matched_domain: trustly.com
+    matched_by: domain+name-among-holders
+    identity: wikidata Q18449475 'Trustly' P856 https://www.trustly.com
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    msb_activities:
+    - 409 money transmitter
+    states_of_activity: 48
+    received_date: 07/24/2026
+    signal_note: 'participation only: an MSB registration is not a licence or a certification; activities and states
+      are context, never counted'
+    detected_by: sweep-regtech-aml.py
+    detected: '2026-10-15'
+  detected_by: sweep-regtech-aml.py
+  first_seen: '2026-10-15'
 templates: []
 note: trustly.com/partner (200) is a partner-program recruitment page naming no partners; zapier and n8n have no
   Trustly app (404); make.com returned a bot challenge (403).
