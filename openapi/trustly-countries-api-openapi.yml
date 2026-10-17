@@ -57,15 +57,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    CountriesGetParametersCountry:
-      type: string
-      enum:
-      - US
-      - CA
-      - UK
-      - DE
-      - AU
-      title: CountriesGetParametersCountry
     PaymentType:
       type: string
       enum:
@@ -127,6 +118,15 @@ components:
       - '2001'
       description: "Payment Provider Subtype:\n  * `1000`: EasyOnline\n  * `2000`: MEC\n  * `2001`: MCD"
       title: PaymentProviderSubtype
+    CountriesGetParametersCountry:
+      type: string
+      enum:
+      - US
+      - CA
+      - UK
+      - DE
+      - AU
+      title: CountriesGetParametersCountry
     Get-countriesRequestBadRequestError:
       type: object
       properties:

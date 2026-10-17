@@ -142,80 +142,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    ScreeningResult:
-      type: array
-      items:
-        $ref: '#/components/schemas/ScreeningResultItems'
-      title: ScreeningResult
-    UserVerificationErrorCode:
-      type: string
-      enum:
-      - '-1'
-      - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'
-      - '6'
-      description: 'An error code indicating why the user verification has failed. May be:
-
-        * `-1`: no error. the verification was successful.
-
-        * `1`: there was an internal, unspecified error (should not happen).
-
-        * `2`: the user is below the minimum age.
-
-        * `3`: some of the attributes did not meet the minimum verification criteria.
-
-        * `4`: some mandatory attributes are not available.
-
-        * `5`: the user was identified as a person who is deceased.
-
-        * `6`: entries were matched during the screening process'
-      title: UserVerificationErrorCode
-    PaymentCountry:
-      type: string
-      enum:
-      - US
-      - CA
-      - UK
-      - DE
-      - AU
-      description: 2-character ISO code of the country for the bank account that was selected. Currently only the US, CA, UK, DE, and AU are supported.
-      title: PaymentCountry
-    UserVerificationDetailDetail:
-      type: object
-      properties:
-        verification:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserVerificationResult'
-        attribute:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeVerificationDetail'
-      title: UserVerificationDetailDetail
-    AttributeVerificationDetail:
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/AttributeVerificationDetailName'
-          description: Which attribute does this entry refer to.
-        source:
-          $ref: '#/components/schemas/AttributeVerificationDetailSource'
-        createdAt:
-          type: integer
-          format: int64
-          description: Unix Timestamp in milliseconds (since the epoch) when the attribute was fetched from an external source and associated with the user.
-        link:
-          type: string
-          description: Link to user attribute using JSON pointer syntax.
-        verification:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeVerification'
-      description: Attribute details as part of a Trustly ID user verification details
-      title: AttributeVerificationDetail
     AttributeVerificationDetailSource:
       type: object
       properties:
@@ -234,211 +160,139 @@ components:
 
             * `5` the data came from the merchant.'
       title: AttributeVerificationDetailSource
-    PaymentAuth:
-      type: object
-      properties:
-        token:
-          type: string
-          description: Authorization token.
-        status:
-          type: integer
-          description: See Authorization Status Values.
-        message:
-          type: string
-          description: Authorization message.
-      title: PaymentAuth
-    AccountCountry:
-      type: string
-      enum:
-      - US
-      - CA
-      - UK
-      - DE
-      - AU
-      description: 2-character ISO code of the country for the bank account that was selected. Currently only the US, CA, UK, DE, and AU are supported.
-      title: AccountCountry
-    WatchlistScreeningResultGender:
-      type: string
-      enum:
-      - male
-      - female
-      description: Gender of the user.
-      title: WatchlistScreeningResultGender
-    UserVerificationResultCode:
-      type: string
-      enum:
-      - '1'
-      - '2'
-      - '3'
-      description: 'A code indicating the final outcome of the verification. May be:
+    AttributeVerificationResult:
+      type: integer
+      description: 'Indicates the result of the individual attribute verification. It can be:
 
-        * `1`: the verification was rejected.
+        * `1` meaning the attribute did not match the expected value.
 
-        * `2`: the verification was inconclusive.
+        * `2` meaning the result was inconclusive.
 
-        * `3`: the verification was approved.'
-      title: UserVerificationResultCode
-    User:
+        * `3` meaning attribute did match the expected attribute.'
+      title: AttributeVerificationResult
+    Transaction:
       type: object
       properties:
-        name:
-          type: string
-          description: The full name of the user
-        address:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-2'
-          description: Array of addresses associated with the user.
-        phone:
-          type: array
-          items:
-            type: string
-          description: Array of phone numbers associated with the user.
-        email:
-          type: array
-          items:
-            type: string
-          description: Array of e-mail addresses associated with the user.
-        dateOfBirth:
-          type: string
-          description: The date of birth of the user in the format YYYY-MM-DD
-        taxId:
-          type: string
-          description: The user's government issued tax ID e.g. SSN (US) or SIN (CA)
-        deceased:
-          type: boolean
-          description: If `true`, then the user is deceased.
-        driverLicense:
-          $ref: '#/components/schemas/DriverLicense-2'
-        eligible:
-          type: boolean
-          description: Indicates if the user has got a successful result in all verifications and is eligible.
-        createdAt:
-          type: integer
-          description: Timestamp representing the time the User Object was created.
-        updatedAt:
-          type: integer
-          description: Timestamp representing the time the User Object was last updated.
-        segmentedName:
-          $ref: '#/components/schemas/SegmentedName'
-      description: Trustly User
-      title: User
-    AdversityMediaScreeningResult:
-      type: object
-      properties:
-        screeningType:
-          $ref: '#/components/schemas/ScreeningResultScreeningType'
-        score:
-          type: string
-          title: float
-          description: Match score indicating the strength of a match.
-        name:
-          type: string
-          description: Name of the user.
-        text:
-          type: string
-          description: Text description.
-        url:
-          type: string
-          description: Source's URL.
-        title:
-          type: string
-          description: The adverse media title.
-        date:
-          type: string
-          format: date
-          description: The adverse media date.
-        trustedEntity:
-          type: string
-          description: The name of the entity that provided the adverse media match.
-      description: Screening information for Adversity Media Screening.
-      title: AdversityMediaScreeningResult
-    TransactionsTransactionIdUserGetParametersExpandSchemaItems:
-      type: string
-      enum:
-      - segmentedName
-      title: TransactionsTransactionIdUserGetParametersExpandSchemaItems
-    DriverLicense-2:
-      type: object
-      properties:
-        number:
+        transactionId:
           type: string
           minLength: 1
-          description: The driver's license number. Even though this field is called 'number', it may contain non-numeric characters if the country allows that.
-        state:
-          $ref: '#/components/schemas/StateCode'
-      description: A driver's license.
-      title: DriverLicense-2
-    Verification:
-      type: object
-      properties:
+          description: A unique transaction identifier generated by Trustly (15 character max).
+        transactionType:
+          $ref: '#/components/schemas/TransactionTransactionType'
+          description: Type of transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
+        payment:
+          $ref: '#/components/schemas/Payment'
+        currency:
+          $ref: '#/components/schemas/TransactionCurrency'
+          description: 3-letter ISO Currency Code. Currently only USD is supported.
+        amount:
+          type: string
+          minLength: 1
+          description: The amount of the transaction. (10 characters with support for 2 decimal places)
+        pending:
+          type: string
+          minLength: 1
+          description: The total amount that is still pending completion. (10 characters with support for 2 decimal places)
+        paid:
+          type: string
+          minLength: 1
+          description: The total amount that was already paid. (10 characters with support for 2 decimal places)
+        refunded:
+          type: string
+          minLength: 1
+          description: The total amount that was refunded. (10 characters with support for 2 decimal places)
+        reversed:
+          type: string
+          minLength: 1
+          description: The total amount that was reversed. (10 characters with support for 2 decimal places)
+        balance:
+          type: string
+          minLength: 1
+          description: The balance of the amount paid, minus the amount reversed and/or refunded. (10 characters with support for 2 decimal places)
+        paymentProviderTransaction:
+          $ref: '#/components/schemas/PaymentProviderTransaction'
         status:
-          $ref: '#/components/schemas/VerificationStatus'
-          description: "Verification Status:\n  * `1`: Automatic - Payment verification followed Trustly internal rules.\n  * `2`: ToVerify\t- Payment transaction is held (status = OnHold) for further investigation and approval by the merchant.\n  * `3`: Verified - Payment was verified and approved by the merchant or Trustly (see Verification Mode).\n  * `4`: Refused - Payment was denied by the merchant or Trustly after verification.\n"
-        mode:
-          $ref: '#/components/schemas/VerificationMode'
-          description: "Verification Mode:\n  * `1`: VerifiedByMerchant\n  * `2`: ApprovedByMerchant\n  * `3`: VerifiedByTrustly\n  * `4`: AmountAuthorizedByMerchant\n"
-        verifyCustomer:
-          type: boolean
-          description: If true, the Customer information (name and zip code) was verified against information provided by the User's bank.
-      title: Verification
-    PaymentProviderCountry:
-      type: string
-      enum:
-      - US
-      - CA
-      - UK
-      - DE
-      - AU
-      description: 2-letter ISO country code of the financial institution
-      title: PaymentProviderCountry
-    UserVerificationDetail:
-      type: object
-      properties:
-        detail:
-          $ref: '#/components/schemas/UserVerificationDetailDetail'
-      title: UserVerificationDetail
-    Recurrence:
-      type: object
-      properties:
-        startDate:
+          $ref: '#/components/schemas/TransactionStatus'
+          description: Status code of the Payment Provider Transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
+        statusMessage:
           type: string
-          format: date-time
-          description: Recurring payment start date as a UNIX timestamp.
-        endDate:
+          minLength: 1
+          description: A descriptive status message. (120 characters)
+        ip:
           type: string
-          format: date-time
-          description: Recurring payment end date as a UNIX timestamp.
-        nextOccurrence:
-          type: string
-          format: date-time
-          description: When the next capture will be issued if using automatic captures as a UNIX timestamp.
-        recurringAmount:
-          type: string
-          maxLength: 10
-          description: Recurring payment amount. (maximum of 10 characters with support for 2 decimal places)
-        debtSettlement:
-          type: string
-          maxLength: 10
-          description: Any debt amount settlement done outside of the Trustly like discounts or when consumers pays one recurring debt using another payment method like traditional checks or credit cards. (maximum of 10 characters with support for 2 decimal places)
-        frequency:
+          minLength: 1
+          description: The client IP address in IPv4 or IPv6 format.
+        createdAt:
           type: integer
-          default: 1
-          description: 'How many payments per frequencyUnit. Defaults to 1. Example: To define 2 recurring payments every 3 months set: frequency=2, frequencyUnit=3 and frequencyUnitType=3.'
-        frequencyUnit:
+          description: The date and time the transaction was created as a UNIX timestamp.
+        processedAt:
+          type: integer
+          description: The date and time the transaction was processed as a UNIX timestamp.
+        completedAt:
+          type: integer
+          description: The date and time the transaction was completed as a UNIX timestamp.
+        updatedAt:
+          type: integer
+          description: The date and time the transaction was last updated as a UNIX timestamp.
+        ppTrxId:
+          type: string
+          minLength: 1
+          description: internal use only
+        merchantReference:
+          type: string
+          minLength: 1
+          description: Merchants internal reference id for the transaction.
+        expiredAt:
+          type: integer
+          description: The date and time the preauthorization will expire as a UNIX timestamp.
+        recordVersion:
           type: number
           format: double
-          description: Defines with frequencyUnitType the interval of the frequency of payments.
-        frequencyUnitType:
-          $ref: '#/components/schemas/RecurrenceFrequencyUnitType'
-          description: Frequency Unit Type
-        automaticCapture:
-          type: boolean
-          description: If true, payment captures are issued automatically.
-        recurrenceId:
+          description: The current record version.
+        originalTransactionId:
           type: string
-      description: Recurring payment options
-      title: Recurrence
+        fee:
+          type: string
+        timeZone:
+          type: string
+        representmentScheduledAt:
+          type: number
+          format: double
+        paymentProcessorType:
+          type: string
+        statusCode:
+          type: string
+        preAuthorized:
+          type: boolean
+      required:
+      - transactionId
+      - transactionType
+      - payment
+      - currency
+      - amount
+      - pending
+      - paid
+      - refunded
+      - reversed
+      - balance
+      - paymentProviderTransaction
+      - status
+      - statusMessage
+      - ip
+      - createdAt
+      - processedAt
+      - completedAt
+      - updatedAt
+      - merchantReference
+      - recordVersion
+      description: A Trustly transaction object
+      title: Transaction
+    TransactionCurrency:
+      type: string
+      enum:
+      - USD
+      description: 3-letter ISO Currency Code. Currently only USD is supported.
+      title: TransactionCurrency
     Payment:
       type: object
       properties:
@@ -582,18 +436,389 @@ components:
       - paymentFlow
       description: A Trustly Payment
       title: Payment
-    AttributeVerificationMethod:
-      type: integer
-      description: 'Indicates which type of verification was performed. It can be:
+    PaymentProviderTransaction:
+      type: object
+      properties:
+        paymentProviderTransactionId:
+          type: string
+          description: Unique payment provider transaction identifier.
+        status:
+          type: string
+          description: See Payment Provider Transaction Status Codes.
+        statusMessage:
+          type: string
+          description: Payment provider transaction status message.
+        signature:
+          type: string
+        statusDescription:
+          type: string
+        paymentProcessor:
+          $ref: '#/components/schemas/PaymentProviderTransactionPaymentProcessor'
+        thirdPartyDeclineCode:
+          type: string
+        clearingHouse:
+          type: string
+        instantSettle:
+          type: boolean
+          description: Whether instant settlement was used for transaction.
+      description: Payment Provider Transaction
+      title: PaymentProviderTransaction
+    FinancialInstitutionAccountVerificationThirdPartyScore:
+      type: string
+      enum:
+      - '0'
+      - '100'
+      - '200'
+      - '300'
+      - '400'
+      - '500'
+      - '600'
+      - '700'
+      - '800'
+      - '900'
+      - '999'
+      description: "Verification Third-Party Score:\n * `0`: Failed RT validation. (Verified Mapping = 0)\n * `100`: The supplier has a strong indication that this account is invalid. (Verified Mapping = 1)\n * `200`: The supplier has active non-bankable debt(s) on this account that are less than 3 years old. (Verified Mapping = 2)\n * `300`: The supplier has administrative returns on this account. (Verified Mapping = 3)\n * `400`: The supplier does not have Neg data on this account, but the format appears to be suspicious. (Verified Mapping = 4)\n * `500`: The supplier does not have data on this account or format. (Verified Mapping = 5)\n * `600`: The supplier has not seen this account, but the format appears valid. (Verified Mapping = 6)\n * `700`: The supplier has seen this account, but did not receive a final disposition on the transaction. (Verified Mapping = 7)\n * `800`: The supplier has seen this account, but not in the last 6 months. (Verified Mapping = 8)\n * `900`: The supplier has seen this account in the last 6 months. (Verified Mapping = 9)\n * `999`: The supplier has the highest confidence that this account is valid. (Verified Mapping = 10)\n"
+      title: FinancialInstitutionAccountVerificationThirdPartyScore
+    WatchlistScreeningResultGender:
+      type: string
+      enum:
+      - male
+      - female
+      description: Gender of the user.
+      title: WatchlistScreeningResultGender
+    Get-trustly-id-user-dataRequestBadRequestError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems'
+      required:
+      - errors
+      title: Get-trustly-id-user-dataRequestBadRequestError
+    AdversityMediaScreeningResult:
+      type: object
+      properties:
+        screeningType:
+          $ref: '#/components/schemas/ScreeningResultScreeningType'
+        score:
+          type: string
+          title: float
+          description: Match score indicating the strength of a match.
+        name:
+          type: string
+          description: Name of the user.
+        text:
+          type: string
+          description: Text description.
+        url:
+          type: string
+          description: Source's URL.
+        title:
+          type: string
+          description: The adverse media title.
+        date:
+          type: string
+          format: date
+          description: The adverse media date.
+        trustedEntity:
+          type: string
+          description: The name of the entity that provided the adverse media match.
+      description: Screening information for Adversity Media Screening.
+      title: AdversityMediaScreeningResult
+    FinancialInstitutionAccountVerificationType:
+      type: string
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      description: "Verification Type:\n * `1`: Manual - The account was verified with manual account verification. For example, Manual Electronic Check and Micro Challenge Deposit.\n * `2`: Online Banking verification\t- The Account was verified using the Trustly Online Banking application.\n * `3`: Database verification\t- The Account was verified using the Trustly database or a Third-Party Service.  \n"
+      title: FinancialInstitutionAccountVerificationType
+    PaymentSystem:
+      type: string
+      enum:
+      - '-1'
+      - '1'
+      - '2'
+      description: "Financial Institution Account Type:\n  * `-1`: None\n  * `1`: PayWithMyBank\n  * `2`: TrustlyAB"
+      title: PaymentSystem
+    Recurrence:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date-time
+          description: Recurring payment start date as a UNIX timestamp.
+        endDate:
+          type: string
+          format: date-time
+          description: Recurring payment end date as a UNIX timestamp.
+        nextOccurrence:
+          type: string
+          format: date-time
+          description: When the next capture will be issued if using automatic captures as a UNIX timestamp.
+        recurringAmount:
+          type: string
+          maxLength: 10
+          description: Recurring payment amount. (maximum of 10 characters with support for 2 decimal places)
+        debtSettlement:
+          type: string
+          maxLength: 10
+          description: Any debt amount settlement done outside of the Trustly like discounts or when consumers pays one recurring debt using another payment method like traditional checks or credit cards. (maximum of 10 characters with support for 2 decimal places)
+        frequency:
+          type: integer
+          default: 1
+          description: 'How many payments per frequencyUnit. Defaults to 1. Example: To define 2 recurring payments every 3 months set: frequency=2, frequencyUnit=3 and frequencyUnitType=3.'
+        frequencyUnit:
+          type: number
+          format: double
+          description: Defines with frequencyUnitType the interval of the frequency of payments.
+        frequencyUnitType:
+          $ref: '#/components/schemas/RecurrenceFrequencyUnitType'
+          description: Frequency Unit Type
+        automaticCapture:
+          type: boolean
+          description: If true, payment captures are issued automatically.
+        recurrenceId:
+          type: string
+      description: Recurring payment options
+      title: Recurrence
+    Get-trustly-id-user-detailsRequestBadRequestError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionsTransactionIdUserDetailGetResponsesContentApplicationJsonSchemaErrorsItems'
+      required:
+      - errors
+      title: Get-trustly-id-user-detailsRequestBadRequestError
+    AttributeVerificationDetail:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/AttributeVerificationDetailName'
+          description: Which attribute does this entry refer to.
+        source:
+          $ref: '#/components/schemas/AttributeVerificationDetailSource'
+        createdAt:
+          type: integer
+          format: int64
+          description: Unix Timestamp in milliseconds (since the epoch) when the attribute was fetched from an external source and associated with the user.
+        link:
+          type: string
+          description: Link to user attribute using JSON pointer syntax.
+        verification:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeVerification'
+      description: Attribute details as part of a Trustly ID user verification details
+      title: AttributeVerificationDetail
+    UserVerificationReason:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/UserVerificationErrorCode'
+        reason:
+          type: string
+          description: Descriptive text, in English, on why the user verification failed.
+      description: An object describing why an user verification has succeeded or failed.
+      title: UserVerificationReason
+    UserVerificationResultCode:
+      type: string
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      description: 'A code indicating the final outcome of the verification. May be:
 
-        * `1` means electronic identity verification.
+        * `1`: the verification was rejected.
 
-        * `2` meaning it is manual document verification.
+        * `2`: the verification was inconclusive.
 
-        * `3` meaning it is OCR verification.
-
-        * `4` meaning it is Trusted Entity.'
-      title: AttributeVerificationMethod
+        * `3`: the verification was approved.'
+      title: UserVerificationResultCode
+    RecurrenceFrequencyUnitType:
+      type: string
+      enum:
+      - Day
+      - Week
+      - Month
+      - Year
+      description: Frequency Unit Type
+      title: RecurrenceFrequencyUnitType
+    UserVerificationDetail:
+      type: object
+      properties:
+        detail:
+          $ref: '#/components/schemas/UserVerificationDetailDetail'
+      title: UserVerificationDetail
+    AttributeVerificationDetailName:
+      type: string
+      enum:
+      - taxId
+      - name
+      - address
+      - phone
+      - dateOfBirth
+      - email
+      - driverLicense
+      - deceased
+      description: Which attribute does this entry refer to.
+      title: AttributeVerificationDetailName
+    Address2Country:
+      type: string
+      enum:
+      - US
+      description: 2 character ISO Country code. Currently only the US is supported.
+      title: Address2Country
+    Address-2:
+      type: object
+      properties:
+        address1:
+          type: string
+          minLength: 1
+          description: Address Line 1.
+        address2:
+          type: string
+          description: Address Line 2.
+        city:
+          type: string
+          minLength: 1
+          description: Address City.
+        state:
+          $ref: '#/components/schemas/StateCode'
+        zip:
+          type: string
+          minLength: 1
+          description: 5 character US Zip Code.
+        country:
+          $ref: '#/components/schemas/Address2Country'
+          description: 2 character ISO Country code. Currently only the US is supported.
+      required:
+      - country
+      title: Address-2
+    TransactionTransactionType:
+      type: string
+      enum:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+      - '10'
+      description: Type of transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
+      title: TransactionTransactionType
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The full name of the user
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address-2'
+          description: Array of addresses associated with the user.
+        phone:
+          type: array
+          items:
+            type: string
+          description: Array of phone numbers associated with the user.
+        email:
+          type: array
+          items:
+            type: string
+          description: Array of e-mail addresses associated with the user.
+        dateOfBirth:
+          type: string
+          description: The date of birth of the user in the format YYYY-MM-DD
+        taxId:
+          type: string
+          description: The user's government issued tax ID e.g. SSN (US) or SIN (CA)
+        deceased:
+          type: boolean
+          description: If `true`, then the user is deceased.
+        driverLicense:
+          $ref: '#/components/schemas/DriverLicense-2'
+        eligible:
+          type: boolean
+          description: Indicates if the user has got a successful result in all verifications and is eligible.
+        createdAt:
+          type: integer
+          description: Timestamp representing the time the User Object was created.
+        updatedAt:
+          type: integer
+          description: Timestamp representing the time the User Object was last updated.
+        segmentedName:
+          $ref: '#/components/schemas/SegmentedName'
+      description: Trustly User
+      title: User
+    TransactionsTransactionIdUserGetParametersExpandSchemaItems:
+      type: string
+      enum:
+      - segmentedName
+      title: TransactionsTransactionIdUserGetParametersExpandSchemaItems
+    PaymentProviderTransactionPaymentProcessor:
+      type: object
+      properties:
+        paymentProcessorId:
+          type: string
+        type:
+          type: integer
+        name:
+          type: string
+        shortName:
+          type: string
+        url:
+          type: string
+        active:
+          type: string
+      title: PaymentProviderTransactionPaymentProcessor
+    PaymentCurrency:
+      type: string
+      enum:
+      - USD
+      description: 3-letter ISO Currency Code. Currently only USD is supported.
+      title: PaymentCurrency
+    AccountCountry:
+      type: string
+      enum:
+      - US
+      - CA
+      - UK
+      - DE
+      - AU
+      description: 2-character ISO code of the country for the bank account that was selected. Currently only the US, CA, UK, DE, and AU are supported.
+      title: AccountCountry
+    PaymentPaymentType:
+      type: string
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      description: "Financial Institution Account Type:\n * `1`: Instant -\tInstant payment. The debit instruction is automatically initiated with that day's batch after consumer authorization.\n * `2`: Deferred - Deferred payment. Payment is authorized but the capture operation must be called to initiate the debit. You can start to initiate multiple captures that are less than or equal to the original transaction authorization amount.\n * `3`: Recurring - Recurring payment. Same as deferred but associated to a payment agreement between consumer and merchant that defines how much and when the capture can be started.\n * `4`: Disbursement - Disbursement payment. This payment type can only be used for disbursements.\n * `5`: Verification - This payment type is used to verify the customer financial institution account as the payments will be done outside of the Trustly system.\n * `6`: Retrieval\tData retrieval. This payment type is used to retrieve account and user information from Trustly without an associated payment request. This payment type is not enabled by default. Contact Trustly if you need this feature."
+      title: PaymentPaymentType
+    Verification:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+          description: "Verification Status:\n  * `1`: Automatic - Payment verification followed Trustly internal rules.\n  * `2`: ToVerify\t- Payment transaction is held (status = OnHold) for further investigation and approval by the merchant.\n  * `3`: Verified - Payment was verified and approved by the merchant or Trustly (see Verification Mode).\n  * `4`: Refused - Payment was denied by the merchant or Trustly after verification.\n"
+        mode:
+          $ref: '#/components/schemas/VerificationMode'
+          description: "Verification Mode:\n  * `1`: VerifiedByMerchant\n  * `2`: ApprovedByMerchant\n  * `3`: VerifiedByTrustly\n  * `4`: AmountAuthorizedByMerchant\n"
+        verifyCustomer:
+          type: boolean
+          description: If true, the Customer information (name and zip code) was verified against information provided by the User's bank.
+      title: Verification
     Customer:
       type: object
       properties:
@@ -669,6 +894,83 @@ components:
       - email
       description: The Trustly customer object, containing identification details and contact information.
       title: Customer
+    TransactionsTransactionIdUserDetailGetParametersExpandSchemaItems:
+      type: string
+      enum:
+      - verification
+      title: TransactionsTransactionIdUserDetailGetParametersExpandSchemaItems
+    PaymentProvider:
+      type: object
+      properties:
+        paymentProviderId:
+          type: string
+          minLength: 1
+          description: A unique identifier for the Payment Provider.
+        type:
+          type: number
+          format: double
+        name:
+          type: string
+          minLength: 1
+          description: Name of the payment provider
+        instantPayoutAvailable:
+          type: boolean
+          description: Whether payment provider supports instant payout.
+        subType:
+          $ref: '#/components/schemas/PaymentProviderSubType'
+          description: "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n"
+        swift:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        country:
+          $ref: '#/components/schemas/PaymentProviderCountry'
+          description: 2-letter ISO country code of the financial institution
+        instantPayment:
+          type: boolean
+      required:
+      - name
+      description: Details of the Financial institution
+      title: PaymentProvider
+    PaymentAuth:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Authorization token.
+        status:
+          type: integer
+          description: See Authorization Status Values.
+        message:
+          type: string
+          description: Authorization message.
+      title: PaymentAuth
+    UserVerificationResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/UserVerificationResultCode'
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserVerificationReason'
+        screeningResult:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScreeningResult'
+      description: Details on the user verification.
+      title: UserVerificationResult
+    DriverLicense-2:
+      type: object
+      properties:
+        number:
+          type: string
+          minLength: 1
+          description: The driver's license number. Even though this field is called 'number', it may contain non-numeric characters if the country allows that.
+        state:
+          $ref: '#/components/schemas/StateCode'
+      description: A driver's license.
+      title: DriverLicense-2
     BaseException:
       type: object
       properties:
@@ -683,25 +985,46 @@ components:
         occurredAt:
           type: integer
       title: BaseException
-    TransactionStatus:
+    PaymentProviderCountry:
       type: string
       enum:
-      - '0'
+      - US
+      - CA
+      - UK
+      - DE
+      - AU
+      description: 2-letter ISO country code of the financial institution
+      title: PaymentProviderCountry
+    PaymentProviderSubtype:
+      type: string
+      enum:
+      - '1000'
+      - '2000'
+      - '2001'
+      description: "Payment Provider Subtype:\n  * `1000`: EasyOnline\n  * `2000`: MEC\n  * `2001`: MCD"
+      title: PaymentProviderSubtype
+    VerificationStatus:
+      type: string
+      enum:
       - '1'
       - '2'
       - '3'
       - '4'
-      - '5'
-      - '6'
-      - '7'
-      - '8'
-      - '10'
-      - '11'
-      - '12'
-      - '13'
-      - '14'
-      description: Status code of the Payment Provider Transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
-      title: TransactionStatus
+      description: "Verification Status:\n  * `1`: Automatic - Payment verification followed Trustly internal rules.\n  * `2`: ToVerify\t- Payment transaction is held (status = OnHold) for further investigation and approval by the merchant.\n  * `3`: Verified - Payment was verified and approved by the merchant or Trustly (see Verification Mode).\n  * `4`: Refused - Payment was denied by the merchant or Trustly after verification.\n"
+      title: VerificationStatus
+    DriverLicense:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Driver License number.
+        state:
+          type: string
+          description: 2 character ISO State code.
+      required:
+      - number
+      - state
+      title: DriverLicense
     FinancialInstitutionAccountVerification:
       type: object
       properties:
@@ -737,19 +1060,16 @@ components:
       - hasEnoughFunds
       - verificationDate
       title: FinancialInstitutionAccountVerification
-    DriverLicense:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Driver License number.
-        state:
-          type: string
-          description: 2 character ISO State code.
-      required:
-      - number
-      - state
-      title: DriverLicense
+    PaymentCountry:
+      type: string
+      enum:
+      - US
+      - CA
+      - UK
+      - DE
+      - AU
+      description: 2-character ISO code of the country for the bank account that was selected. Currently only the US, CA, UK, DE, and AU are supported.
+      title: PaymentCountry
     TransactionsTransactionIdUserDetailGetResponsesContentApplicationJsonSchemaErrorsItems:
       type: object
       properties:
@@ -775,54 +1095,26 @@ components:
       - message
       - occurredAt
       title: TransactionsTransactionIdUserDetailGetResponsesContentApplicationJsonSchemaErrorsItems
-    SegmentedName:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The title of a given full name.
-        firstName:
-          type: string
-          description: The first name of a given full name.
-        middleName:
-          type: array
-          items:
-            type: string
-          description: The list of middle names of a given full name.
-        lastName:
-          type: string
-          description: The last name of a given full name.
-        suffix:
-          type: string
-          description: The suffix of a given full name.
-      description: The segmented version of a given name.
-      title: SegmentedName
-    FinancialInstitutionAccountVerificationThirdPartyScore:
+    AttributeVerificationMethod:
+      type: integer
+      description: 'Indicates which type of verification was performed. It can be:
+
+        * `1` means electronic identity verification.
+
+        * `2` meaning it is manual document verification.
+
+        * `3` meaning it is OCR verification.
+
+        * `4` meaning it is Trusted Entity.'
+      title: AttributeVerificationMethod
+    PaymentProviderSubType:
       type: string
       enum:
-      - '0'
-      - '100'
-      - '200'
-      - '300'
-      - '400'
-      - '500'
-      - '600'
-      - '700'
-      - '800'
-      - '900'
-      - '999'
-      description: "Verification Third-Party Score:\n * `0`: Failed RT validation. (Verified Mapping = 0)\n * `100`: The supplier has a strong indication that this account is invalid. (Verified Mapping = 1)\n * `200`: The supplier has active non-bankable debt(s) on this account that are less than 3 years old. (Verified Mapping = 2)\n * `300`: The supplier has administrative returns on this account. (Verified Mapping = 3)\n * `400`: The supplier does not have Neg data on this account, but the format appears to be suspicious. (Verified Mapping = 4)\n * `500`: The supplier does not have data on this account or format. (Verified Mapping = 5)\n * `600`: The supplier has not seen this account, but the format appears valid. (Verified Mapping = 6)\n * `700`: The supplier has seen this account, but did not receive a final disposition on the transaction. (Verified Mapping = 7)\n * `800`: The supplier has seen this account, but not in the last 6 months. (Verified Mapping = 8)\n * `900`: The supplier has seen this account in the last 6 months. (Verified Mapping = 9)\n * `999`: The supplier has the highest confidence that this account is valid. (Verified Mapping = 10)\n"
-      title: FinancialInstitutionAccountVerificationThirdPartyScore
-    Get-trustly-id-user-dataRequestBadRequestError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems'
-      required:
-      - errors
-      title: Get-trustly-id-user-dataRequestBadRequestError
+      - '1000'
+      - '2000'
+      - '2001'
+      description: "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n"
+      title: PaymentProviderSubType
     Account:
       type: object
       properties:
@@ -875,149 +1167,6 @@ components:
           type: boolean
           description: Indicates if account is using virtual/tokenized account and routing numbers (VANs/TANs) or not.
       title: Account
-    PaymentProviderSubtype:
-      type: string
-      enum:
-      - '1000'
-      - '2000'
-      - '2001'
-      description: "Payment Provider Subtype:\n  * `1000`: EasyOnline\n  * `2000`: MEC\n  * `2001`: MCD"
-      title: PaymentProviderSubtype
-    TransactionsTransactionIdUserDetailGetParametersExpandSchemaItems:
-      type: string
-      enum:
-      - verification
-      title: TransactionsTransactionIdUserDetailGetParametersExpandSchemaItems
-    RecurrenceFrequencyUnitType:
-      type: string
-      enum:
-      - Day
-      - Week
-      - Month
-      - Year
-      description: Frequency Unit Type
-      title: RecurrenceFrequencyUnitType
-    UserVerificationResult:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/UserVerificationResultCode'
-        reasons:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserVerificationReason'
-        screeningResult:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScreeningResult'
-      description: Details on the user verification.
-      title: UserVerificationResult
-    AttributeVerification:
-      type: object
-      properties:
-        trustedEntity:
-          type: string
-          description: The name of the entity that verified the attribute.
-        verificationType:
-          type: integer
-          description: 'Indicates the type of the entity that verified this piece of data. It can be:
-
-            * `1` verified by a financial institution.
-
-            * `2` verified by user input.
-
-            * `3` verified by the Trustly internal database.
-
-            * `4` verified by an external provider.'
-        verificationMethod:
-          $ref: '#/components/schemas/AttributeVerificationMethod'
-        result:
-          $ref: '#/components/schemas/AttributeVerificationResult'
-        verifiedAt:
-          type: integer
-          format: int64
-          description: Unix Timestamp in milliseconds (since the epoch) when the verification took place.
-      title: AttributeVerification
-    Get-trustly-id-user-detailsRequestBadRequestError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionsTransactionIdUserDetailGetResponsesContentApplicationJsonSchemaErrorsItems'
-      required:
-      - errors
-      title: Get-trustly-id-user-detailsRequestBadRequestError
-    TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems:
-      type: object
-      properties:
-        domain:
-          type: string
-          minLength: 1
-        code:
-          type: number
-          format: double
-        location:
-          type: string
-          minLength: 1
-        message:
-          type: string
-          minLength: 1
-        occurredAt:
-          type: number
-          format: double
-      required:
-      - domain
-      - code
-      - location
-      - message
-      - occurredAt
-      title: TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems
-    PaymentProviderSubType:
-      type: string
-      enum:
-      - '1000'
-      - '2000'
-      - '2001'
-      description: "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n"
-      title: PaymentProviderSubType
-    UserVerificationReason:
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/UserVerificationErrorCode'
-        reason:
-          type: string
-          description: Descriptive text, in English, on why the user verification failed.
-      description: An object describing why an user verification has succeeded or failed.
-      title: UserVerificationReason
-    PaymentProviderTransaction:
-      type: object
-      properties:
-        paymentProviderTransactionId:
-          type: string
-          description: Unique payment provider transaction identifier.
-        status:
-          type: string
-          description: See Payment Provider Transaction Status Codes.
-        statusMessage:
-          type: string
-          description: Payment provider transaction status message.
-        signature:
-          type: string
-        statusDescription:
-          type: string
-        paymentProcessor:
-          $ref: '#/components/schemas/PaymentProviderTransactionPaymentProcessor'
-        thirdPartyDeclineCode:
-          type: string
-        clearingHouse:
-          type: string
-        instantSettle:
-          type: boolean
-          description: Whether instant settlement was used for transaction.
-      description: Payment Provider Transaction
-      title: PaymentProviderTransaction
     Post-transaction-feedbackRequestUnauthorizedError:
       type: object
       properties:
@@ -1028,318 +1177,26 @@ components:
       required:
       - errors
       title: Post-transaction-feedbackRequestUnauthorizedError
-    StateCode:
-      type: string
-      minLength: 1
-      description: 2 character ISO State code.
-      title: StateCode
-    PaymentProviderTransactionPaymentProcessor:
-      type: object
-      properties:
-        paymentProcessorId:
-          type: string
-        type:
-          type: integer
-        name:
-          type: string
-        shortName:
-          type: string
-        url:
-          type: string
-        active:
-          type: string
-      title: PaymentProviderTransactionPaymentProcessor
-    FinancialInstitutionAccountVerificationScore:
-      type: string
-      enum:
-      - '0'
-      - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'
-      - '6'
-      - '7'
-      - '8'
-      - '9'
-      - '10'
-      description: "Verification Score:\n * `0`: Invalid input. The account or routing number are invalid. (Verified Mapping = false)\n * `1`: There is a strong indication that the account is invalid. (Verified Mapping = false)\n * `2`: There are active non-bankable returns on this account that are less than 3 years old. (Verified Mapping = false)\n * `3`: There are administrative returns on this account. (Verified Mapping = false)\n * `4`: The format appears to be suspicious. (Verified Mapping = false)\n * `5`: There is no data on this account or format. (Verified Mapping = false)\n * `6`: We have not seen this account, but the format appears to be valid. (Verified Mapping = true)\n * `7`: We have seen this account but have not received a final disposition on the transaction. (Verified Mapping = true)\n * `8`: We have seen this account, but not in the last 6 months, and have seen no returns associated with the account. (Verified Mapping = true)\n * `9`: We have seen this account in the last 6 months and have seen no returns associated with the account. (Verified Mapping = true)\n * `10`: This account has been directly validated with/by the financial institution or 3rd party. We have the highest confidence that this account is valid. (Verified Mapping = true)\n"
-      title: FinancialInstitutionAccountVerificationScore
-    PaymentProvider:
-      type: object
-      properties:
-        paymentProviderId:
-          type: string
-          minLength: 1
-          description: A unique identifier for the Payment Provider.
-        type:
-          type: number
-          format: double
-        name:
-          type: string
-          minLength: 1
-          description: Name of the payment provider
-        instantPayoutAvailable:
-          type: boolean
-          description: Whether payment provider supports instant payout.
-        subType:
-          $ref: '#/components/schemas/PaymentProviderSubType'
-          description: "Financial Institution Account Type:\n * `1000`: Online Banking\n * `2000`: Manual Entry\n * `2001`: Manual Entry with Challenge Deposit\n"
-        swift:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        country:
-          $ref: '#/components/schemas/PaymentProviderCountry'
-          description: 2-letter ISO country code of the financial institution
-        instantPayment:
-          type: boolean
-      required:
-      - name
-      description: Details of the Financial institution
-      title: PaymentProvider
-    AttributeVerificationDetailName:
-      type: string
-      enum:
-      - taxId
-      - name
-      - address
-      - phone
-      - dateOfBirth
-      - email
-      - driverLicense
-      - deceased
-      description: Which attribute does this entry refer to.
-      title: AttributeVerificationDetailName
-    VerificationStatus:
+    ScreeningResult:
+      type: array
+      items:
+        $ref: '#/components/schemas/ScreeningResultItems'
+      title: ScreeningResult
+    VerificationMode:
       type: string
       enum:
       - '1'
       - '2'
       - '3'
       - '4'
-      description: "Verification Status:\n  * `1`: Automatic - Payment verification followed Trustly internal rules.\n  * `2`: ToVerify\t- Payment transaction is held (status = OnHold) for further investigation and approval by the merchant.\n  * `3`: Verified - Payment was verified and approved by the merchant or Trustly (see Verification Mode).\n  * `4`: Refused - Payment was denied by the merchant or Trustly after verification.\n"
-      title: VerificationStatus
+      description: "Verification Mode:\n  * `1`: VerifiedByMerchant\n  * `2`: ApprovedByMerchant\n  * `3`: VerifiedByTrustly\n  * `4`: AmountAuthorizedByMerchant\n"
+      title: VerificationMode
     ScreeningResultItems:
       oneOf:
       - $ref: '#/components/schemas/WatchlistScreeningResult'
       - $ref: '#/components/schemas/AdversityMediaScreeningResult'
       - $ref: '#/components/schemas/PEPScreeningResult'
       title: ScreeningResultItems
-    PaymentPaymentType:
-      type: string
-      enum:
-      - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'
-      - '6'
-      description: "Financial Institution Account Type:\n * `1`: Instant -\tInstant payment. The debit instruction is automatically initiated with that day's batch after consumer authorization.\n * `2`: Deferred - Deferred payment. Payment is authorized but the capture operation must be called to initiate the debit. You can start to initiate multiple captures that are less than or equal to the original transaction authorization amount.\n * `3`: Recurring - Recurring payment. Same as deferred but associated to a payment agreement between consumer and merchant that defines how much and when the capture can be started.\n * `4`: Disbursement - Disbursement payment. This payment type can only be used for disbursements.\n * `5`: Verification - This payment type is used to verify the customer financial institution account as the payments will be done outside of the Trustly system.\n * `6`: Retrieval\tData retrieval. This payment type is used to retrieve account and user information from Trustly without an associated payment request. This payment type is not enabled by default. Contact Trustly if you need this feature."
-      title: PaymentPaymentType
-    FinancialInstitutionAccountVerificationType:
-      type: string
-      enum:
-      - '1'
-      - '2'
-      - '3'
-      description: "Verification Type:\n * `1`: Manual - The account was verified with manual account verification. For example, Manual Electronic Check and Micro Challenge Deposit.\n * `2`: Online Banking verification\t- The Account was verified using the Trustly Online Banking application.\n * `3`: Database verification\t- The Account was verified using the Trustly database or a Third-Party Service.  \n"
-      title: FinancialInstitutionAccountVerificationType
-    AttributeVerificationResult:
-      type: integer
-      description: 'Indicates the result of the individual attribute verification. It can be:
-
-        * `1` meaning the attribute did not match the expected value.
-
-        * `2` meaning the result was inconclusive.
-
-        * `3` meaning attribute did match the expected attribute.'
-      title: AttributeVerificationResult
-    Address2Country:
-      type: string
-      enum:
-      - US
-      description: 2 character ISO Country code. Currently only the US is supported.
-      title: Address2Country
-    PaymentSystem:
-      type: string
-      enum:
-      - '-1'
-      - '1'
-      - '2'
-      description: "Financial Institution Account Type:\n  * `-1`: None\n  * `1`: PayWithMyBank\n  * `2`: TrustlyAB"
-      title: PaymentSystem
-    Address-2:
-      type: object
-      properties:
-        address1:
-          type: string
-          minLength: 1
-          description: Address Line 1.
-        address2:
-          type: string
-          description: Address Line 2.
-        city:
-          type: string
-          minLength: 1
-          description: Address City.
-        state:
-          $ref: '#/components/schemas/StateCode'
-        zip:
-          type: string
-          minLength: 1
-          description: 5 character US Zip Code.
-        country:
-          $ref: '#/components/schemas/Address2Country'
-          description: 2 character ISO Country code. Currently only the US is supported.
-      required:
-      - country
-      title: Address-2
-    Transaction:
-      type: object
-      properties:
-        transactionId:
-          type: string
-          minLength: 1
-          description: A unique transaction identifier generated by Trustly (15 character max).
-        transactionType:
-          $ref: '#/components/schemas/TransactionTransactionType'
-          description: Type of transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
-        payment:
-          $ref: '#/components/schemas/Payment'
-        currency:
-          $ref: '#/components/schemas/TransactionCurrency'
-          description: 3-letter ISO Currency Code. Currently only USD is supported.
-        amount:
-          type: string
-          minLength: 1
-          description: The amount of the transaction. (10 characters with support for 2 decimal places)
-        pending:
-          type: string
-          minLength: 1
-          description: The total amount that is still pending completion. (10 characters with support for 2 decimal places)
-        paid:
-          type: string
-          minLength: 1
-          description: The total amount that was already paid. (10 characters with support for 2 decimal places)
-        refunded:
-          type: string
-          minLength: 1
-          description: The total amount that was refunded. (10 characters with support for 2 decimal places)
-        reversed:
-          type: string
-          minLength: 1
-          description: The total amount that was reversed. (10 characters with support for 2 decimal places)
-        balance:
-          type: string
-          minLength: 1
-          description: The balance of the amount paid, minus the amount reversed and/or refunded. (10 characters with support for 2 decimal places)
-        paymentProviderTransaction:
-          $ref: '#/components/schemas/PaymentProviderTransaction'
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-          description: Status code of the Payment Provider Transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
-        statusMessage:
-          type: string
-          minLength: 1
-          description: A descriptive status message. (120 characters)
-        ip:
-          type: string
-          minLength: 1
-          description: The client IP address in IPv4 or IPv6 format.
-        createdAt:
-          type: integer
-          description: The date and time the transaction was created as a UNIX timestamp.
-        processedAt:
-          type: integer
-          description: The date and time the transaction was processed as a UNIX timestamp.
-        completedAt:
-          type: integer
-          description: The date and time the transaction was completed as a UNIX timestamp.
-        updatedAt:
-          type: integer
-          description: The date and time the transaction was last updated as a UNIX timestamp.
-        ppTrxId:
-          type: string
-          minLength: 1
-          description: internal use only
-        merchantReference:
-          type: string
-          minLength: 1
-          description: Merchants internal reference id for the transaction.
-        expiredAt:
-          type: integer
-          description: The date and time the preauthorization will expire as a UNIX timestamp.
-        recordVersion:
-          type: number
-          format: double
-          description: The current record version.
-        originalTransactionId:
-          type: string
-        fee:
-          type: string
-        timeZone:
-          type: string
-        representmentScheduledAt:
-          type: number
-          format: double
-        paymentProcessorType:
-          type: string
-        statusCode:
-          type: string
-        preAuthorized:
-          type: boolean
-      required:
-      - transactionId
-      - transactionType
-      - payment
-      - currency
-      - amount
-      - pending
-      - paid
-      - refunded
-      - reversed
-      - balance
-      - paymentProviderTransaction
-      - status
-      - statusMessage
-      - ip
-      - createdAt
-      - processedAt
-      - completedAt
-      - updatedAt
-      - merchantReference
-      - recordVersion
-      description: A Trustly transaction object
-      title: Transaction
-    PEPScreeningResult:
-      type: object
-      properties:
-        screeningType:
-          $ref: '#/components/schemas/ScreeningResultScreeningType'
-        score:
-          type: string
-          title: float
-          description: Match score indicating the strength of a match.
-        name:
-          type: string
-          description: Name of the user.
-        dateOfBirth:
-          type: string
-          format: date
-          description: Date of birth.
-        contry:
-          type: string
-          description: Country.
-        professionalHistory:
-          type: array
-          items:
-            type: string
-        trustedEntity:
-          type: string
-          description: The name of the entity that provided the PEP match.
-      description: Screening information for PEP Screening.
-      title: PEPScreeningResult
     ScreeningResultScreeningType:
       type: string
       enum:
@@ -1359,27 +1216,6 @@ components:
       properties: {}
       description: Object for sending merchant-specific custom data.
       title: CustomerCustomData
-    PaymentCurrency:
-      type: string
-      enum:
-      - USD
-      description: 3-letter ISO Currency Code. Currently only USD is supported.
-      title: PaymentCurrency
-    TransactionCurrency:
-      type: string
-      enum:
-      - USD
-      description: 3-letter ISO Currency Code. Currently only USD is supported.
-      title: TransactionCurrency
-    VerificationMode:
-      type: string
-      enum:
-      - '1'
-      - '2'
-      - '3'
-      - '4'
-      description: "Verification Mode:\n  * `1`: VerifiedByMerchant\n  * `2`: ApprovedByMerchant\n  * `3`: VerifiedByTrustly\n  * `4`: AmountAuthorizedByMerchant\n"
-      title: VerificationMode
     Address:
       type: object
       properties:
@@ -1410,6 +1246,131 @@ components:
       - country
       description: Valid mailing or billing address associated with the customer
       title: Address
+    TransactionStatus:
+      type: string
+      enum:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+      - '10'
+      - '11'
+      - '12'
+      - '13'
+      - '14'
+      description: Status code of the Payment Provider Transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
+      title: TransactionStatus
+    StateCode:
+      type: string
+      minLength: 1
+      description: 2 character ISO State code.
+      title: StateCode
+    TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems:
+      type: object
+      properties:
+        domain:
+          type: string
+          minLength: 1
+        code:
+          type: number
+          format: double
+        location:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        occurredAt:
+          type: number
+          format: double
+      required:
+      - domain
+      - code
+      - location
+      - message
+      - occurredAt
+      title: TransactionsTransactionIdUserGetResponsesContentApplicationJsonSchemaErrorsItems
+    SegmentedName:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of a given full name.
+        firstName:
+          type: string
+          description: The first name of a given full name.
+        middleName:
+          type: array
+          items:
+            type: string
+          description: The list of middle names of a given full name.
+        lastName:
+          type: string
+          description: The last name of a given full name.
+        suffix:
+          type: string
+          description: The suffix of a given full name.
+      description: The segmented version of a given name.
+      title: SegmentedName
+    FinancialInstitutionAccountVerificationScore:
+      type: string
+      enum:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+      - '9'
+      - '10'
+      description: "Verification Score:\n * `0`: Invalid input. The account or routing number are invalid. (Verified Mapping = false)\n * `1`: There is a strong indication that the account is invalid. (Verified Mapping = false)\n * `2`: There are active non-bankable returns on this account that are less than 3 years old. (Verified Mapping = false)\n * `3`: There are administrative returns on this account. (Verified Mapping = false)\n * `4`: The format appears to be suspicious. (Verified Mapping = false)\n * `5`: There is no data on this account or format. (Verified Mapping = false)\n * `6`: We have not seen this account, but the format appears to be valid. (Verified Mapping = true)\n * `7`: We have seen this account but have not received a final disposition on the transaction. (Verified Mapping = true)\n * `8`: We have seen this account, but not in the last 6 months, and have seen no returns associated with the account. (Verified Mapping = true)\n * `9`: We have seen this account in the last 6 months and have seen no returns associated with the account. (Verified Mapping = true)\n * `10`: This account has been directly validated with/by the financial institution or 3rd party. We have the highest confidence that this account is valid. (Verified Mapping = true)\n"
+      title: FinancialInstitutionAccountVerificationScore
+    UserVerificationDetailDetail:
+      type: object
+      properties:
+        verification:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserVerificationResult'
+        attribute:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeVerificationDetail'
+      title: UserVerificationDetailDetail
+    AttributeVerification:
+      type: object
+      properties:
+        trustedEntity:
+          type: string
+          description: The name of the entity that verified the attribute.
+        verificationType:
+          type: integer
+          description: 'Indicates the type of the entity that verified this piece of data. It can be:
+
+            * `1` verified by a financial institution.
+
+            * `2` verified by user input.
+
+            * `3` verified by the Trustly internal database.
+
+            * `4` verified by an external provider.'
+        verificationMethod:
+          $ref: '#/components/schemas/AttributeVerificationMethod'
+        result:
+          $ref: '#/components/schemas/AttributeVerificationResult'
+        verifiedAt:
+          type: integer
+          format: int64
+          description: Unix Timestamp in milliseconds (since the epoch) when the verification took place.
+      title: AttributeVerification
     WatchlistScreeningResult:
       type: object
       properties:
@@ -1465,21 +1426,60 @@ components:
           description: The name of the entity that provided the watchlist match.
       description: Screening information for Watchlist Screening.
       title: WatchlistScreeningResult
-    TransactionTransactionType:
+    UserVerificationErrorCode:
       type: string
       enum:
-      - '0'
+      - '-1'
       - '1'
       - '2'
       - '3'
       - '4'
       - '5'
       - '6'
-      - '7'
-      - '8'
-      - '10'
-      description: Type of transaction record. See [Transaction Types](/integrate/api-fundamentals/status-codes-and-type-definitions#transaction-types)
-      title: TransactionTransactionType
+      description: 'An error code indicating why the user verification has failed. May be:
+
+        * `-1`: no error. the verification was successful.
+
+        * `1`: there was an internal, unspecified error (should not happen).
+
+        * `2`: the user is below the minimum age.
+
+        * `3`: some of the attributes did not meet the minimum verification criteria.
+
+        * `4`: some mandatory attributes are not available.
+
+        * `5`: the user was identified as a person who is deceased.
+
+        * `6`: entries were matched during the screening process'
+      title: UserVerificationErrorCode
+    PEPScreeningResult:
+      type: object
+      properties:
+        screeningType:
+          $ref: '#/components/schemas/ScreeningResultScreeningType'
+        score:
+          type: string
+          title: float
+          description: Match score indicating the strength of a match.
+        name:
+          type: string
+          description: Name of the user.
+        dateOfBirth:
+          type: string
+          format: date
+          description: Date of birth.
+        contry:
+          type: string
+          description: Country.
+        professionalHistory:
+          type: array
+          items:
+            type: string
+        trustedEntity:
+          type: string
+          description: The name of the entity that provided the PEP match.
+      description: Screening information for PEP Screening.
+      title: PEPScreeningResult
     PaymentMerchant:
       type: object
       properties:

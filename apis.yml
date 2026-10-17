@@ -185,12 +185,14 @@ common:
 
 apis:
 - name: Trustly Europe API
-  description: JSON-RPC 1.1 API for Trustly Pay by Bank in Europe and the UK. Methods cover Deposit, Withdraw/AccountPayout, Refund, SelectAccount,
-    RegisterAccount, VerifyAccount, Charge and recurring direct debit (Autogiro, BACS, SEPA via DirectDebitMandate/DirectDebit/DirectCredit and
-    batch variants), local payment methods (Swish, iDEAL/Wero, MB Way, Bancontact), Verification of Payee, and reporting (AccountLedger, MerchantSettlement,
-    GetWithdrawals, CurrentBalance, ClosingBalance). Every request is signed with the merchant's RSA private key and every response and notification
-    is signed by Trustly; notifications (account, pending, credit, debit, cancel, kyc, payoutconfirmation, payoutfailed) are JSON-RPC calls back
-    to the merchant's NotificationURL.
+  description: >-
+    JSON-RPC 1.1 API for Trustly Pay by Bank in Europe and the UK. Methods cover Deposit, Withdraw/AccountPayout,
+    Refund, SelectAccount, RegisterAccount, VerifyAccount, Charge and recurring direct debit (Autogiro,
+    BACS, SEPA via DirectDebitMandate/DirectDebit/DirectCredit and batch variants), local payment methods
+    (Swish, iDEAL/Wero, MB Way, Bancontact), Verification of Payee, and reporting (AccountLedger, MerchantSettlement,
+    GetWithdrawals, CurrentBalance, ClosingBalance). Every request is signed with the merchant's RSA private
+    key and every response and notification is signed by Trustly; notifications (account, pending, credit,
+    debit, cancel, kyc, payoutconfirmation, payoutfailed) are JSON-RPC calls back to the merchant's NotificationURL.
   humanURL: https://docs.trustly.com/api
   baseURL: https://api.trustly.com/1
   tags:
@@ -228,7 +230,8 @@ apis:
     url: https://docs.trustly.com/api/code-library
   - type: Plugins
     url: https://docs.trustly.com/api/plugins
-  image: https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
+  image: >-
+    https://cdn.prod.website-files.com/6798a4db9ed2b5ffc8c81f32/67efd2d42cacfccbc8be80ed_OG%20Image.jpg
   aid: trustly:trustly-europe-api
 - aid: trustly:trustly-accounts-api
   name: Trustly Group Accounts API
@@ -249,13 +252,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -283,17 +288,21 @@ apis:
   - type: Authentication
     url: authentication/trustly-authentication.yml
   - type: JSONSchema
-    url: json-schema/trustly-accounts-post-accounts-tokenize-verify-account-response-200-schema.json
+    url: >-
+      json-schema/trustly-accounts-post-accounts-tokenize-verify-account-response-200-schema.json
   - type: JSONSchema
     url: json-schema/trustly-financial-institution-account-schema.json
   - type: JSONSchema
     url: json-schema/trustly-feedback-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-accounts-tokenize-post-request-body-content-application-json-schema-account-schema.json
+    url: >-
+      json-schema/trustly-accounts-tokenize-post-request-body-content-application-json-schema-account-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-accounts-verify-post-request-body-content-application-json-schema-account-schema.json
+    url: >-
+      json-schema/trustly-accounts-verify-post-request-body-content-application-json-schema-account-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-feedback-post-request-body-content-application-json-schema-account-schema.json
+    url: >-
+      json-schema/trustly-feedback-post-request-body-content-application-json-schema-account-schema.json
 - aid: trustly:trustly-api-api
   name: Trustly Group API
   description: The API API from Trustly Group — 0 operation(s) for api.
@@ -312,13 +321,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -364,13 +375,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -418,13 +431,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -480,13 +495,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -537,13 +554,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -591,13 +610,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -647,13 +668,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -687,11 +710,14 @@ apis:
   - type: JSONSchema
     url: json-schema/trustly-customer-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-establish-post-request-body-content-application-json-schema-metadata-schema.json
+    url: >-
+      json-schema/trustly-establish-post-request-body-content-application-json-schema-metadata-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-establish-post-request-body-content-application-json-schema-beneficiary-schema.json
+    url: >-
+      json-schema/trustly-establish-post-request-body-content-application-json-schema-beneficiary-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-establish-post-request-body-content-application-json-schema-payment-type-schema.json
+    url: >-
+      json-schema/trustly-establish-post-request-body-content-application-json-schema-payment-type-schema.json
 - aid: trustly:trustly-verifycustomer-api
   name: Trustly Group Verify Customer API
   description: The verifyCustomer API from Trustly Group — 1 operation(s) for verifycustomer.
@@ -710,13 +736,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -762,13 +790,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -798,11 +828,17 @@ apis:
   - type: JSONSchema
     url: json-schema/trustly-fiuser-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-account-data-get-transaction-account-summary-response-200-schema.json
+    url: >-
+      json-schema/trustly-account-data-get-transaction-account-summary-response-200-schema.json
   - type: JSONSchema
-    url: json-schema/trustly-account-data-get-transactions-account-balance-response-200-schema.json
+    url: >-
+      json-schema/trustly-account-data-get-transactions-account-balance-response-200-schema.json
   - type: JSONSchema
     url: json-schema/trustly-account-data-list-selected-accounts-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-payment-providers-get-payment-providers-response-200-schema.json
 - aid: trustly:trustly-dispute-management-api
   name: Trustly Group Dispute Management API
   description: The Dispute Management API from Trustly Group — 1 operation(s) for dispute management.
@@ -820,13 +856,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -854,7 +892,19 @@ apis:
   - type: Authentication
     url: authentication/trustly-authentication.yml
   - type: JSONSchema
+    url: json-schema/trustly-fiuser-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/trustly-account-data-get-transaction-account-summary-response-200-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/trustly-account-data-get-transactions-account-balance-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-account-data-list-selected-accounts-response-200-schema.json
+  - type: JSONSchema
     url: json-schema/trustly-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-payment-providers-get-payment-providers-response-200-schema.json
 - aid: trustly:trustly-payment-providers-api
   name: Trustly Group Payment Providers API
   description: The Payment Providers API from Trustly Group — 1 operation(s) for payment providers.
@@ -872,13 +922,15 @@ apis:
   - type: GettingStarted
     url: https://amer.developers.trustly.com/integrate/get-started
   - type: Authentication
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/secure-requests-and-signature-validation
   - type: Sandbox
     url: https://amer.developers.trustly.com/integrate/api-fundamentals/testing
   - type: Webhooks
     url: https://amer.developers.trustly.com/integrate/core-concepts/webhooks-and-events
   - type: ErrorCodes
-    url: https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
+    url: >-
+      https://amer.developers.trustly.com/integrate/api-fundamentals/status-codes-and-type-definitions
   - type: SDKs
     url: https://amer.developers.trustly.com/sdks
   - type: LLMsTxt
@@ -905,6 +957,18 @@ apis:
     url: llms/trustly-llms.txt
   - type: Authentication
     url: authentication/trustly-authentication.yml
+  - type: JSONSchema
+    url: json-schema/trustly-fiuser-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/trustly-account-data-get-transaction-account-summary-response-200-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/trustly-account-data-get-transactions-account-balance-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-account-data-list-selected-accounts-response-200-schema.json
+  - type: JSONSchema
+    url: json-schema/trustly-transaction-schema.json
   - type: JSONSchema
     url: json-schema/trustly-payment-providers-get-payment-providers-response-200-schema.json
 x-enrichment:
