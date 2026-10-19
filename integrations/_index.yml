@@ -59,3 +59,83 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: trustly-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.trustly.api/trustly-java-client
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.trustly.api:trustly-java-client
+      version: 1.1.0
+      released: '2024-01-22'
+      released_field: lastUpdated
+      lapsed: true
+      page: https://central.sonatype.com/artifact/com.trustly.api/trustly-java-client
+      repo_leg: github-org:trustly
+      publisher_leg: groupId:trustly.com
+      matched_by: domain+name-among-holders
+    - name: com.trustly:trustly-android-library
+      version: 4.1.1
+      released: '2026-01-14'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.trustly/trustly-android-library
+      repo_leg: github-org:trustly
+      publisher_leg: groupId:trustly.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: trustly-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@trustly-group/client
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@trustly-group/client'
+      version: 0.0.4
+      released: '2024-01-31'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@trustly-group/client
+      repo_leg: github-org:trustly
+      publisher_leg: email:trustly.com
+      matched_by: domain+name-among-holders
+    - name: '@trustlyinc/trustly-react-native'
+      version: 1.1.2
+      released: '2026-07-02'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@trustlyinc/trustly-react-native
+      repo_leg: shared-github-org:trustlyinc
+      publisher_leg: email:trustly.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
