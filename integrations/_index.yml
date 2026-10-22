@@ -34,31 +34,6 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
-- slug: trustly-uk-g-cloud-15-digital-marketplace
-  label: UK G-Cloud 15 (Digital Marketplace)
-  partner_name: UK G-Cloud 15 (Digital Marketplace)
-  category: UK public-sector procurement framework
-  type: marketplace
-  marketplace: g-cloud
-  channel: distribution
-  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/supplier/724975
-  source: edge
-  relationship: distribution-channel
-  contract_reference:
-    register: UK G-Cloud 15 supplier list (Digital Marketplace)
-    spec_file: null
-    role: g-cloud-supplier
-    registered_name: TRUSTLY UK LIMITED
-    register_id: '724975'
-    matched_domain: trustly.com
-    matched_by: domain+name-among-holders
-    domain_source: contact-email
-    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
-      of position shares
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
 - slug: trustly-maven-central
   label: Maven Central
   partner: maven-central
@@ -137,5 +112,137 @@
       24 months'
     detected_by: sweep-official-sdks.py
     detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: trustly-uk-g-cloud-15-digital-marketplace
+  label: UK G-Cloud 15 (Digital Marketplace)
+  partner_name: UK G-Cloud 15 (Digital Marketplace)
+  category: UK public-sector procurement framework
+  type: marketplace
+  marketplace: g-cloud
+  channel: distribution
+  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/supplier/724975
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: UK G-Cloud 15 supplier list (Digital Marketplace)
+    spec_file: null
+    role: g-cloud-supplier
+    registered_name: TRUSTLY UK LIMITED
+    register_id: '724975'
+    matched_domain: trustly.com
+    matched_by: domain+name-among-holders
+    domain_source: contact-email
+    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
+      of position shares
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: trustly-eba-payment-institutions-register-psd2-emd2
+  label: EBA Payment Institutions Register (PSD2 / EMD2)
+  partner_name: EBA Payment Institutions Register (PSD2 / EMD2)
+  category: EU/EEA PSD2 payment / e-money authorisation
+  type: register
+  channel: regulator-register
+  evidence: https://euclid.eba.europa.eu/register/pir/search
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: EBA Payment Institutions Register (PSD2 / EMD2)
+    spec_file: null
+    standard: null
+    role: authorised-payment-or-e-money-institution
+    registrations:
+    - registered_name: Trustly Group AB
+      licences:
+      - payment institution
+      register_country: SE
+      register_id: SE_FINA!45002
+      matched_domain: null
+      matched_by: register-name
+      authorised: '2019-07-05'
+      competent_authority: SE_FINA
+      national_ref: '45002'
+      home_services:
+      - PS_03A
+      - PS_03B
+      - PS_03C
+      - PS_04A
+      - PS_04B
+      - PS_04C
+      - PS_060
+      - PS_070
+      - PS_080
+      passports:
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - ES
+      - FI
+      - FR
+      - GR
+      - HR
+      - HU
+      - IE
+      - IS
+      - IT
+      - LI
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - 'NO'
+      - PL
+      - PT
+      - RO
+      - SI
+      - SK
+      register_name_note: register-name 'trustlygroup' = trustly; wikidata P856 trustly.com agrees or unheld
+    matched_by: register-name
+    signal_note: 'participation only: a regulator authorisation / registration and its PSD2 passports (host countries);
+      no API conformance is published by this register'
+    detected_by: sweep-eu-psd2-payment-institutions.py
+    detected: '2026-10-21'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  status: not-a-workflow
+  arazzo: null
+- slug: trustly-finansinspektionen-company-register-sweden
+  label: Finansinspektionen company register (Sweden)
+  partner_name: Finansinspektionen company register (Sweden)
+  category: Swedish licensed bank / credit / payment / e-money institution
+  type: register
+  channel: regulator-register
+  evidence: https://www.fi.se/en/our-registers/company-register/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Finansinspektionen company register (Sweden)
+    spec_file: null
+    standard: null
+    role: licensed-institution
+    registrations:
+    - registered_name: Trustly Group AB
+      licences:
+      - Payment institution
+      register_country: SE
+      matched_domain: trustly.com
+      matched_by: domain+name-among-holders
+      register_id: 556754-8655
+      lei: 5493008FHV9NM1RASP51
+      identity: wikidata Q18449475 P1278 LEI 5493008FHV9NM1RASP51 P856 https://www.trustly.com
+    signal_note: 'participation only: a regulator licence listing; no API conformance is published by this register'
+    detected_by: sweep-nordic-financial-registers.py
+    detected: '2026-10-21'
+    identity_source: wikidata P1278 (the register's LEI) -> P856 (labelled provenance step; Kin 2026-10-15 decision
+      1)
   status: not-a-workflow
   arazzo: null
