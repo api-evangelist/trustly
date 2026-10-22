@@ -215,34 +215,3 @@
       P856 not contradicting (Kin 2026-10-20 decision 2)
   status: not-a-workflow
   arazzo: null
-- slug: trustly-finansinspektionen-company-register-sweden
-  label: Finansinspektionen company register (Sweden)
-  partner_name: Finansinspektionen company register (Sweden)
-  category: Swedish licensed bank / credit / payment / e-money institution
-  type: register
-  channel: regulator-register
-  evidence: https://www.fi.se/en/our-registers/company-register/
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: Finansinspektionen company register (Sweden)
-    spec_file: null
-    standard: null
-    role: licensed-institution
-    registrations:
-    - registered_name: Trustly Group AB
-      licences:
-      - Payment institution
-      register_country: SE
-      matched_domain: trustly.com
-      matched_by: domain+name-among-holders
-      register_id: 556754-8655
-      lei: 5493008FHV9NM1RASP51
-      identity: wikidata Q18449475 P1278 LEI 5493008FHV9NM1RASP51 P856 https://www.trustly.com
-    signal_note: 'participation only: a regulator licence listing; no API conformance is published by this register'
-    detected_by: sweep-nordic-financial-registers.py
-    detected: '2026-10-21'
-    identity_source: wikidata P1278 (the register's LEI) -> P856 (labelled provenance step; Kin 2026-10-15 decision
-      1)
-  status: not-a-workflow
-  arazzo: null
