@@ -215,3 +215,36 @@
       P856 not contradicting (Kin 2026-10-20 decision 2)
   status: not-a-workflow
   arazzo: null
+- slug: trustly-bank-of-canada-rpaa-registry-of-payment-service-providers
+  label: Bank of Canada RPAA registry of payment service providers
+  partner_name: Bank of Canada RPAA registry of payment service providers
+  category: Canadian retail payment activities (RPAA) PSP registration
+  type: register
+  channel: regulator-register
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: Trustly Canada, Inc.
+      register_status: registered
+      register_country: CA
+      register_id: 332a58b8-309d-ef11-8a6a-0022483c5fb0
+      matched_domain: trustly.com
+      matched_by: domain+name-among-holders
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=332a58b8-309d-ef11-8a6a-0022483c5fb0
+      licences:
+      - RPAA registered PSP
+      registration_date: '2025-10-08'
+      head_office_country: Canada
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
